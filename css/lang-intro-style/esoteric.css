@@ -1,0 +1,137 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background: #282C34;
+}
+
+header {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #530b0b;
+    color: rgb(170, 160, 160);
+
+    height: 100px;
+    width: 100%;
+
+    font-size: 20pt;
+    text-shadow: 0 5px 10px #000;
+    -webkit-text-stroke: 1px black;
+}
+
+.content {
+    position: relative;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
+    width: 95%;
+
+    margin: 20px 10px;
+
+    line-height: 1.8em;
+    letter-spacing: 0.05em;
+
+    border-radius: 10px;
+    font-size: 14pt;
+
+    background: #530b0b;
+    color: beige;
+}
+
+.content .intro {
+    color: rgb(197, 192, 192);
+}
+
+.content .intro p {
+    padding-left: 20px;
+}
+
+.content h2 {
+    color: #530b0b;
+    text-shadow: 2px 0 25px #000;
+    -webkit-text-stroke: 0.01px white;
+}
+
+.content h3 {
+    padding: 20px 20px 5px 20px;
+}
+
+.content h4 {
+    padding: 20px 20px 5px 30px;
+}
+
+.content ul {
+    padding-left: 70px;
+}
+
+.content ol {
+    padding-left: 60px;
+}
+/* ------------------------------------ */
+
+.content .intro,
+.charc,
+.notable,
+.purpose,
+.chalng,
+.create-esot {
+    background: #993f3f;
+    border-radius: 10px;
+    margin: 0 10px;
+    padding: 20px;
+    box-shadow: 0 1px 10px #000;
+}
+
+/* ------------------------------------ */
+
+.content .conclue {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    margin: 20px 10px;
+    padding: 20px;
+ 
+    line-height: 1.6em;
+    border-radius: 10px;
+
+    font-size: 14pt;
+    font-weight: 500;
+
+    background: #994242;
+    color: silver;
+    box-shadow: 0 1px 10px #000;
+}
+
+.content .conclue  p {
+    padding-left: 30px;
+}
+
+footer {
+    display: flex;
+
+    height: 50px;
+    width: 100%;
+
+    justify-content: center;
+    align-items: center;
+
+    background: #530b0b;
+    color: silver;
+
+    text-shadow: 0 5px 10px #000;
+}

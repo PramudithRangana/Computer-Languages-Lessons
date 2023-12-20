@@ -1,0 +1,164 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #282C34;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    height: 100px;
+    width: 100%;
+
+    font-size: 20pt;
+    text-shadow: 0 5px 10px #000;
+    -webkit-text-stroke: 1px black;
+
+    background: #4f0da5;
+    color: #d9dfdf;
+}
+
+
+header .py-logo {
+    width: 85px;
+    margin-top: 10px;
+    margin-left: 50px;
+}
+
+header h1 {
+    margin-right: 600px;
+}
+
+.content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    margin: 30px 30px;
+
+    line-height: 1.6em;
+    border-radius: 10px;
+    font-size: 14pt;
+    background: #4e124e;
+    color: beige;
+}
+
+.content p {
+    padding: 10px 40px;
+}
+
+.content h3 {
+    display: flex;
+    margin: 15px;
+    padding: 20px;
+    margin-bottom: 1px;
+
+    background: #8a488a;
+    width: 95%;
+    height: 15px;
+    align-items: center;
+    border-radius: 10px;
+    letter-spacing: 0.08em;
+}
+
+
+.content #lst-desc {
+    color: silver;
+    padding-left: 30px;
+    padding-bottom: 15px;
+    letter-spacing: 0.08em;
+}
+
+
+.content .intro-frame, .built-app {
+    margin: 20px auto;
+    padding: 20px 40px;
+    background: #642764;
+    border-radius: 10px;
+    width: 94%;
+    letter-spacing: 0.03em;
+}
+
+.content .intro-frame {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    gap: 20px;
+}
+
+.content .built-app .code-sec pre {
+    display: flex;
+    flex-direction: column;
+
+    width: 60%;
+    margin: 10px auto;
+    overflow-x: auto;
+
+    line-height: 1.7em;
+    font-size: 12pt;
+}
+
+.content .intro-frame .web-frame {
+    padding-left: 40px;
+}
+
+.content .intro-frame .web-frame ol {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    padding-left: 10px;
+
+    line-height: 2em;
+    letter-spacing: 0.08em;
+}
+
+.content .intro-frame .web-frame ul {
+    padding-left: 30px;
+    line-height: 2em;
+    letter-spacing: 0.08em;
+}
+
+.content .built-app .act-flask {
+    background: #552c55;
+
+    border-radius: 10px;
+    padding: 20px 50px;
+
+    line-height: 25pt;
+    letter-spacing: 0.08em;
+}
+
+
+.content .built-app #lcl-hst{
+    background: rgba(0, 0, 0, 0.637);
+    padding: 2px 8px;
+    font-style: italic;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 50px;
+    width: 100%;
+
+    margin-top: 15px;
+
+    background: #4f0da5;
+    color: silver;
+
+    text-shadow: 0 5px 10px #000;
+}

@@ -1,0 +1,97 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #282C34;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.top {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100px;
+    width: 100%;
+
+    font-size: 20pt;
+    text-shadow: 0 5px 10px #000;
+    -webkit-text-stroke: 1px black;
+
+    background: #4f0da5;
+    color: #d9dfdf;
+}
+
+.content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.content .back-dock{
+    display: flex;
+    flex-direction: column;
+    
+    background-image: url(../src_images/computer-programming.webp);
+    background-size: cover; /* Adjust to cover the entire background */
+    /* background-position: center; Center the background image */
+    /* background-position: top 0px left 10px; */
+    height: 85vh; /* Set the height of the container (viewport height) */
+    position: relative; /* Position elements within this container */
+    background-repeat: no-repeat;
+}
+
+.content .menu {
+    position: relative;
+    padding: 20px 50px;
+    display: flex;
+    flex-direction: column;
+    line-height: 35pt;
+    justify-content: center;
+
+    background: rgb(1, 39, 110);
+    /* border-radius: 0 10px 0 10px; */
+
+    background: linear-gradient(to left, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%, rgba(0, 0, 0, 0) 100%),
+                linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 50%, rgba(0, 0, 0, 0) 100%);
+
+    width: 500px;
+
+    top: 100px;
+    left: 200px;
+
+    font-size: 15pt;
+}
+
+.content a {
+    text-decoration: none;
+    /* color: #ffffff; */
+    color: #1df01d;
+    letter-spacing: 0.08em;
+}
+
+.content ul {
+    list-style-type: square;
+    color: rgb(18, 252, 18);
+}
+
+footer {
+    top: 920px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 45px;
+    width: 100%;
+
+    background: #4f0da5;
+    color: silver;
+
+    text-shadow: 0 5px 10px #000;
+}

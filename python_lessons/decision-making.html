@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decision making in Python</title>
+    <link rel="stylesheet" href="../css/py-style/dec-mk.css">
+
+    <link rel="stylesheet" href="../css/sintaxhighlight.css">
+    <script src="../js/sintaxhighlight.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+<body>
+    <header>
+        <img src="../src_images/Python-logo-notext.png" class="py-logo" alt="Python Logo">
+        <h1>Decision Making</h1>
+    </header>
+
+    <section class="top-content">
+        Decision-making is the anticipation of conditions occurring during the execution of a
+        program and specified actions taken according to the conditions.
+    </section>
+
+    <section class="content">
+        <div class="intro">
+            <p>
+                Decision structures evaluate multiple expressions, which produce TRUE or FALSE as the 
+                outcome. You need to determine which action to take and which statements to execute if 
+                the outcome is TRUE or FALSE otherwise.
+            </p>
+    
+            <p>
+                Following is the general form of a typical decision making structure found in most of the 
+                programming languages
+            </p>
+    
+            <div class="img-view">
+                <img src="../src_images/pseudo-code-gen.png" alt="pseudo-code general" class="img-1">
+            </div>
+
+            <p>
+                Python programming language assumes any <strong>non-zero</strong> and <strong>non-null</strong> values as TRUE, and 
+                any <strong>zero</strong> or <strong>null values</strong> as FALSE value.
+            </p>
+    
+            <p>
+                Python programming language provides the following types of decision-making 
+                statements.
+            </p>
+    
+            <table class="tbl">
+                <thead>
+                    <tr>
+                        <td class="stm-column">Statement</td>
+                        <td class="desc-column">Description</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="stm-column">if statements</td>
+                        <td class="desc-column">
+                            An if statement consists of a Boolean expression followed by 
+                            one or more statements.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="stm-column">if...else statements</td>
+                        <td class="desc-column">
+                            An if statement can be followed by an optional else 
+                            statement, which executes when the boolean expression is 
+                            FALSE.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="stm-column">nested if statements</td>
+                        <td class="desc-column">
+                            You can use one if or else if statement inside 
+                            another if or else if statement(s).
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    
+            <p>Let us go through each decision-making statement quickly.</p>
+        </div>
+
+        <div class="if-stm">
+            <h3>IF Statement</h3>
+    
+            <p>
+                The IF statement is similar to that of other languages. The if statement contains a logical 
+                expression using which the data is compared and a decision is made based on the result 
+                of the comparison.
+            </p>
+    
+            <h6>Syntax :</h6>
+    
+            <pre>
+                <code>
+                    if expression:
+                         statement(s)
+                </code>
+            </pre>
+    
+            <p>
+                If the boolean expression evaluates to TRUE, then the block of statement(s) inside the if 
+                statement is executed. In Python, statements in a block are uniformly indented after the 
+                : symbol. If boolean expression evaluates to FALSE, then the first set of code after the 
+                end of block is executed.
+            </p>
+    
+            <h6>Flow Diagram</h6>
+    
+            <div class="img-view">
+                <img src="../src_images/pseudo-code-if-condition.png" alt="pseudo-code if-condition" class="img-2">
+            </div>
+    
+    
+            <h6>Example :</h6>
+    
+            <pre>
+                <code>
+                    #!/usr/bin/python3
+                    var1 = 100
+                    if var1:
+                        print("1 - Got a true expression value")
+                        print(var1)
+    
+                    var2 = 0
+                    if var2:
+                        print("2 - Got a true expression value")
+                        print(var2)
+                    print("Good bye!")
+                </code>
+            </pre>
+    
+            <p id="mini-txt">When the above code is executed, it produces the following result :</p>
+    
+            <div>
+                <pre id="output-result">
+                    1 - Got a true expression value
+                    100
+                    Good bye!
+                </pre>
+            </div>
+        </div>
+
+        <div class="if-elif-else-stm">
+            <h3>IF...ELIF...ELSE Statements</h3>
+    
+            <p>
+                An <b>else</b> statement can be combined with an <b>if</b> statement. An <b>else</b> statement contains a 
+                block of code that executes if the conditional expression in the if statement resolves to 0 
+                or a FALSE value.
+            </p>
+    
+            <p>
+                The else statement is an optional statement and there could be at the most only 
+                one else statement following if.
+            </p>
+    
+            <h6>Syntax :</h6>
+    
+            <p>if..else :</p>
+    
+            <pre>
+                <code>
+                    if expression:
+                        statement(s)
+                    else:
+                        statement(s)
+                </code>
+            </pre>
+    
+            <h6>Flow Diagram</h6>
+    
+            <div class="img-view">
+                <img src="../src_images/pseudo-code-if-elif condition.png" alt="pseudo-code if-elif condition" class="img-3">
+            </div>
+    
+            <h6>Example :</h6>
+    
+            <pre>
+                <code>
+                    #!/usr/bin/python3
+                    amount = int(input("Enter amount: "))
+            
+                    if amount < 1000:
+                        discount = amount*0.05
+                        print("Discount",discount)
+                    else:
+                        discount = amount*0.10
+                        print("Discount",discount)
+                    
+                    print("Net payable:",amount-discount)
+                </code>
+            </pre>
+    
+            <p>
+                In the above example, discount is calculated on the input amount. Rate of discount is 5%,
+                if the amount is less than 1000, and 10% if it is above 10000.
+            </p>
+
+            <p id="mini-txt">When the above code is executed, it produces the following result :</p>
+
+            <div>
+                <pre id="output-result">
+                    Enter amount: 600
+                    Discount 30.0
+                    Net payable: 570.0
+                    Enter amount: 1200
+                    Discount 120.0
+                    Net payable: 1080.0
+                </pre>
+            </div>
+        </div>
+
+        <div class="elif-stm">
+            <h3>The elif Statement</h3>
+    
+            <p>
+                The <b>elif</b> statement allows you to check multiple expressions for TRUE and execute a block 
+                of code as soon as one of the conditions evaluates to TRUE.
+            </p>
+    
+            <p>
+                Similar to the <b>else</b>, the <b>elif</b> statement is optional. <br>However, unlike <b>else</b>, for which there 
+                can be at the most one statement, there can be an arbitrary number of <b>elif</b> statements 
+                following an <b>if</b>.
+            </p>
+    
+            <h6>Syntax :</h6>
+    
+            <pre>
+                <code>
+                    if expression1:
+                        statement(s)
+                    elif expression2:
+                        statement(s)
+                    elif expression3:
+                        statement(s)
+                    else:
+                        statement(s)
+                </code>
+            </pre>
+    
+            <p>
+                Core Python does not provide switch or case statements as in other languages, but we can 
+                use if..elif...statements to simulate switch case as follows
+            </p>
+    
+            <h6>Example :</h6>
+    
+            <pre>
+                <code>
+                    #!/usr/bin/python3
+                    amount = int(input("Enter amount: "))
+                    
+                    if amount < 1000:
+                        discount = amount*0.05
+                        print("Discount",discount)
+    
+                    elif amount < 5000:
+                        discount = amount*0.10
+                        print("Discount",discount)
+    
+                    else:
+                        discount = amount*0.15
+                        print("Discount",discount)
+    
+                        print("Net payable:",amount-discount)
+                </code>
+            </pre>
+    
+            <p id="mini-txt">When the above code is executed, it produces the following result :</p>
+    
+            <div>
+                <pre id="output-result">
+                    Enter amount: 600
+                    Discount 30.0
+                    Net payable: 570.0
+                   
+                    Enter amount: 3000
+                    Discount 300.0
+                    Net payable: 2700.0
+                   
+                    Enter amount: 6000
+                    Discount 900.0
+                    Net payable: 5100.0
+                </pre>
+            </div>
+        </div>
+
+        <div class="nested-if-stm">
+            <h3>Nested IF Statements</h3>
+    
+            <p>
+                There may be a situation when you want to check for another condition after a condition 
+                resolves to true. In such a situation, you can use the nested <b>if</b> construct.
+            </p>
+    
+            <p>
+                In a nested <b>if</b> construct, you can have an <b>if...elif...else</b> construct inside another
+                <b>if...elif...else</b> construct.
+            </p>
+    
+            <h6>Syntax :</h6>
+    
+            <p>The syntax of the nested if...elif...else construct may be</p>
+    
+            <pre>
+                <code>
+                    if expression1:
+                        statement(s)
+    
+                        if expression2:
+                            statement(s)
+                        elif expression3:
+                            statement(s)
+                        else
+                            statement(s)
+    
+                    elif expression4:
+                        statement(s)
+                    else:
+                        statement(s)
+                </code>
+            </pre>
+    
+            <h6>Example :</h6>
+    
+            <pre>
+                <code>
+                    # !/usr/bin/python3
+                    num=int(input("enter number"))
+    
+                    if num%2 == 0:
+                        if num%3 == 0:
+                            print("Divisible by 3 and 2")
+                        else:
+                            print("divisible by 2 not divisible by 3")
+                    else:
+                        if num%3 == 0:
+                            print("divisible by 3 not divisible by 2")
+                        else:
+                            print("not Divisible by 2 not divisible by 3")
+                </code>
+            </pre>
+    
+            <p id="mini-txt">When the above code is executed, it produces the following result :</p>
+    
+            <div>
+                <pre id="output-result">
+                    enter number8
+                    divisible by 2 not divisible by 3
+    
+                    enter number15
+                    divisible by 3 not divisible by 2
+    
+                    enter number12
+                    Divisible by 3 and 2
+    
+                    enter number5
+                    not Divisible by 2 not divisible by 3
+                </pre>
+            </div>
+        </div>
+
+        <div class="sngl-stm">
+            <h3>Single Statement Suites</h3>
+    
+            <p>
+                If the suite of an <b>if</b> clause consists only of a single line, it may go on the same line as the 
+                header statement.
+            </p>
+    
+            <p>Example of a <b>one-line if</b> clause</p>
+    
+            <pre>
+                <code>
+                    #!/usr/bin/python3
+                    var = 100
+                    if ( var == 100 ) : print ("Value of expression is 100")
+                        print ("Good bye!")
+                </code>
+            </pre>
+    
+            <p id="mini-txt">When the above code is executed, it produces the following result :</p>
+    
+            <div>
+                <pre id="output-result">
+                    Value of expression is 100
+                    Good bye!
+                </pre>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <h5>Pramu Programming Concept</h5>
+    </footer>
+</body>
+</html>

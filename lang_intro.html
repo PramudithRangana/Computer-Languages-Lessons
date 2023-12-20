@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Languages</title>
+    <link rel="stylesheet" href="css/py-style/lang-intro.css">
+    <link rel="stylesheet" href="../css/sintaxhighlight.css">
+    <script src="../js/sintaxhighlight.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+<body>
+    <header>
+        <h1>Types of Languages</h1>
+    </header>
+
+    <section class="top-content">
+        <img src="./src_images/programming-languages-in-colorful-boxes.jpg" class="intr-img" alt="Colorful Boxes Image">
+    </section>
+
+    <section class="content">
+        <div class="type-of-lang">
+            <p>
+                There are numerous programming languages, and they can be categorized in various ways based
+                on their characteristics and purposes. Here are some common categories:
+            </p>
+    
+            <ol>
+                <li>
+                    <a href="lang-introduction/high-low-lang.html" target="_blank">High-Level vs. Low-Level Languages:</a>
+                </li>
+                    <ul>
+                        <li>
+                            High-Level Languages: Closer to human languages, easier to write and understand.
+                            Examples include Python, Java, and JavaScript.
+                        </li>
+                        <li>
+                            Low-Level Languages: Closer to machine code, more difficult for humans to read and write.
+                            Examples include Assembly and machine code.
+                        </li>
+                    </ul>
+    
+                <li>
+                    <a href="lang-introduction/proc-oop-func.html" target="_blank">Procedural vs. Object-Oriented vs. Functional:</a>
+                </li>
+                    <ul>
+                        <li>
+                            Procedural Languages: Organized around procedures or routines. Examples include C and Pascal.
+                        </li>
+                        <li>
+                            Object-Oriented Languages: Organized around objects, which encapsulate data and
+                         behavior. Examples include Java, C++, and Python.
+                        </li>
+                        <li>
+                            Functional Languages: Treat computation as the evaluation of mathematical functions.
+                         Examples include Haskell and Lisp.
+                        </li>
+                    </ul>
+    
+                <li>
+                    <a href="lang-introduction/comp-intrp.html" target="_blank">Compiled vs. Interpreted Languages:</a>
+                </li>
+                    <ul>
+                        <li>
+                            Compiled Languages: Code is translated into machine code before execution. Examples
+                         include C and C++.
+                        </li>
+                        <li>
+                            Interpreted Languages: Code is executed line by line. Examples include Python and
+                         JavaScript.
+                        </li>
+                    </ul>
+    
+                <li>
+                    <a href="lang-introduction/scripting.html" target="_blank">Scripting Languages:</a>
+                </li>
+                    <ul>
+                        <li>
+                            Languages used for scripting and automation. Examples include Python, Ruby, and Shell
+                         scripting languages.
+                        </li>
+
+                    </ul>
+                
+                <li>
+                    <a href="lang-introduction/markup-down.html" target="_blank"> Markup Languages & Markdown Languages:</a>
+                </li>
+                    <ul>
+                        <li>
+                            Markup Languages are Used to annotate text with tags. Examples include HTML (for web pages) and XML.
+                        </li>
+
+                        <li>
+                            Markdown Languages are used for formatting text on the web.
+                        </li>
+                    </ul>
+    
+                <li>
+                    <a href="lang-introduction/query-lang.html" target="_blank">Query Languages:</a>
+                </li>
+                    <ul>
+                        <li>
+                            Designed for querying databases. Examples include SQL.
+                        </li>
+                    </ul>
+    
+                <li>
+                    <a href="lang-introduction/domain-specif.html" target="_blank">Domain-Specific Languages (DSLs):</a>
+                </li>
+                    <ul>
+                        <li>
+                            Tailored for a specific application domain. Examples include MATLAB for numerical computing
+                         and VHDL for hardware description.
+                        </li>
+                    </ul>
+    
+                <li>
+                    <a href="lang-introduction/concurr-orient.html" target="_blank">Concurrency-Oriented Languages:</a>
+                </li>
+                    <ul>
+                        <li>
+                            Designed for concurrent programming. Examples include Erlang and Go.
+                        </li>
+                    </ul>
+
+                <li>
+                    <a href="lang-introduction/esoteric.html" target="_blank">Esoteric Languages:</a>
+                </li>
+                    <ul>
+                        <li>
+                            Created for fun or experimentation rather than practical use. Examples include Brainfuck and
+                             Whitespace.
+                        </li>
+                    </ul>
+    
+                <li>
+                    <a href="lang-introduction/assembly.html" target="_blank">Assembly Languages:</a>
+                </li>
+                    <ul>
+                        <li>
+                            Low-level languages specific to a particular computer architecture.
+                        </li>
+                    </ul>
+            </ol>
+    
+            <p>
+                This list is by no means exhaustive, and new languages continue to be developed. Each language
+                serves different purposes and is suitable for specific types of tasks.
+            </p>
+        </div>
+
+        <div class="lang-comp">
+            <p>
+                Programming languages and scripting languages are both used for writing computer programs. <br> But
+                there are some key differences between them:
+            </p>
+        
+            <div class="key-diff">
+                <ol>
+                    <li>Compilation vs. Interpretation:
+                        <ul type="circle">
+                            <li>
+                                Programming languages are typically compiled, which means that the source code is translated
+                                into machine code before the program is executed. This process results in an executable file that
+                                can run independently.
+                            </li>
+                            
+                            <li>
+                                Scripting languages are generally interpreted, which means that the source code is executed line
+                                by line by an interpreter. There is no separate compilation step, and the code is not translated into
+                                machine code.
+                            </li>
+                        </ul>
+                    </li>
+            
+                    <li>Static vs. Dynamic Typing:
+                        <ul type="circle">
+                            <li>
+                                Programming languages often use static typing, where variable types are explicitly declared and
+                                checked at compile time. This can help catch type-related errors early.
+                            </li>
+                            
+                            <li>
+                                Scripting languages often use dynamic typing, where variable types are determined at runtime.
+                                This provides more flexibility but can lead to runtime errors if type mismatches occur.
+                            </li>
+                        </ul>
+                    </li>
+            
+                    <li>Use Cases:
+                        <ul type="circle">
+                            <li>
+                                Programming languages are commonly used for developing system-level software, applications,
+                                and large-scale software projects where performance and efficiency are critical.
+                            </li>
+                            
+                            <li>
+                                Scripting languages are often used for automating tasks, web development, and working with
+                                smaller-scale applications. They are known for their ease of use and rapid development.
+                            </li>
+                        </ul>
+                    </li>
+            
+                    <li>Verbosity:
+                        <ul type="circle">
+                            <li>
+                                Programming languages tend to be more verbose, requiring more code to accomplish tasks.
+                                This can make them more suitable for large and complex projects.
+                            </li>
+            
+                            <li>
+                                Scripting languages are often less verbose, allowing developers to write code more quickly and
+                                with fewer lines, which is beneficial for smaller tasks and prototypes.
+                            </li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+        
+            <div class="exmp">
+                <p>Examples:</p>
+                <ul>
+                    <li>Programming languages:
+                        <ul>C++, Java, C#</ul>
+                    </li>
+                    <li>Scripting languages:
+                        <ul>Python, JavaScript, Ruby</ul>
+                    </li>
+                </ul>
+            
+                <p>
+                    It's worth noting that the line between programming and scripting languages can sometimes be
+                    blurred, and many languages have elements of both. The choice between them depends on the
+                    specific requirements of a project and personal preferences.
+                </p>
+            </div>
+            
+            <p>how source code is processed and executed in both programming and scripting languages:</p>
+        
+            <div class="tbl">
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th class="pro-column">Programming Languages</th>
+                            <th class="scr-column">Scripting Languages</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="pro-column"><span>Source Code: </span>You write the source code in a programming language (e.g. C++).</td>
+                            <td class="scr-column"><span>Source Code: </span>You write the source code in a scripting language (e.g. Python).</td>
+                        </tr>
+                        <tr>
+                            <td class="pro-column"><span>Compilation: </span>The source code is processed by a compiler, which checks for errors, translates
+                                it into machine code, and produces an executable file.</td>
+                            <td class="scr-column"><span>Interpretation: </span>The source code is executed by an interpreter, which reads the code line by
+                                line, translates it to machine code on the fly, and performs the actions described in the code.</td>
+                        </tr>
+                        <tr>
+                            <td class="pro-column"><span>Executable: </span>The compiled code (executable) is generated, which can be run independently
+                                on the target platform.</td>
+                            <td class="scr-column"><span>Output: </span>The output or result of the script's execution is displayed or used as intended.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        
+            <p id="tbl-disc">
+                Scripting languages often don't produce a standalone executable. <br>
+                The key distinction here is that programming languages involve a separate compilation step,
+                resulting in an independent executable file, while scripting languages are interpreted, and the code
+                is executed directly without creating a standalone executable. This difference affects the way you
+                run and distribute programs written in these languages
+            </p>
+        </div>
+
+
+        <div class="types-of-prog-lang">
+            <h3>Comparison of Procedural & Object-Oriented Programming languages</h3>
+        
+            <ul>
+                <li> Procedural programming</li>
+                <li> Object-Oriented Programming (OOP)</li>
+            </ul>
+        
+            <p>
+                Procedural programming and Object-Oriented Programming (OOP) are two different programming
+                paradigms that structure and organize code in distinct ways.
+            </p> 
+            <p> Here are the key differences between procedural and OOP languages:</p>
+
+            <div class="prog-tbl">
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th class="proc-column">Procedural Programming</th>
+                            <th class="oop-column">Object-Oriented Programming (OOP)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="key-column"><span>Focus </span></td>
+                            <td class="proc-column">In procedural programming, the focus is on procedures or functions that perform
+                                specific tasks. The program is organized around a sequence of procedures that manipulate data.</td>
+                            <td class="oop-column">OOP emphasizes the creation and interaction of objects, which are instances of
+                                classes. It's centered around modeling real-world entities and their interactions.</td>
+                        </tr>
+                        <tr>
+                            <td class="key-column"><span>Data </span></td>
+                            <td class="proc-column">
+                                Data is often stored in global variables, and functions operate on this data. Procedures
+                                are typically separate from the data they act upon.
+                            </td>
+                            <td class="oop-column">
+                                Data is encapsulated within objects (instances of classes), and objects have methods
+                                (functions) that operate on their own data. This promotes data hiding and encapsulation.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="key-column"><span>Modularity </span></td>
+                            <td class="proc-column">
+                                Procedural programs are divided into smaller functions, promoting code
+                                modularity. Functions can be reused in various parts of the program.
+                            </td>
+                            <td class="oop-column">
+                                OOP promotes a high degree of modularity through classes. Each class
+                                encapsulates data and the operations that can be performed on that data.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="key-column"><span>Code Reusability </span></td>
+                            <td class="proc-column">
+                                Code reusability is achieved through function calls, where functions can be
+                                invoked from multiple parts of the program.
+                            </td>
+                            <td class="oop-column">
+                                Code reusability is achieved through inheritance, where new classes
+                                (subclasses) can inherit attributes and behaviors from existing classes (superclasses).
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="key-column"><span>Encapsulation </span></td>
+                            <td class="proc-column">
+                                Data is not encapsulated; it's usually accessible globally or through function
+                                parameters.
+                            </td>
+                            <td class="oop-column">
+                                Data is encapsulated within objects, and access to that data is controlled by
+                                methods. This helps protect data from unintended modification.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        
+            <p id="tbl-disc">
+                In summary, procedural programming focuses on procedures and functions that manipulate data,
+                while OOP focuses on creating objects that encapsulate data and behavior. OOP promotes code
+                organization around classes, inheritance, and encapsulation, making it well-suited for modeling
+                complex real-world systems and enhancing code maintainability and reusability. Procedural
+                programming is more straightforward and linear, often used for simpler tasks or when performance
+                is a critical concern. The choice between the two depends on the specific needs of a project.
+            </p>
+        </div>
+        
+        <p id="lst-desc">
+            In the procedural example, functions are separate from the data they work on, while in the object oriented example, 
+            data and behavior are encapsulated within the class, promoting a more
+            organized and self-contained structure. The OOP approach is beneficial when dealing with more
+            complex systems with multiple related attributes and behaviors
+        </p>
+    </section>
+
+    <footer>
+        <h5>Pramu Programming Concept</h5>
+    </footer>
+</body>
+</html>

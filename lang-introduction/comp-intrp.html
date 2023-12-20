@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compiled vs. Interpreted Languages</title>
+    <link rel="stylesheet" href="../css/lang-intro-style/comp-intrep.css">
+</head>
+<body>
+    <header>
+        <h2>Compiled vs. Interpreted Languages</h2>
+    </header>
+
+    <section class="content">
+        <div class="intro">
+            <h3>Introduction</h3>
+            <p>Explanation of the compilation and interpretation processes.</p>
+            <p>Importance of understanding the differences between compiled and interpreted languages in the context of software development.</p>
+        </div>
+
+        <div class="comp">
+            <h2>Compiled Languages</h2>
+        
+            <h3>Definition and Characteristics</h3>
+            <ul>
+                <li>Explanation of compiled languages being translated into machine code before execution.</li>
+                <li>Examples: C, C++, Rust.</li>
+            </ul>
+        
+            <h3>Key Concepts</h3>
+            <ol>
+                <li><strong>Compiler:</strong>
+                    <ul>
+                        <li>Source code is transformed into an executable file by a compiler.</li>
+                        <li>Compilation is done before the program is run.</li>
+                    </ul>
+                </li>
+                <li><strong>Execution Speed:</strong>
+                    <ul>
+                        <li>Generally faster execution as the code is already in machine language.</li>
+                    </ul>
+                </li>
+                <li><strong>Portability:</strong>
+                    <ul>
+                        <li>Compiled code may be less portable, requiring recompilation for different platforms.</li>
+                    </ul>
+                </li>
+            </ol>
+        
+            <h3>Advantages</h3>
+        
+            <h4>Performance:</h4>
+            <ul>
+                <li>
+                    Generally, better performance due to direct machine code execution.
+                </li>
+            </ul>
+
+            <h4>Optimizations:</h4>
+            <ul>
+                <li>
+                    Compilers can apply various optimizations during the compilation process.
+                </li>
+            </ul>
+
+            <h4>Security:</h4>
+            <ul>
+                <li>
+                    Code is distributed in an already compiled form, making it harder to reverse engineer.
+                </li>
+            </ul>
+        
+            <h3>Disadvantages</h3>
+
+            <h4>Portability:</h4>
+            <ul>
+                <li>
+                    Requires recompilation for different platforms.
+                </li>
+            </ul>
+
+            <h4>Development Speed:</h4>
+            <ul>
+                <li>
+                    Longer development cycles due to the compilation step.
+                </li>
+            </ul>
+        </div>
+    
+        <div class="interpr">
+            <h2>Interpreted Languages</h2>
+
+            <h3>Definition and Characteristics</h3>
+            <ul>
+                <li>
+                    Introduction to interpreted languages, where code is executed line by line.
+                </li>
+                    Examples: Python, JavaScript, Ruby.
+            </ul>
+
+            <h3>Key Concepts</h3>
+
+            <h4>Interpreter:</h4>
+            <ul>
+                <li>
+                    Code is executed by an interpreter at runtime.
+                    No separate compilation step.
+                </li>
+            </ul>
+
+            <h4>Execution Speed:</h4>
+            <ul>
+                <li>
+                    Generally slower than compiled languages as interpretation occurs during runtime.
+                </li>
+            </ul>
+
+            <h4>Portability:</h4>
+            <ul>
+                <li>
+                    Code is often more portable, as it can be run on any platform with the appropriate interpreter.
+                </li>
+            </ul>
+            
+            <h3>Advantages</h3>
+
+            <h4>Portability:</h4>
+            <ul>
+                <li>
+                    Generally more portable, as the code can be distributed in its original form.
+                </li>
+            </ul>
+
+            <h4>Development Speed:</h4>
+            <ul>
+                <li>
+                    Faster development cycles as there is no compilation step.
+                </li>
+            </ul>
+
+            <h4>Debugging:</h4>
+            <ul>
+                <li>
+                    Easier debugging since errors are identified at runtime.
+                </li>
+            </ul>
+
+            <h3>Disadvantages</h3>
+        
+            <h4>Performance:</h4>
+            <ul>
+                <li>
+                    Generally slower execution speed due to interpretation overhead.
+                </li>
+            </ul>
+
+            <h4>Security:</h4>
+            <ul>
+                <li>
+                    Code is distributed in source form, making it more accessible and easier to reverse engineer.
+                </li>
+            </ul>
+
+        </div>
+
+        <div class="img-note">
+            <img src="../src_images/difference-between-compiler-and-interpreter.png" class="img-1" alt="">
+        </div>
+
+        <div class="choos-type">
+            <h2>Choosing Between Compiled and Interpreted Languages</h2>
+        
+            <h3>Project Considerations</h3>
+            <li>
+                actors influencing the choice: project requirements, performance constraints, development speed.
+            </li>
+
+            <h3>Performance Requirements</h3>
+            <li>
+                Determining if the project demands high execution speed or if development speed is a higher priority.
+            </li>
+
+            <h3>Portability</h3>
+            <li>
+                Assessing the need for code portability across different platforms.
+            </li>
+
+            <h3>Development and Debugging</h3>
+            <li>
+                Considering the impact on development and debugging processes.
+            </li>
+        </div>
+
+        <div class="conclue">
+            <h3>Conclusion</h3>
+            <p>Recap of key points about compiled and interpreted languages.</p>
+            <p>Emphasize the importance of choosing the right type based on project requirements.</p>
+            <p>Acknowledge the existence of hybrid approaches (e.g., just-in-time compilation).</p>
+            <p>Encourage developers to consider the trade-offs and experiment with both types.</p>
+        </div>
+    </section>
+
+    <footer>
+        <h5>Pramu Programming Concept</h5>
+    </footer>
+</body>
+</html>
+

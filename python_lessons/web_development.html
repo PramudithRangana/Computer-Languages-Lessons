@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Development</title>
+    <link rel="stylesheet" href="../css/py-style/web-dev.css">
+    <link rel="stylesheet" href="../css/sintaxhighlight.css">
+    <script src="../js/sintaxhighlight.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+<body>
+    <header>
+        <img src="../src_images/Python-logo-notext.png" class="py-logo" alt="Python Logo">
+        <h1>Web Development (optional)</h1>
+    </header>
+
+    <section class="content">
+        <section class="intro-frame">
+            <h3>Introduction to Web Frameworks like Flask or Django</h3>
+
+            <p>
+                Web frameworks are essential tools for developing web applications.
+                They provide a structured way to build web-based software by handling common tasks such as routing, request handling, templating, and
+                database interactions. Two popular Python web frameworks are Flask and Django:
+            </p>
+
+            <div class="web-frame">
+                <ol>
+                    <li><span>Flask:</span>
+                        <ul>
+                            <li>Flask is a micro web framework that is lightweight and easy to learn.</li>
+                            <li>It provides the essentials for web development, leaving room for developers to choose libraries and tools based on their project's needs.</li>
+                            <li>Flask is well-suited for small to medium-sized web applications, RESTful APIs, and prototyping.</li>
+                        </ul>
+                    </li>
+
+                    <li><span>Django:</span>
+                        <ul>
+                            <li>Django is a high-level web framework that follows the "batteries-included" philosophy, offering a comprehensive set of features.</li>
+                            <li>
+                                It includes an ORM (Object-Relational Mapping) system, an admin panel, authentication, and other tools, making it ideal for large-scale
+                                applications, content management systems (CMS), and e-commerce websites.
+                            </li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <section class="built-app">
+            <h3>Building a Simple Web Application:</h3>
+
+            <p>
+                Here, I'll provide an example of building a simple web application using Flask.
+                This application will have a single route that displays "Hello, World!" when accessed.
+                You'll need to have Flask installed, which you can do with : <br>
+            </p>
+
+            <div class="code-sec">
+                <pre>
+                    <code>
+                        pip install Flask
+                    </code>
+                </pre>
+
+                <pre>
+                    <code>
+                        from flask import Flask
+
+                        app = Flask(__name)
+
+                        # Define a route and the function to handle it
+                        @app.route('/')
+                        def hello_world():
+                            return 'Hello, World!'
+
+                        if __name__ == '__main__':
+                            app.run()
+                    </code>
+                </pre>
+            </div>
+
+            <div class="act-flask">
+                <ol>
+                    <li>First, import Flask and create an instance of the <code>Flask</code> class.</li>
+                    <li>Define a route using the <code>@app.route</code> decorator. In this case, the route is <code>'/'</code>, which represents the root URL of your web application.</li>
+                    <li>Create a function that handles the route. This function returns the string "Hello, World!" to be displayed in the browser.</li>
+                    <li>Finally, run the web application with <code>app.run()</code>.</li>
+                </ol>
+            </div>
+
+            <p>
+                To run your Flask application, save the code in a Python file (e.g. <code>app.py</code>) and execute it.
+                You'll see an output indicating that your application is running,
+                and you can access it in your web browser by navigating to <a href="http://localhost:5000/" target="_blank"><span id="lcl-hst">http://localhost:5000/</span></a>.
+            </p>
+
+            <p>
+                This is a simple example, but Flask and Django provide extensive capabilities for building web applications, including handling forms,
+                connecting to databases, managing sessions, and more. You can expand your web application by adding routes and functionality as needed.
+            </p>
+        </section>
+    </section>
+
+    <footer>
+        <h5>Pramu Programming Concept</h5>
+    </footer>
+</body>
+</html>

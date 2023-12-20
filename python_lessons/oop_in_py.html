@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object-Oriented Programming</title>
+    <link rel="stylesheet" href="../css/py-style/oop-py.css">
+    <link rel="stylesheet" href="../css/sintaxhighlight.css">
+    <script src="../js/sintaxhighlight.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+<body>
+    <header>
+        <img src="../src_images/Python-logo-notext.png" class="py-logo" alt="Python Logo">
+        <h1>Object-Oriented Programming (OOP)</h1>
+    </header>
+
+    <section class="top-content">
+        <p>
+            Object-Oriented Programming (OOP) is a programming paradigm or style that organizes and structures code based on the concept of "objects." <br>
+            In OOP, objects are instances of classes, which are templates or blueprints that define the structure and behavior of objects. <br>
+            OOP is one of the most widely used programming paradigms and is popular in languages like Python, Java, C++, and C#.
+        </p>
+
+    </section>
+
+    <section class="content">
+        <div class="oop-py">
+            <p>
+                Python has been an object-oriented language since the time it existed. Due to this, 
+                creating and using classes and objects are downright easy. This chapter helps you become 
+                an expert in using Python's object-oriented programming support.
+            </p>
+
+            <p>
+                If you do not have any previous experience with object-oriented (OO) programming, you 
+                may want to consult an introductory course on it or at least a tutorial of some sort so that 
+                you have a grasp of the basic concepts.
+            </p>
+
+            <p>However, here is a small introduction of Object-Oriented Programming (OOP) :</p>
+
+            <div class="overvw-oop">
+                <h3>Overview of OOP Terminology</h3>
+
+                <ul>
+                    <li>
+                        <span>Class:</span> A user-defined prototype for an object that defines a set of attributes that 
+                        characterize any object of the class. The attributes are data members (class 
+                        variables and instance variables) and methods, accessed via dot notation.
+                    </li>
+                    <li>
+                        <span>Class variable:</span> A variable that is shared by all instances of a class. Class variables 
+                        are defined within a class but outside any of the class's methods. Class variables 
+                        are not used as frequently as instance variables are.
+                    </li>
+                    <li>
+                        <span>Data member:</span> A class variable or instance variable that holds data associated with 
+                        a class and its objects.
+                    </li>
+                    <li>
+                        <span>Function overloading:</span> The assignment of more than one behavior to a particular 
+                        function. The operation performed varies by the types of objects or arguments 
+                        involved.
+                    </li>
+                    <li>
+                        <span>Instance variable:</span> A variable that is defined inside a method and belongs only to 
+                        the current instance of a class.
+                    </li>
+                    <li>
+                        <span>Inheritance:</span> The transfer of the characteristics of a class to other classes that are 
+                        derived from it.
+                    </li>
+                    <li>
+                        <span>Instance:</span> An individual object of a certain class. An object obj that belongs to a 
+                        class Circle, for example, is an instance of the class Circle.
+                    </li>
+                    <li>
+                        <span>Instantiation:</span> The creation of an instance of a class.
+                    </li>
+                    <li>
+                        <span>Method :</span> A special kind of function that is defined in a class definition.
+                    </li>
+                    <li>
+                        <span>Object:</span> A unique instance of a data structure that is defined by its class. An object 
+                        comprises both data members (class variables and instance variables) and 
+                        methods.
+                    </li>
+                    <li>
+                        <span>Operator overloading:</span> The assignment of more than one function to a particular 
+                        operator
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="create-class">
+            <h3>Create Classes</h3>
+
+            <p>
+                The class statement creates a new class definition. The name of the class immediately 
+                follows the keyword class followed by a colon as follows :
+            </p>
+
+            <pre class="cls-kw">
+                <code>
+                    class ClassName:
+                        'Optional class documentation string'
+                        class_suite
+                </code>
+            </pre>
+
+            <ul>
+                <li>
+                    The class has a documentation string, which can be accessed 
+                    <strong>viaClassName.__doc__.</strong>
+                </li>
+                <li>
+                    The <strong>class_suite</strong> consists of all the component statements defining class members, 
+                    data attributes and functions.
+                </li>
+                
+                <h6>Example :</h6>
+    
+                <p>Following is an example of a simple Python class :</p>
+    
+                <pre>
+                    <code>
+                        class Employee:
+                            'Common base class for all employees'
+                            empCount = 0
+            
+                            def __init__(self, name, salary):
+                                self.name = name
+                                self.salary = salary
+                                Employee.empCount += 1
+                                
+                            def displayCount(self):
+                                print "Total Employee %d" % Employee.empCount
+            
+                            def displayEmployee(self):
+                                print ("Name : ", self.name, ", Salary: ", self.salary)
+                    </code>
+                </pre>
+
+                <li>
+                    The variable empCount is a class variable whose value is shared among all the 
+                    instances of a in this class. This can be accessed as Employee.empCount from 
+                    inside the class or outside the class.
+                </li>
+                <li>
+                    The first method __init__() is a special method, which is called class constructor 
+                    or initialization method that Python calls when you create a new instance of this 
+                    class.
+                </li>
+                <li>
+                    You declare other class methods like normal functions with the exception that the 
+                    first argument to each method is self. Python adds the self argument to the list for 
+                    you; you do not need to include it when you call the method
+                </li>
+            </ul>
+
+            <h3>Create Instance Objects</h3>
+
+            <p>
+                To create instances of a class, you call the class using class name and pass in whatever 
+                arguments its __init__ method accepts.
+            </p>
+
+            <pre>
+                <code>
+                    # This would create first object of Employee class
+                    emp1 = Employee("Zara", 2000)
+                    
+                    # This would create second object of Employee class
+                    emp2 = Employee("Manni", 5000)
+                </code>
+            </pre>
+
+            <h3>Access attributes</h3>
+
+            <p>
+                You access the object's attributes using the dot operator with object. Class variable would 
+                be accessed using class name as follows :
+            </p>
+
+            <pre>
+                <code>
+                    emp1.displayEmployee()
+                    emp2.displayEmployee()
+                    print ("Total Employee %d" % Employee.empCount)
+                </code>
+            </pre>
+
+            <p>All the concepts together :</p>
+
+            <pre>
+                <code>
+                    #!/usr/bin/python3
+    
+                    class Employee:
+                        'Common base class for all employees'
+                        empCount = 0
+    
+                        def __init__(self, name, salary):
+                            self.name = name
+                            self.salary = salary
+                            Employee.empCount += 1
+                        
+                        def displayCount(self):
+                            print ("Total Employee %d" % Employee.empCount)
+    
+                        def displayEmployee(self):
+                            print ("Name : ", self.name, ", Salary: ", self.salary)
+    
+                    #This would create first object of Employee class"
+                    emp1 = Employee("Zara", 2000)
+    
+                    #This would create second object of Employee class"
+                    emp2 = Employee("Manni", 5000)
+                    emp1.displayEmployee()
+                    emp2.displayEmployee()
+    
+                    print ("Total Employee %d" % Employee.empCount)
+                </code>
+            </pre>
+
+            <p id="mini-txt">When the above code is executed, it produces the following result :</p>
+
+            <pre class="output-result">
+                Name : Zara, Salary: 2000
+                Name : Manni, Salary: 5000
+                Total Employee 2
+            </pre>
+
+            <p>You can add, remove, or modify attributes of classes and objects at any time</p>
+
+            <pre>
+                <code>
+                    emp1.salary = 7000 # Add an 'salary' attribute.
+                    emp1.name = 'xyz' # Modify 'age' attribute.
+                    del emp1.salary # Delete 'age' attribute.
+                </code>
+            </pre>
+        </div>
+
+        <div class="core-princ">
+            <p>The core ideas and principles of OOP include the following:</p>
+        
+            <ol>
+                <li><span>Objects: </span>
+                    Objects are the fundamental building blocks of an OOP program. <br>
+                    They represent real-world entities, concepts, or things and encapsulate both data (attributes or properties) 
+                    and the functions (methods) that operate on the data. <br>
+                    For example, you might have objects representing cars, people, bank accounts, or any other concept you want to model in your program.
+                </li>
+        
+                <li><span>Classes: </span>
+                    Classes are blueprints or templates for creating objects. <br>
+                    A class defines the structure and behavior of objects by specifying the attributes (data members) and
+                    methods (functions) that the objects will have. Objects created from the same class share the same structure and behavior.
+                </li>
+        
+                <li><span>Encapsulation: </span>
+                    Encapsulation is the concept of bundling data (attributes) and methods that operate on that data into a single unit, 
+                    which is the class. It provides data hiding, meaning that the internal details of an object are hidden from the outside, 
+                    and access to the object's data is controlled through well-defined interfaces.
+                </li>
+        
+                <li><span>Inheritance: </span>
+                    Inheritance allows you to create a new class based on an existing class, inheriting its attributes and methods. <br>
+                    This promotes code reuse and the creation of a hierarchy of classes. <br>
+                    The new class is called a subclass or derived class, and the existing class is called the superclass or base class.
+                </li>
+
+                <li><span>Polymorphism: </span>
+                    Polymorphism means that objects of different classes can be treated as objects of a common base class. <br>
+                    It allows you to write code that can work with objects of various types in a more generic and flexible way. <br>
+                    Polymorphism is often achieved through method overriding and interfaces in many OOP languages.
+                </li>
+            </ol>
+        </div>
+
+        <div class="oop-advnt">
+            <h4>OOP promotes several advantages:</h4>
+
+            <ul>
+                <li><span>Modularity : </span>
+                    OOP allows you to divide complex systems into smaller, more manageable units (objects and classes), making it easier to design, 
+                    develop, and maintain large software systems.
+                </li>
+
+                <li><span>Reusability : </span>
+                    Objects and classes can be reused in different parts of an application or in different applications altogether, 
+                    reducing the need to rewrite code.
+                </li>
+
+                <li><span>Abstraction : </span>
+                    OOP allows you to model real-world concepts and relationships in a more abstract and intuitive way, 
+                    making code more understandable and maintainable.
+                </li>
+
+                <li><span>Flexibility : </span>
+                    OOP provides a way to create extensible and adaptable code by leveraging concepts like inheritance and polymorphism.
+                </li>
+            </ul>
+        </div>
+
+        <div class="oop-descrb">
+            <p>
+                OOP is widely used in software development for its ability to model real-world problems effectively, leading to more efficient 
+                and maintainable code. It is particularly well-suited for building complex and large-scale software systems. <br>
+                Python, for instance, is an object-oriented language that supports OOP principles, making it a popular choice for OOP development.
+            </p>
+        
+            <p>Here are examples of encapsulation, inheritance, and polymorphism in Python:</p>
+        </div>
+        
+        <div class="oop-princ">
+            <ol>
+                <li>Encapsulation:</li>
+        
+                <p>
+                    Encapsulation refers to the bundling of data (attributes) and methods (functions) that operate on that data into a single unit (a class). 
+                    The internal details of the object are hidden, and access to the object's data is controlled through well-defined interfaces.
+                </p>
+        
+                <pre>
+                    <code>
+                        class Car:
+                            def __init__(self, make, model):
+                                self.__make = make  # Private attribute
+                                self.__model = model  # Private attribute
+        
+                            def get_make(self):
+                                return self.__make  # Getter method for make
+        
+                            def get_model(self):
+                                return self.__model  # Getter method for model
+        
+                            def set_make(self, make):
+                                self.__make = make  # Setter method for make
+        
+                            def set_model(self, model):
+                                self.__model = model  # Setter method for model
+        
+                            def display_info(self):
+                                return f"This is a {self.__make} {self.__model}."
+        
+                        # Create a Car object
+                        my_car = Car("Toyota", "Camry")
+        
+                        # Access attributes through getter methods
+                        print(my_car.get_make())  # "Toyota"
+                        print(my_car.get_model())  # "Camry"
+        
+                        # Update attributes through setter methods
+                        my_car.set_make("Honda")
+                        my_car.set_model("Accord")
+        
+                        # Access attributes again
+                                                print(my_car.get_make())  # "Honda"
+                        print(my_car.get_model())  # "Accord"
+        
+                        # Direct access to private attributes will result in an error
+                        # print(my_car.__make)  # Raises an error
+                    </code>
+                </pre>
+        
+                <p>In this example, the `make` and `model` attributes are encapsulated by using getter and setter methods to control access to them.</p>
+        
+                <li>Inheritance:</li>
+        
+                <p>
+                    Inheritance allows you to create a new class (subclass) based on an existing class (superclass). 
+                   The subclass inherits attributes and methods from the superclass.
+                </p>
+        
+                <pre>
+                    <code>
+                        class Vehicle:
+                            def __init__(self, make, model):
+                                self.make = make
+                                self.model = model
+        
+                            def display_info(self):
+                                return f"This is a {self.make} {self.model}."
+        
+                        class Car(Vehicle):
+                            def __init__(self, make, model, year):
+                                super().__init__(make, model)
+                                self.year = year
+        
+                            def display_info(self):
+                                return f"This is a {self.year} {self.make} {self.model}."
+        
+                        class Bicycle(Vehicle):
+                            def __init__(self, make, model, type):
+                                super().__init__(make, model)
+                                self.type = type
+        
+                            def display_info(self):
+                                return f"This is a {self.type} bicycle, {self.make} {self.model}."
+        
+                        # Create instances of Car and Bicycle
+                        my_car = Car("Toyota", "Camry", 2022)
+                        my_bicycle = Bicycle("Schwinn", "Ranger", "Mountain")
+        
+                        # Use inheritance to access methods from the superclass
+                        print(my_car.display_info())  # "This is a 2022 Toyota Camry."
+                        print(my_bicycle.display_info())  # "This is a Mountain bicycle, Schwinn Ranger."
+                    </code>
+                </pre>
+
+                <p>
+                    In this example, the `Car` and `Bicycle` classes inherit from the `Vehicle` class, allowing them to reuse its attributes 
+                    and methods while also defining their own.
+                </p>
+        
+                <li>Polymorphism:</li>
+        
+                <p> Polymorphism allows objects of different classes to be treated as objects of a common base class. <br>
+                    It enables writing code that can work with objects of various types in a more generic and flexible way.
+                </p>
+        
+                <pre>
+                    <code>
+                        class Animal:
+                            def speak(self):
+                                pass
+        
+                        class Dog(Animal):
+                            def speak(self):
+                                return "Woof!"
+        
+                        class Cat(Animal):
+                            def speak(self):
+                                return "Meow!"
+        
+                        def animal_says(animal):
+                            return animal.speak()
+        
+                        # Create instances of Dog and Cat
+                        my_dog = Dog()
+                        my_cat = Cat()
+        
+                        # Achieve polymorphism by calling the same method on different objects
+                        print(animal_says(my_dog))  # "Woof!"
+                        print(animal_says(my_cat))  # "Meow!"
+                    </code>
+                </pre>
+            </ol>
+        </div>
+
+        <p id="lst-desc">
+            In this example, the `speak` method is defined in the base class `Animal`, and subclasses `Dog` and `Cat` implement their own versions of 
+            the method. The `animal_says` function demonstrates polymorphism by accepting objects of different classes and calling the `speak` method on them.
+        </p>
+    </section>
+
+    <footer>
+        <h5>Pramu Programming Concept</h5>
+    </footer>
+</body>
+</html>

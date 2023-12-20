@@ -1,0 +1,272 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #282C34;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100px;
+    width: 100%;
+
+    font-size: 20pt;
+    text-shadow: 0 5px 10px #000;
+    -webkit-text-stroke: 1px black;
+
+    background: #4f0da5;
+    color: #d9dfdf;
+}
+
+
+.top-content{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    
+    margin: 40px;
+    padding: 20px;
+    width: 95%;
+    
+    border-radius: 10px;
+    color: beige;
+    background: #6273d4;
+    
+    font-size: 14pt;
+    line-height: 1.8em;
+    letter-spacing: 0.08em;
+}
+
+.top-content .intr-img {
+    border-radius: 8px;
+}
+
+.content {
+    position: relative;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    margin: 5px 40px 10px 40px;
+
+    border-radius: 10px;
+    font-size: 12pt;
+    background: #6273d4;
+    color: beige;
+}
+
+.content h3 {
+    font-size: 20pt;
+    margin-bottom: 20PX;
+}
+
+.content .type-of-lang, .lang-comp, .types-of-prog-lang, .compr {
+    display: flex;
+    display: flex;
+    flex-direction: column;
+
+    margin: 20px auto;
+
+    background: #303d88;
+
+    width: 95%;
+    border-radius: 10px;
+    padding: 40px;
+
+    font-size: 13pt;
+    line-height: 30pt;
+    letter-spacing: 0.05em;
+}
+
+.content .type-of-lang ol a{
+    color: #c7c3c3;
+    text-decoration: none;
+}
+
+.content .type-of-lang ol, ul {
+    padding-left: 40px;
+}
+
+.content .lang-comp ol, ul{
+    padding-left: 40px;
+}
+
+.content .lang-comp .key-diff {
+    display: flex;
+    margin-top: 30px;
+    line-height: 15pt;
+}
+
+.content .lang-comp .key-diff ol{
+    line-height: 35pt;
+    font-size: 15pt;
+}
+
+.content .lang-comp .key-diff ul {
+    line-height: 25pt;
+    padding-left: 30px;
+    padding-top: 10px;
+    font-size: 13pt;
+}
+
+.content .lang-comp .exmp {
+    margin-top: 30px;
+    line-height: 25pt;
+}
+
+.content .lang-comp .exmp p {
+    color: #91a8bd;
+    margin: 10px 30px;
+    line-height: 25pt;
+}
+
+.content .lang-comp .exmp ul {
+    padding-left: 20px;
+}
+
+/* table 1 start */
+
+.content .lang-comp .tbl {
+    position: relative;
+
+    width: 100%;
+    padding: 10px;
+    border-radius: 20px;
+
+    background: #41547ea8;
+
+    font-size: 13.5pt;
+    line-height: 1.8em;
+    letter-spacing: 0.08em;
+}
+
+.content .lang-comp .tbl thead .pro-column{
+    padding: 10px;
+    font-weight: 600;
+    font-size: 14pt;
+}
+.content .lang-comp .tbl thead .scr-column{
+    padding: 10px;
+    font-weight: 600;
+    font-size: 14pt;
+}
+
+.content .lang-comp .tbl tr {
+    background: #282C34;
+    padding: 12px;
+    justify-content: center;
+}
+
+.content .lang-comp .tbl span {
+    color: rgb(80, 80, 247);
+    align-items: left;
+    letter-spacing: 0.09em;
+    font-weight: 600;
+}
+
+.content .lang-comp .tbl .pro-column {
+    width: 50%;
+    color: rgb(203, 247, 80);
+}
+
+.content .lang-comp .tbl .scr-column {
+    color: rgb(80, 247, 94);
+}
+
+.content .lang-comp .tbl td {
+    padding: 10px;
+}
+
+/* table 1 end */
+
+.content #tbl-disc {
+    margin-top: 30px;
+}
+
+/* table 2 start */
+
+.content .types-of-prog-lang .prog-tbl {
+    position: relative;
+
+    width: 100%;
+    padding: 10px;
+    border-radius: 20px;
+
+    background: #41547ea8;
+
+    font-size: 13.5pt;
+    line-height: 1.8em;
+    letter-spacing: 0.08em;
+}
+
+.content .types-of-prog-lang .prog-tbl thead .proc-column{
+    padding: 10px;
+    font-weight: 600;
+    font-size: 14pt;
+}
+
+.content .types-of-prog-lang .prog-tbl thead .oop-column{
+    padding: 10px;
+    font-weight: 600;
+    font-size: 14pt;
+}
+
+.content .types-of-prog-lang .prog-tbl tr {
+    background: #282C34;
+    padding: 12px;
+    justify-content: center;
+}
+
+.content .types-of-prog-lang .prog-tbl .key-column {
+    color: rgb(80, 80, 247);
+    text-align: center;
+    letter-spacing: 0.09em;
+    font-weight: 600;
+}
+
+.content .types-of-prog-lang .prog-tbl .proc-column {
+    color: rgb(203, 247, 80);
+}
+
+.content .types-of-prog-lang .prog-tbl .oop-column {
+    color: rgb(80, 247, 94);
+}
+
+.content .types-of-prog-lang .prog-tbl td {
+    padding: 10px;
+}
+
+/* table 2 end */
+
+.content #lst-desc{
+    color: rgb(26, 23, 23);
+    margin: 20px 60px;
+    font-size: 15pt;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 50px;
+    width: 100%;
+
+    margin-top: 15px;
+
+    background: #4f0da5;
+    color: silver;
+
+    text-shadow: 0 5px 10px #000;
+}
