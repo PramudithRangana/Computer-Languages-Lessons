@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python: Compiled vs. Interpreted</title>
+</head>
+<body>
+
+    <h2>Python: Compiled vs. Interpreted</h2>
+
+    <p>Python is often described as an interpreted language, but the reality is a bit more nuanced. Let's break down the process of how Python code is executed:</p>
+
+    <h3>1. Source Code</h3>
+    <p>You start with your Python source code, which is typically saved in files with a <code>.py</code> extension.</p>
+
+    <h3>2. Lexical Analysis</h3>
+    <p>The first step is lexical analysis, where the Python interpreter reads your source code and breaks it down into individual tokens. These tokens represent the fundamental building blocks of the Python language, such as keywords, identifiers, literals, and operators.</p>
+
+    <h3>3. Parsing</h3>
+    <p>The next step is parsing, where the interpreter takes the stream of tokens and constructs a data structure called an Abstract Syntax Tree (AST). The AST represents the syntactic structure of your code in a tree-like form.</p>
+
+    <h3>4. Compilation to Bytecode</h3>
+    <p>At this point, the Python interpreter doesn't directly execute the source code. Instead, it translates the AST into a lower-level representation called bytecode. Bytecode is a set of instructions that is closer to machine code than the human-readable source code. This process happens automatically and is transparent to the developer.</p>
+
+    <h3>5. Execution by Python Virtual Machine (PVM)</h3>
+    <p>The bytecode is then executed by the Python Virtual Machine (PVM). The PVM is an interpreter that reads and executes the bytecode line by line. This is where Python is often referred to as an interpreted language.</p>
+
+    <h3>6. Dynamic Typing</h3>
+    <p>Python is dynamically typed, which means variable types are determined at runtime. This adds a layer of flexibility but also requires some overhead during execution to check and manage types dynamically.</p>
+
+    <h3>Note on Optimization</h3>
+    <p>To improve performance, Python uses various optimization techniques. One of these is the use of a Just-In-Time (JIT) compiler in some implementations (e.g., PyPy). A JIT compiler translates parts of the bytecode into machine code at runtime, which can significantly speed up execution.</p>
+
+    <h3>Summary:</h3>
+    <ul>
+        <li><strong>Interpretation:</strong> Python code is initially compiled to bytecode, and the bytecode is then executed by the PVM. This makes Python an interpreted language in the traditional sense.</li>
+        <li><strong>Compilation:</strong> Python source code is compiled to bytecode, but the compilation is implicit and happens at runtime.</li>
+        <li><strong>Dynamic Typing:</strong> Python's dynamic typing adds some runtime overhead but provides flexibility.</li>
+    </ul>
+
+    <p>In summary, while Python is often considered an interpreted language, its execution involves both compilation to bytecode and interpretation by the PVM. The distinction between compiled and interpreted languages is not as clear-cut in the case of Python as it is in languages like C or Java.</p>
+
+</body>
+</html>

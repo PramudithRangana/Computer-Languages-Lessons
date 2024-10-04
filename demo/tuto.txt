@@ -1,0 +1,2 @@
+box-shadow: 8px            -5px            20px         0px      #000;
+            x - position    y - position   thickness    spread   color
