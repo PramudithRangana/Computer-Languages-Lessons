@@ -1,0 +1,151 @@
+<div id="assgn-op">
+    <h3> Assignment Operators</h3>
+
+    <table class="tbl">
+        <thead>
+            <tr>
+                <td class="op-column">Operator</td>
+                <td class="desc-column">description</td>
+                <td class="ex-column">Example</td>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td class="op-column">=</td>
+                <td class="desc-column">Assigns values from right side operands to left side operand</td>
+                <td class="ex-column">c = a + b assigns value of a + b into c</td>
+            </tr>
+            <tr>
+                <td class="op-column">+= Add AND</td>
+                <td class="desc-column">It adds right operand to the left operand and assign the result to left operand</td>
+                <td class="ex-column">c += a is equivalent to c = c + a</td>
+            </tr>
+            <tr>
+                <td class="op-column">-= Subtract AND</td>
+                <td class="desc-column">It subtracts right operand from the left operand and assign the result to left operand</td>
+                <td class="ex-column">c -= a is equivalent to c = c - a</td>
+            </tr>
+            <tr>
+                <td class="op-column">*= Multiply AND</td>
+                <td class="desc-column">It multiplies right operand with the left operand and assign the result to left operand</td>
+                <td class="ex-column">c *= a is equivalent to c = c * a</td>
+            </tr>
+            <tr>
+                <td class="op-column">/= Divide AND</td>
+                <td class="desc-column">It divides left operand with the right operand and assign the result to left operand</td>
+                <td class="ex-column">c /= a is equivalent to c = c / ac /= a is equivalent to c = c / a</td>
+            </tr>
+            <tr>
+                <td class="op-column">%= Modulus AND</td>
+                <td class="desc-column">It takes modulus using two operands and assign the result to left operand</td>
+                <td class="ex-column">c %= a is equivalent to c = c % a</td>
+            </tr>
+            <tr>
+                <td class="op-column">**= Exponent AND</td>
+                <td class="desc-column"> Performs exponential (power) calculation on operators and assign value to the left operand</td>
+                <td class="ex-column">c **= a is equivalent to c = c ** a</td>
+            </tr>
+            <tr>
+                <td class="op-column">//= Floor Division </td>
+                <td class="desc-column">It performs floor division on operators and assign value to the left operand</td>
+                <td class="ex-column">c //= a is equivalent to c = c // a</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+I need to center column of the table make justify center.
+here is my style sheet :
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #282C34;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+// rest of the code
+
+.content {
+    position: relative;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    
+    margin-top: 20px;
+    margin-left: 10px;
+    
+    line-height: 1.6em;
+    border-radius: 10px;
+    font-size: 14pt;
+    color: beige;
+}
+
+// rest of the code
+
+.content #assgn-op {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin: 20px auto;
+    background: rgb(112, 0, 88);
+    line-height: 20pt;
+    border-radius: 10px;
+    width: 97%;
+    padding: 20px;
+    line-height: 2.1em;
+    letter-spacing: 0.08em;
+}
+
+.content #assgn-op .tbl {
+    position: relative;
+    font-size: 13.5pt;
+    width: 100%;
+    padding: 10px;
+    background: #41547ea8;
+    border-radius: 20px;
+    line-height: 1.8em;
+    letter-spacing: 0.08em;
+}
+
+.content #assgn-op .tbl thead {
+    font-weight: 600;
+    font-size: 14pt;
+}
+
+.content #assgn-op .tbl tr {
+    background: #282C34;
+    padding: 12px;
+    justify-content: center;
+}
+
+.content #assgn-op .tbl .op-column {
+    color: rgb(80, 80, 247);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: 0.09em;
+}
+
+.content #assgn-op .tbl .desc-column {
+    color: rgb(203, 247, 80);
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+
+.content #assgn-op .tbl td {
+    padding: 10px;
+}

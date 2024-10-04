@@ -1,0 +1,23 @@
+.content .init-desc,
+.commn-err,
+.dt-corrup-handl,
+.debug-sl-q,
+.repr-opt-tb{
+    background: var(--div-bg);
+    border-radius: 10px;
+    margin: 10px 10px;
+    padding: 20px 40px;
+    box-shadow: 0 1px 10px #000;
+}
+
+#comm-err-con-err-1{
+    width: 1150px;
+}
+
+#comm-err-con-err-2 {
+    width: 1000px;
+}
+
+#debug-sl-q-qr-fac {
+    width: 1000px;
+}

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced SQL Queries</title>
+    <link rel="stylesheet" href="../styles/css/common-style.css">
+    <link rel="stylesheet" href="../styles/css/adv_sql.css">
+    <link rel="stylesheet" href="../styles/highlights/syntax_css/sintaxhighlight.css">
+    <script src="../styles/highlights/syntax_js/sintaxhighlight.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+<body>
+
+    <header>
+        <img src="../src_images/db_Connect.png" class="sql-logo" alt="SQL Logo">
+        <h2><strong>Advanced SQL Queries</strong></h2>
+    </header>
+
+    <section class="content">
+
+    <p class="init-desc">This section covers advanced SQL queries, including filtering data, sorting and grouping results, using joins, subqueries, and applying aggregate functions. These techniques are essential for extracting and manipulating data efficiently in MySQL.</p>
+
+    <div class="where-clause" id="uwcfd">
+        <h3><strong>Using WHERE Clause for Filtering Data</strong></h3>
+            <p>The <code>WHERE</code> clause is used to filter records based on specific conditions. It can be used with various comparison operators, logical operators, and functions.</p>
+
+            <h4><strong>Basic Filtering :</strong></h4>
+            <ul>
+                <strong>Example :</strong>
+                    <pre>
+                        <code>
+                            SELECT * FROM employees
+                            WHERE department = 'Sales';
+                        </code>
+                    </pre>
+                <ul>
+                    <li>This query retrieves all records from the <code>employees</code> table where the <code>department</code> is 'Sales'.</li>
+                </ul>
+            </ul>
+
+            <h4><strong>Using Comparison Operators :</strong></h4>
+                <ul>
+                    <li><strong>Operators :</strong> <code>=</code>, <code>!=</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code></li>
+                    <strong>Example :</strong>
+                        <pre>
+                            <code>
+                                SELECT * FROM orders
+                                WHERE order_date &gt;= '2024-01-01';
+                            </code>
+                        </pre>
+                    <ul>
+                        <li>This query retrieves all orders placed on or after January 1, 2024.</li>
+                    </ul>
+                </ul>
+
+            <h4><strong>Using Logical Operators :</strong></h4>
+                <ul>
+                    <li><strong>Operators :</strong> <code>AND</code>, <code>OR</code>, <code>NOT</code></li>
+                    <strong>Example :</strong>
+                        <pre>
+                            <code>
+                                SELECT * FROM products
+                                WHERE price &gt; 100 AND in_stock = TRUE;
+                            </code>
+                        </pre>
+                    <ul>
+                        <li>This query retrieves all products with a price greater than 100 that are in stock.</li>
+                    </ul>
+                </ul>
+
+            <h4><strong>Using Pattern Matching with LIKE :</strong></h4>
+                <ul>
+                    <strong>Example :</strong>
+                        <pre>
+                            <code>
+                                SELECT * FROM customers
+                                WHERE name LIKE 'J%';
+                            </code>
+                        </pre>
+                    <ul>
+                        <li>This query retrieves all customers whose names start with 'J'.</li>
+                    </ul>
+                </ul>
+
+            <h4><strong>Using IN and BETWEEN :</strong></h4>
+                <ul>
+                    <strong>Example (IN) :</strong>
+                        <pre>
+                            <code>
+                                SELECT * FROM employees
+                                WHERE department IN ('HR', 'IT', 'Marketing');
+                            </code>
+                        </pre>
+                    <ul>
+                        <li>
+                            This query retrieves employees who work in the HR, IT, or Marketing departments.
+                        </li>
+                    </ul>
+                        <strong>Example (BETWEEN) :</strong>
+                        <pre>
+                            <code>
+                                SELECT * FROM orders
+                                WHERE total_amount BETWEEN 100 AND 500;
+                            </code>
+                        </pre>
+                    <ul>
+                        <li>This query retrieves orders where the total amount is between 100 and 500.</li>
+                    </ul>
+
+                </ul>
+    </div>
+
+    <div class="sort-group" id="sagd">
+        <h3><strong>Sorting and Grouping Data with ORDER BY and GROUP BY</strong></h3>
+            <h4><strong>Sorting Data with ORDER BY :</strong></h4>
+                <p>The <code>ORDER BY</code> clause is used to sort the result set in ascending or descending order.</p>
+                <ul>
+                    <strong>Example (Ascending Order) :</strong>
+                        <pre>
+                            <code>
+                                SELECT * FROM employees
+                                ORDER BY last_name ASC;
+                            </code>
+                        </pre>
+                    <ul>
+                        <li>This query sorts the employees by their last names in ascending order.</li>
+                    </ul>
+                        <strong>Example (Descending Order) :</strong>
+                        <pre>
+                            <code>
+                                SELECT * FROM products
+                                ORDER BY price DESC;
+                            </code>
+                        </pre>
+                    <ul>
+                        <li>This query sorts the products by price in descending order.</li>
+                    </ul>
+                </ul>
+
+            <h4><strong>Grouping Data with GROUP BY :</strong></h4>
+                <p>The <code>GROUP BY</code> clause is used to group rows that have the same values in specified columns. It’s often used with aggregate functions.</p>
+                <ul>
+                    <strong>Example :</strong>
+                        <pre>
+                            <code>
+                                SELECT department, COUNT(*) AS employee_count
+                                FROM employees
+                                GROUP BY department;
+                            </code>
+                        </pre>
+                    <ul>
+                        <li>This query counts the number of employees in each department.</li>
+                    </ul>
+                </ul>
+
+            <h4><strong>Filtering Grouped Data with HAVING :</strong></h4>
+                <ul>
+                    <strong>Example :</strong>
+                        <pre>
+                            <code>
+                                SELECT department, AVG(salary) AS avg_salary
+                                FROM employees
+                                GROUP BY department
+                                HAVING AVG(salary) &gt; 50000;
+                            </code>
+                        </pre>
+                    <ul>
+                        <li>This query retrieves departments with an average salary greater than 50,000.</li>
+                    </ul>
+                </ul>
+    </div>
+
+    <div class="join-func" id="js">
+        <h3><strong>Joins (INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL JOIN)</strong></h3>
+                <p>Joins are used to combine rows from two or more tables based on related columns.</p>
+            <h4><strong>INNER JOIN :</strong></h4>
+                <p>Returns records that have matching values in both tables.</p>
+                <ul>
+                    <strong>Example :</strong>
+                        <pre>
+                            <code>
+                                SELECT employees.name, departments.name
+                                FROM employees
+                                INNER JOIN departments ON employees.department_id = departments.id;
+                            </code>
+                        </pre>
+                    <ul>
+                        <li>This query retrieves the names of employees and their corresponding department names.</li>
+                    </ul>
+                </ul>
+
+            <h4><strong>LEFT JOIN :</strong></h4>
+                <p>Returns all records from the left table and the matched records from the right table. Unmatched records from the right table will be <code>NULL</code>.</p>
+                <ul>
+                    <strong>Example :</strong>
+                        <pre>
+                            <code>
+                                SELECT customers.name, orders.order_date
+                                FROM customers
+                                LEFT JOIN orders ON customers.id = orders.customer_id;
+                            </code>
+                        </pre>
+                    <ul>
+                        <li>This query retrieves all customers and their orders, including customers who have not placed any orders.</li>
+                    </ul>
+                </ul>
+
+            <h4><strong>RIGHT JOIN :</strong></h4>
+                <p>Returns all records from the right table and the matched records from the left table. Unmatched records from the left table will be <code>NULL</code>.</p>
+                <ul>
+                    <strong>Example :</strong>
+                        <pre>
+                            <code>
+                                SELECT orders.order_date, products.name
+                                FROM orders
+                                RIGHT JOIN products ON orders.product_id = products.id;
+                            </code>
+                        </pre>
+                    <ul>
+                        <li>This query retrieves all products and the orders associated with them, including products that have not been ordered.</li>
+                    </ul>
+                </ul>
+
+            <h4><strong>FULL JOIN :</strong></h4>
+                <p>Returns all records when there is a match in either left or right table. If there is no match, the result is <code>NULL</code> on the side that doesn’t have a match. Note that MySQL doesn't support <code>FULL JOIN</code> directly, but you can achieve this with a combination of <code>LEFT JOIN</code> and <code>RIGHT JOIN</code> using <code>UNION</code>.</p>
+                <ul>
+                    <strong>Example :</strong>
+                        <pre>
+                            <code>
+                                SELECT customers.name, orders.order_date
+                                FROM customers
+                                LEFT JOIN orders ON customers.id = orders.customer_id
+                                UNION
+                                SELECT customers.name, orders.order_date
+                                FROM orders
+                                RIGHT JOIN customers ON orders.customer_id = customers.id;
+                            </code>
+                        </pre>
+                    <ul>
+                        <li>This query retrieves all customers and orders, showing matches from both sides.</li>
+                    </ul>
+                </ul>
+    </div>
+
+    <div class="sub-q" id="sanq">
+        <h3><strong>Subqueries and Nested Queries</strong></h3>
+            <p>Subqueries are queries nested inside another query. They can be used in <code>SELECT</code>, <code>INSERT</code>, <code>UPDATE</code>, and <code>DELETE</code> statements.</p>
+
+            <h4><strong>Using Subqueries in SELECT :</strong></h4>
+                <ul>
+                    <strong>Example :</strong>
+                        <pre>
+                            <code>
+                                SELECT name, (SELECT AVG(salary) FROM employees) AS avg_salary
+                                FROM employees;
+                            </code>
+                        </pre>
+                    <ul>
+                        <li>This query retrieves each employee's name along with the average salary of all employees.</li>
+                    </ul>
+                </ul>
+                
+            <h4><strong>Subqueries with WHERE Clause :</strong></h4>
+                <ul>
+                    <strong>Example :</strong>
+                        <pre>
+                            <code>
+                                SELECT name
+                                FROM employees
+                                WHERE salary &gt; (SELECT AVG(salary) FROM employees);
+                            </code>
+                        </pre>
+                    <ul>
+                        <li>This query retrieves the names of employees who earn more than the average salary.</li>
+                    </ul>
+                </ul>
+
+            <h4><strong>Using EXISTS with Subqueries :</strong></h4>
+                <ul>
+                    <strong>Example :</strong>
+                        <pre>
+                            <code>
+                                SELECT name
+                                FROM customers
+                                WHERE EXISTS (
+                                    &ThickSpace; SELECT 1
+                                    &ThickSpace; FROM orders
+                                    &ThickSpace; WHERE customers.id = orders.customer_id
+                                );
+                            </code>
+                        </pre>
+                    <ul>
+                        <li>This query retrieves customers who have placed at least one order.</li>
+                    </ul>
+                </ul>
+    </div>
+
+    <div class="cte" id="cte">
+        <h3>Common Table Expression</h3>
+        <h5>Common Table Expression = Giving a name to a subquery</h5>
+
+        <h6>Syntax :</h6>
+
+        <pre>
+            <code>
+                SELECT columns
+                FROM table
+                INNER JOIN (
+                &ThickSpace; SELECT another_column
+                &ThickSpace; FROM another_table
+                &ThickSpace; WHERE conditions
+                ).. 
+            </code>
+        </pre>
+
+        <p>my_subquery</p>
+
+        <pre>
+            <code>
+                SELECT columns
+                FROM table
+                INNER JOIN my_subquery
+            </code>
+        </pre>
+
+        <h6>Syntax :</h6>
+            <p>Sub query</p>
+
+        <pre>
+            <code>
+                SELECT * FROM table_1;
+                SELECT * FROM table_2;
+
+                SELECT
+                t1.column_1,
+                t1.column_2,
+                t1.column_3,
+                t2.column_1
+                FROM table_1
+                INNER JOIN (
+                &ThickSpace; SELECT column_3, COUNT(*) AS column_1
+                &ThickSpace; FROM table_1
+                &ThickSpace; GROUP BY column_3
+                ) t2
+                ON t1.column_3 = t2.column_3;
+            </code>
+        </pre>
+
+        <h6>Syntax :</h6>
+            <p>CTE</p>
+        <pre>
+            <code>
+                WITH subquery_name AS (
+                &ThickSpace; SELECT column_3, COUNT(*) AS column_1
+                &ThickSpace; FROM table_1
+                &ThickSpace; GROUP BY column_3
+                )
+                SELECT
+                t1.column_1,
+                t1.column_2,
+                t1.column_3,
+                t2.column_1
+                FROM table_1
+                INNER JOIN subquery_name t2
+                ON t1.column_3 = t2.column_3;
+            </code>
+        </pre>
+
+        <h4>Why use a CTE ?</h4>
+
+        <ol>
+            <li><strong>Improve Readability</strong></li>
+            <p>Useful for large queries and complicated logic.</p>
+
+            <ul>
+                <li>Two identical subqueries ?</li>
+                <p>move it to a CTE and refer to the same name in both places</p>
+
+                <li>Need more than one CTE ?</li>
+                <p>Add a comma</p>
+
+                <img src="../src_images/multiple cte.jpg" alt="Multiple CTE" class="mlt-cte">
+            </ul>
+
+            <li><strong>Just like a view</strong></li>
+            <p>Has name and columns join to it, filter on it</p>
+
+            <li><strong>Use for hierarchical queries</strong></li>
+            <p>Employees and managers categories and parent categories</p>
+        </ol>
+
+        <h4>Diference between CTE and Temp Tables</h4>
+
+        <img src="../src_images/cte vs temp tables.jpg" alt="Diference of cte & temp table" class="dif-cte-temp">
+    </div>
+
+    <div class="aggrgd" id="uaf">
+        <h3><strong>Using Aggregate Functions (COUNT, SUM, AVG, MAX, MIN)</strong></h3>
+            <p>Aggregate functions perform calculations on multiple values and return a single value.</p>
+            
+            <h4><strong>COUNT :</strong></h4>
+                <p>Counts the number of rows that match a specified condition.</p>
+                <ul>
+                    <strong>Example :</strong>
+                        <pre>
+                            <code>
+                                SELECT COUNT(*) AS total_orders
+                                FROM orders;
+                            </code>
+                        </pre>
+                </ul>
+
+            <h4><strong>SUM :</strong></h4>
+                <p>Returns the sum of a numeric column.</p>
+                <ul>
+                    <strong>Example :</strong>
+                        <pre>
+                            <code>
+                                SELECT SUM(total_amount) AS total_revenue
+                                FROM orders;
+                            </code>
+                        </pre>
+                </ul>
+
+            <h4><strong>AVG :</strong></h4>
+                <p>Returns the average value of a numeric column.</p>
+                <ul>
+                    <strong>Example :</strong>
+                        <pre>
+                            <code>
+                                SELECT AVG(salary) AS average_salary
+                                FROM employees;
+                            </code>
+                        </pre>
+                </ul>
+
+            <h4><strong>MAX :</strong></h4>
+                <p>Returns the maximum value in a set of values.</p>
+                <ul>
+                    <strong>Example :</strong>
+                        <pre>
+                            <code>
+                                SELECT MAX(price) AS highest_price
+                                FROM products;
+                            </code>
+                        </pre>
+                </ul>
+
+            <h4><strong>MIN :</strong></h4>
+                <p>Returns the minimum value in a set of values.</p>
+                <ul>
+                    <strong>Example :</strong>
+                        <pre>
+                            <code>
+                                SELECT MIN(price) AS lowest_price
+                                FROM products;
+                            </code>
+                        </pre>
+                </ul>
+    </div>
+    </section>
+
+    <footer>
+        <h6>Pramu Programming Concept</h6>
+    </footer>
+</body>
+</html>

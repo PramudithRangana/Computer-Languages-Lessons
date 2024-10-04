@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setting Up MySQL</title>
+    <link rel="stylesheet" href="../styles/css/common-style.css">
+    <link rel="stylesheet" href="../styles/css/setting_up_sql.css">
+    <link rel="stylesheet" href="../styles/highlights/syntax_css/sintaxhighlight.css">
+    <script src="../styles/highlights/syntax_js/sintaxhighlight.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+<body>
+
+    <header>
+        <img src="../src_images/db_Connect.png" class="sql-logo" alt="SQL Logo">
+        <h2><strong>Setting Up MySQL</strong></h2>
+    </header>
+
+    <section class="content">
+
+        <div class="instll" id="imsodp">
+            <h3><strong>Installing MySQL on Different Platforms</strong></h3>
+                <p>MySQL can be installed on various operating systems, including Windows, macOS, and Linux. Below are step-by-step instructions for each platform.</p>
+
+                <div class="instll-wn">
+                    <h4><strong>Installing MySQL on Windows</strong></h4>
+                        <ol>
+                            <li><strong>Download MySQL Installer</strong>:</li>
+                                <ul>
+                                    <li>it the <a href="https://dev.mysql.com/downloads/installer/" target="_blank">MySQL official website</a> and download the MySQL Installer for Windows.</li>
+                                </ul>
+        
+                            <li><strong>Run the Installer</strong>:</li>
+                                <ul>
+                                    <li>Open the downloaded installer file. You can choose between a "Developer Default" installation, which includes MySQL Server, MySQL Workbench, and other tools, or a "Server Only" installation if you only need the MySQL server.</li>
+                                </ul>
+        
+                            <li><strong>Configure MySQL Server</strong>:</li>
+                                <ul>
+                                    <li>During installation, you'll be prompted to configure the MySQL server. Set the root password, and choose the server type (e.g.Development Machine, Server Machine).</li>
+                                </ul>
+        
+                            <li><strong>Complete Installation</strong>:</li>
+                                <ul>
+                                    <li>Continue with the installation and click "Finish" once it's complete.</li>
+                                </ul>
+
+                            <li><strong>Verify Installation</strong>:</li>
+                                <ul>
+                                    <li>Open the Command Prompt and type 
+                                        <pre>
+                                            <code>
+                                                mysql -u root -p
+                                            </code>
+                                        </pre>
+                                    
+                                    Enter the root password you set during installation to log in to the MySQL command line interface (CLI).</li>
+                                </ul>
+                        </ol>
+                </div>
+
+                <div class="instll-mac">
+                    <h4><strong>Installing MySQL on macOS</strong></h4>
+                        <ol>
+                            <li><strong>Download MySQL DMG File</strong>:</li>
+                                <ul>
+                                    <li>Visit the <a href="https://dev.mysql.com/downloads/mysql/">MySQL official website</a> and download the MySQL DMG file for macOS.</li>
+                                </ul>
+
+                            <li><strong>Install MySQL</strong>:</li>
+                                <ul>
+                                    <li>Open the downloaded DMG file and run the installer package. Follow the on-screen instructions.</li>
+                                </ul>
+
+                            <li><strong>Configure MySQL Server</strong>:</li>
+                                <ul>
+                                    <li>After installation, open "System Preferences" and select "MySQL". Click "Start MySQL Server" to start the server.</li>
+                                </ul>
+
+                            <li><strong>Add MySQL to PATH</strong>:</li>
+                            <ul>
+                                <li>Open Terminal and run:</li>
+                                <pre id="contnt-instll-mac-addpath">
+                                    <code>
+                                        echo 'export PATH="/usr/local/mysql/bin:$PATH"' &gt;&gt; ~/.bash_profile
+                                        source ~/.bash_profile
+                                    </code>
+                                </pre>
+                                
+                                <li>This allows you to access MySQL commands from the terminal.</li>
+                            </ul>
+
+                            <li><strong>Verify Installation</strong>:</li>
+                            <ul>
+                                <li>In Terminal, type 
+                                    <pre>
+                                        <code>
+                                            mysql -u root -p
+                                        </code>
+                                    </pre>
+                                    and enter the root password to log in to the MySQL CLI.
+                                </li>
+                            </ul>
+                        </ol>
+                </div>
+
+                <div class="instll-lnx">
+                    <h4><strong>Installing MySQL on Linux (Ubuntu/Debian)</strong></h4>
+                        <ol>
+                            <li><strong>Update Package Index</strong>:</li>
+                            <ul>
+                                <li>Open Terminal and run:</li>
+                                    <pre>
+                                        <code>
+                                            sudo apt-get update
+                                        </code>
+                                    </pre>
+                            </ul>
+        
+                            <li><strong>Install MySQL</strong>:</li>
+                            <ul>
+                                <li>Run the following command to install MySQL:</li>
+                                        <pre id="instll-mysql-lnx">
+                                            <code>
+                                                sudo apt-get install mysql-server
+                                            </code>
+                                        </pre>
+                            </ul>
+        
+                            <li><strong>Secure MySQL Installation</strong>:</li>
+                            <ul>
+                                <li>Run the security script to improve the security of your MySQL installation:
+                                    <pre>
+                                        <code>
+                                            sudo mysql_secure_installation
+                                        </code>
+                                    </pre>
+                                </li>
+                                <li>Follow the prompts to set a root password, remove anonymous users, disallow root login remotely, and remove test databases.</li>
+                            </ul>
+        
+                            <li><strong>Start MySQL Server</strong>:</li>
+                            <ul>
+                                <li>To start the MySQL server, run:
+                                    <pre>
+                                        <code>
+                                            sudo systemctl start mysql
+                                        </code>
+                                    </pre>
+                                </li>
+            
+                                <li>You can also enable it to start at boot:</li>
+                                        <pre>
+                                            <code>
+                                                sudo systemctl enable mysql
+                                            </code>
+                                        </pre>
+                            </ul>
+        
+        
+                            <li><strong>Verify Installation</strong>:</li>
+                            <ul>
+                                <li>Log in to the MySQL CLI by typing 
+                                    <pre>
+                                        <code>
+                                            mysql -u root -p
+                                        </code> 
+                                    </pre>
+                                    - in the terminal and entering the root password.</li>
+                            </ul>
+                        </ol>
+                </div>
+        </div>
+
+        <div class="config-sevr" id="cmss">
+
+            <h3><strong>Configuring MySQL Server</strong></h3>
+                <p>After installation, MySQL needs to be configured to suit your specific environment. Here are some basic configurations you might need to adjust:</p>
+                
+                <div class="config-sevr-file">
+                    <h4><strong>MySQL Configuration File</strong></h4>
+                    <ul>
+                        <li>The primary configuration file for MySQL is <code>my.cnf</code> (on Linux/macOS) or <code>my.ini</code> (on Windows). This file controls various settings such as networking, memory usage, and storage engine options.</li>
+                        <li>On Linux/macOS, the file is usually located at <code>/etc/mysql/my.cnf</code>.</li>
+                        <li>On Windows, it is located in the MySQL installation directory.</li>
+                    </ul>
+                </div>
+
+                <h4><strong>Key Configuration Settings</strong></h4>
+                    <ol>
+                        <li><strong>Port Number</strong>:
+                            <p>By default, MySQL runs on port 3306. You can change this in the configuration file under <code>[mysqld]</code>:
+                                <pre>
+                                    <code>
+                                        port = 3306
+                                    </code>
+                                </pre>
+                            </p>
+                        </li>
+                        
+                        <li><strong>Bind Address</strong>:
+                            <p>To allow remote connections, you may need to change the bind address:</p>
+                                <pre>
+                                    <code>
+                                        bind-address = 0.0.0.0
+                                    </code>
+                                </pre>
+                            <p>This allows MySQL to accept connections from any IP address.</p>
+                        </li>
+        
+                        <li><strong>Max Connections</strong>:
+                            <p>Set the maximum number of connections to the server:
+                                <pre>
+                                    <code>
+                                        max_connections = 150
+                                    </code>
+                                </pre>
+                            </p>
+                        </li>
+        
+                        <li><strong>Character Set</strong>:
+                            <p>Define the default character set for the server:
+                                <pre id="confg-srv-char">
+                                    <code>
+                                        character-set-server = utf8mb4
+                                        collation-server = utf8mb4_unicode_ci
+                                    </code>
+                                </pre>
+                            </p>
+                        </li>
+                    </ol>
+        </div>
+
+        <div class="strt-stp-svr" id="sasmss">
+            
+            <h3><strong>Starting and Stopping MySQL Server</strong></h3>
+                <p>Depending on your operating system, the commands to start and stop the MySQL server may vary.</p>
+
+                <h4><strong>On Windows</strong>:</h4>
+                    <ul>
+                        <li>Start MySQL Server:
+                            <pre>
+                                <code>
+                                    net start MySQL
+                                </code>
+                            </pre>
+                        </li>
+    
+                        <li>Stop MySQL Server:
+                            <pre>
+                                <code>
+                                    net stop MySQL
+                                </code>
+                            </pre>
+                        </li>
+                    </ul>
+
+                <h4><strong>On macOS / Linux</strong>:</h4>
+                    <ul>
+                        <li>Start MySQL Server:
+                            <pre>
+                                <code>
+                                    sudo systemctl start mysql
+                                </code>
+                            </pre>
+                        </li>
+                        <li>
+                            Stop MySQL Server:
+                                <pre>
+                                    <code>
+                                        sudo systemctl stop mysql
+                                    </code>
+                                </pre>
+                        </li>
+                        <li>
+                            You can also restart the server with:
+                            <pre>
+                                <code>
+                                    sudo systemctl restart mysql
+                                </code>
+                            </pre>
+                        </li>
+                    </ul>
+        </div>
+
+        <div class="accs-cli" id="amscli">
+            <h3><strong>Accessing MySQL Command Line Interface (CLI)</strong></h3>
+                <p>The MySQL Command Line Interface (CLI) is a powerful tool for interacting with your MySQL server. Here’s how to access it:</p>
+                <ol>
+                    <li><strong>Open the CLI</strong>:
+                    <ul>
+                        <li>On Windows: Open the Command Prompt.</li>
+                        <li>On macOS/Linux: Open Terminal.</li>
+                    </ul>
+                    </li>
+                    <li><strong>Log in to MySQL</strong>:
+                    <ul>
+                        <li>Type the following command and press Enter:
+                            <pre>
+                                <code>
+                                    mysql -u root -p
+                                </code>
+                            </pre>
+                        </li>
+                        <li>Enter the root password when prompted.</li>
+                    </ul>
+                    </li>
+
+                    <li><strong>Basic Commands</strong>:</li>
+                    <ul>
+                        <li><strong>Show Databases</strong>: List all databases on the server:
+                            <pre>
+                                <code>
+                                    SHOW DATABASES;
+                                </code>
+                            </pre>
+                        </li>
+                        <li><strong>Select a Database</strong>: Choose a database to work with:
+                            <pre>
+                                <code>
+                                    USE database_name;
+                                </code>
+                            </pre>
+                        </li>
+                        <li><strong>Show Tables</strong>: List all tables in the selected database:
+                            <pre>
+                                <code>
+                                    SHOW TABLES;
+                                </code>
+                            </pre>
+                        </li>
+                        <li><strong>Exit the CLI</strong>: To exit the MySQL CLI, type:
+                            <pre>
+                                <code>
+                                    EXIT;
+                                </code>
+                            </pre>
+                        </li>
+                    </ul>
+                </ol>
+        </div>
+    </section>
+
+    <footer>
+        <h6>Pramu Programming Concept</h6>
+    </footer>
+</body>
+</html>

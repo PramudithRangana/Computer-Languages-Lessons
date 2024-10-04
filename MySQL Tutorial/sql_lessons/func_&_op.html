@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySQL Functions and Operators</title>
+    <link rel="stylesheet" href="../styles/css/common-style.css">
+    <link rel="stylesheet" href="../styles/css/func_&_op.css">
+    <link rel="stylesheet" href="../styles/highlights/syntax_css/sintaxhighlight.css">
+    <script src="../styles/highlights/syntax_js/sintaxhighlight.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+<body>
+
+    <header>
+        <img src="../src_images/db_Connect.png" class="sql-logo" alt="SQL Logo">
+        <h2><strong>MySQL Functions and Operators</strong></h2>
+    </header>
+
+    <section class="content">
+
+        <p class="init-desc">MySQL offers a rich set of functions and operators that allow you to manipulate and retrieve data efficiently. In this section, we'll explore various string, numeric, date and time functions, as well as logical and comparison operators.</p>
+
+        <div class="str-func" id="sf">
+            <h3><strong>String Functions</strong></h3>
+                <p>String functions in MySQL are used to perform operations on string data types like <code>CHAR</code>, <code>VARCHAR</code>, and <code>TEXT</code>.</p>
+
+                <h4><strong>CONCAT()</strong>:</h4>
+                    <ul>
+                        <li><strong>Description</strong>: Combines multiple strings into one.</li>
+                        <p><strong>Example</strong>:
+                            <pre>
+                                <code>
+                                    SELECT CONCAT(first_name, ' ', last_name) AS full_name
+                                    FROM employees;
+                                </code>
+                            </pre>
+                        </p>
+                        <ul>
+                            <li>This query concatenates the <code>first_name</code> and <code>last_name</code> columns with a space in between.</li>
+                        </ul>
+                    </ul>
+
+                <h4><strong>SUBSTRING()</strong>:</h4>
+                    <ul>
+                        <li><strong>Description</strong>: Extracts a substring from a string.</li>
+                        <p><strong>Example</strong>:
+                            <pre>
+                                <code>
+                                    SELECT SUBSTRING(name, 1, 5) AS short_name
+                                    FROM products;
+                                </code>
+                            </pre>
+                        </p>
+                        <ul>
+                            <li>This extracts the first 5 characters from the <code>name</code> column.</li>
+                        </ul>
+                    </ul>
+
+                <h4><strong>LENGTH()</strong>:</h4>
+                    <ul>
+                        <li><strong>Description</strong>: Returns the length of a string.</li>
+                        <p><strong>Example</strong>:
+                            <pre>
+                                <code>
+                                    SELECT LENGTH(description) AS desc_length
+                                    FROM articles;
+                                </code>
+                            </pre>
+                        </p>
+                        <ul>
+                            <li>This returns the length of each <code>description</code>.</li>
+                        </ul>
+                    </ul>
+            
+                <h4><strong>UPPER() and LOWER()</strong>:</h4>
+                    <ul>
+                        <li><strong>Description</strong>: Converts a string to uppercase or lowercase.</li>
+                        <p><strong>Example</strong>:
+                            <pre>
+                                <code>
+                                    SELECT UPPER(name) AS upper_name
+                                    FROM employees;
+                                </code>
+                            </pre>
+                        </p>
+                        <ul>
+                            <li>This converts the <code>name</code> column to uppercase.</li>
+                        </ul>
+                    </ul>
+            
+                <h4><strong>TRIM()</strong>:</h4>
+                    <ul>
+                        <li><strong>Description</strong>: Removes leading and trailing spaces from a string.</li>
+                        <p><strong>Example</strong>:
+                            <pre>
+                                <code>
+                                    SELECT TRIM(name) AS trimmed_name
+                                    FROM customers;
+                                </code>
+                            </pre>
+                        </p>
+                        <ul>
+                            <li>This removes any leading or trailing spaces in the <code>name</code> column.</li>
+                        </ul>
+                    </ul>
+        </div>
+
+        <div class="numrc-func" id="nf">
+            <h3><strong>Numeric Functions</strong></h3>
+                <p>Numeric functions perform operations on numeric data types like <code>INT</code>, <code>FLOAT</code>, <code>DECIMAL</code>, etc.</p>
+
+                <h4><strong>ROUND()</strong>:</h4>
+                    <ul>
+                        <li><strong>Description</strong>: Rounds a number to a specified number of decimal places.</li>
+                        <p><strong>Example</strong>:
+                            <pre>
+                                <code>
+                                    SELECT ROUND(price, 2) AS rounded_price
+                                    FROM products;
+                                </code>
+                            </pre>
+                        </p>
+                        <ul>
+                            <li>This rounds the <code>price</code> column to 2 decimal places.</li>
+                        </ul>
+                    </ul>
+            
+                <h4><strong>FLOOR() and CEIL()</strong>:</h4>
+                    <ul>
+                        <li><strong>Description</strong>: <code>FLOOR()</code> returns the largest integer less than or equal to a given number, while <code>CEIL()</code> returns the smallest integer greater than or equal to a given number.</li>
+                        <p><strong>Example</strong>:
+                            <pre>
+                                <code>
+                                    SELECT FLOOR(price) AS floored_price, CEIL(price) AS ceiled_price
+                                    FROM products;
+                                </code>
+                            </pre>
+                        </p>
+                        <ul>
+                            <li>This returns the floored and ceiled values of the <code>price</code> column.</li>
+                        </ul>
+                    </ul>
+            
+                <h4><strong>ABS()</strong>:</h4>
+                    <ul>
+                        <li><strong>Description</strong>: Returns the absolute value of a number.</li>
+                        <p><strong>Example</strong>:
+                            <pre>
+                                <code>
+                                    SELECT ABS(profit) AS absolute_profit
+                                    FROM sales;
+                                </code>
+                            </pre>
+                        </p>
+                        <ul>
+                            <li>This returns the absolute value of the <code>profit</code> column.</li>
+                        </ul>
+                    </ul>
+    
+                <h4><strong>MOD()</strong>:</h4>
+                    <ul>
+                        <li><strong>Description</strong>: Returns the remainder of the division of two numbers.</li>
+                        <p><strong>Example</strong>:
+                            <pre>
+                                <code>
+                                    SELECT MOD(10, 3) AS remainder;
+                                </code>
+                            </pre>
+                        </p>
+                        <ul>
+                            <li>This returns the remainder of 10 divided by 3, which is 1.</li>
+                        </ul>
+                    </ul>
+    
+                <h4><strong>POWER()</strong>:</h4>
+                    <ul>
+                        <li><strong>Description</strong>: Returns the value of a number raised to the power of another number.</li>
+                        <p><strong>Example</strong>:
+                            <pre>
+                                <code>
+                                    SELECT POWER(2, 3) AS result;
+                                </code>
+                            </pre>
+                        </p>
+                        <ul>
+                            <li>This returns 2 raised to the power of 3, which is 8.</li>
+                        </ul>
+                    </ul>
+        </div>
+
+        <div class="dt-tm-func" id="datf">
+            <h3><strong>Date and Time Functions</strong></h3>
+                <p>Date and time functions are used to manipulate and format date and time data types like <code>DATE</code>, <code>DATETIME</code>, and <code>TIMESTAMP</code>.</p>
+    
+                <h4><strong>NOW()</strong>:</h4>
+                    <ul>
+                        <li><strong>Description</strong>: Returns the current date and time.</li>
+                        <p><strong>Example</strong>:
+                            <pre>
+                                <code>
+                                    SELECT NOW() AS current_datetime;
+                                </code>
+                            </pre>
+                        </p>
+                        <ul>
+                            <li>This returns the current date and time.</li>
+                        </ul>
+                    </ul>
+    
+                <h4><strong>CURDATE() and CURTIME()</strong>:</h4>
+                    <ul>
+                        <li><strong>Description</strong>: <code>CURDATE()</code> returns the current date, while <code>CURTIME()</code> returns the current time.</li>
+                        <p><strong>Example</strong>:
+                            <pre>
+                                <code>
+                                    SELECT CURDATE() AS current_date, CURTIME() AS current_time;
+                                </code>
+                            </pre>
+                        </p>
+                        <ul>
+                            <li>This returns the current date and time separately.</li>
+                        </ul>
+                    </ul>
+    
+                <h4><strong>DATE_FORMAT()</strong>:</h4>
+                    <ul>
+                        <li><strong>Description</strong>: Formats a date according to a specified format.</li>
+                        <p><strong>Example</strong>:
+                            <pre>
+                                <code>
+                                    SELECT DATE_FORMAT(order_date, '%M %d, %Y') AS formatted_date
+                                    FROM orders;
+                                </code>
+                            </pre>
+                        </p>
+                        <ul>
+                            <li>This formats the <code>order_date</code> as "Month Day, Year" (e.g., "August 16, 2024").</li>
+                        </ul>
+                    </ul>
+    
+                <h4><strong>DATEDIFF()</strong>:</h4>
+                    <ul>
+                        <li><strong>Description</strong>: Returns the difference in days between two dates.</li>
+                        <p><strong>Example</strong>:
+                            <pre>
+                                <code>
+                                    SELECT DATEDIFF(NOW(), order_date) AS days_since_order
+                                    FROM orders;
+                                </code>
+                            </pre>
+                        </p>
+                        <ul>
+                            <li>This returns the number of days since each order was placed.</li>
+                        </ul>
+                    </ul>
+    
+                <h4><strong>ADDDATE() and SUBDATE()</strong>:</h4>
+                    <ul>
+                        <li><strong>Description</strong>: 
+                            <ul>
+                                <code>ADDDATE()</code> adds a specified number of days to a date, while <br>
+                                <code>SUBDATE()</code> subtracts a specified number of days from a date.
+                            </ul>
+                        </li>
+                        <p><strong>Example</strong>:
+                            <pre>
+                                <code>
+                                    SELECT ADDDATE(order_date, INTERVAL 7 DAY) AS delivery_date
+                                    FROM orders;
+                                </code>
+                            </pre>
+                        </p>
+                        <ul>
+                            <li>This adds 7 days to the <code>order_date</code>.</li>
+                        </ul>
+                    </ul>
+        </div>
+
+        <div class="logic-op" id="lo">
+            <h3><strong>Logical Operators</strong></h3>
+                <p>Logical operators are used to combine multiple conditions in SQL queries.</p>
+    
+                <h4><strong>AND</strong>:</h4>
+                    <ul>
+                        <li><strong>Description</strong>: Returns true if both conditions are true.</li>
+                        <p><strong>Example</strong>:
+                            <pre>
+                                <code>
+                                    SELECT * FROM employees
+                                    WHERE department = 'Sales' AND salary &gt; 50000;
+                                </code>
+                            </pre>
+                        </p>
+                        <ul>
+                            <li>This retrieves employees in the Sales department with a salary greater than 50,000.</li>
+                        </ul>
+                    </ul>
+    
+                <h4><strong>OR</strong>:</h4>
+                    <ul>
+                        <li><strong>Description</strong>: Returns true if at least one of the conditions is true.</li>
+                        <p><strong>Example</strong>:
+                            <pre>
+                                <code>
+                                    SELECT * FROM employees
+                                    WHERE department = 'Sales' OR department = 'Marketing';
+                                </code>
+                            </pre>
+                        </p>
+                        <ul>
+                            <li>This retrieves employees in either the Sales or Marketing departments.</li>
+                        </ul>
+                    </ul>
+    
+                <h4><strong>NOT</strong>:</h4>
+                    <ul>
+                        <li><strong>Description</strong>: Negates a condition.</li>
+                        <p><strong>Example</strong>:
+                            <pre>
+                                <code>
+                                    SELECT * FROM employees
+                                    WHERE NOT department = 'HR';
+                                </code>
+                            </pre>
+                        </p>
+                        <ul>
+                            <li>This retrieves employees who are not in the HR department.</li>
+                        </ul>
+                    </ul>
+    
+                <h4><strong>IS NULL</strong>:</h4>
+                    <ul>
+                        <li><strong>Description</strong>: Checks if a value is NULL.</li>
+                        <p><strong>Example</strong>:
+                            <pre>
+                                <code>
+                                    SELECT * FROM employees
+                                    WHERE department IS NULL;
+                                </code>
+                            </pre>
+                        </p>
+                        <ul>
+                            <li>This retrieves employees with a NULL department value.</li>
+                        </ul>
+                    </ul>
+        </div>
+
+        <div class="comp-op" id="co">
+            <h3><strong>Comparison Operators</strong></h3>
+                <p>Comparison operators are used to compare two values.</p>
+    
+                <h4><strong>= (Equal)</strong>:</h4>
+                    <ul>
+                        <li><strong>Description</strong>: Checks if two values are equal.</li>
+                        <p><strong>Example</strong>:
+                            <pre>
+                                <code>
+                                    SELECT * FROM employees
+                                    WHERE salary = 60000;
+                                </code>
+                            </pre>
+                        </p>
+                        <ul>
+                            <li>This retrieves employees with a salary of 60,000.</li>
+                        </ul>
+                    </ul>
+    
+                <h4><strong>!= (Not Equal)</strong>:</h4>
+                    <ul>
+                        <li><strong>Description</strong>: Checks if two values are not equal.</li>
+                        <p><strong>Example</strong>:
+                            <pre>
+                                <code>
+                                    SELECT * FROM employees
+                                    WHERE department != 'HR';
+                                </code>
+                            </pre>
+                        </p>
+                        <ul>
+                            <li>This retrieves employees who are not in the HR department.</li>
+                        </ul>
+                    </ul>
+    
+                <h4><strong>&gt; (Greater Than)</strong>:</h4>
+                    <ul>
+                        <li><strong>Description</strong>: Checks if the left value is greater than the right value.</li>
+                        <p><strong>Example</strong>:
+                            <pre>
+                                <code>
+                                    SELECT * FROM employees
+                                    WHERE salary &gt; 50000;
+                                </code>
+                            </pre>
+                        </p>
+                        <ul>
+                            <li>This retrieves employees with a salary greater than 50,000.</li>
+                        </ul>
+                    </ul>
+    
+                <h4><strong>&lt; (Less Than)</strong>:</h4>
+                    <ul>
+                        <li><strong>Description</strong>: Checks if the left value is less than the right value.</li>
+                        <p><strong>Example</strong>:
+                            <pre>
+                                <code>
+                                    SELECT * FROM products
+                                    WHERE price &lt; 100;
+                                </code>
+                            </pre>
+                        </p>
+                        <ul>
+                            <li>This retrieves products with a price less than 100.</li>
+                        </ul>
+                    </ul>
+    
+                <h4><strong>&gt;= (Greater Than or Equal To)</strong>:</h4>
+                    <ul>
+                        <li><strong>Description</strong>: Checks if the left value is greater than or equal to the right value.</li>
+                        <p><strong>Example</strong>:
+                            <pre>
+                                <code>
+                                    SELECT * FROM employees
+                                    WHERE salary &gt;= 50000;
+                                </code>
+                            </pre>
+                        </p>
+                        <ul>
+                            <li>This retrieves employees with a salary of 50,000 or more.</li>
+                        </ul>
+                    </ul>
+    
+                <h4><strong>&lt;= (Less Than or Equal To)</strong>:</h4>
+                    <ul>
+                        <li><strong>Description</strong>: Checks if the left value is less than or equal to the right value.</li>
+                        <p><strong>Example</strong>:
+                            <pre>
+                                <code>
+                                    SELECT * FROM products
+                                    WHERE price &lt;= 200;
+                                </code>
+                            </pre>
+                        </p>
+                        <ul>
+                            <li>This retrieves products with a price of 200 or less.</li>
+                        </ul>
+                    </ul>
+        </div>
+    </section>
+
+    <footer>
+        <h6>Pramu Programming Concept</h6>
+    </footer>
+</body>
+</html>

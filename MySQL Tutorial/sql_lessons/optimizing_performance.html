@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optimizing MySQL Performance</title>
+    <link rel="stylesheet" href="../styles/css/common-style.css">
+    <link rel="stylesheet" href="../styles/css/optimizing_performance.css">
+    <link rel="stylesheet" href="../styles/highlights/syntax_css/sintaxhighlight.css">
+    <script src="../styles/highlights/syntax_js/sintaxhighlight.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+<body>
+
+    <header>
+        <img src="../src_images/db_Connect.png" class="sql-logo" alt="SQL Logo">
+        <h2><strong>Optimizing MySQL Performance</strong></h2>
+    </header>
+
+    <section class="content">
+        
+        <p class="init-desc">Optimizing MySQL performance is essential for ensuring that your database operates efficiently and can handle the required load. This section covers how to analyze and optimize query performance, configure MySQL for better performance, and monitor MySQL’s performance.</p>
+
+        <div class="anlys" id="aqpe">
+            <h3><strong>Analyzing Query Performance with EXPLAIN</strong></h3>
+                <p>The <code>EXPLAIN</code> statement helps you understand how MySQL executes a query and can provide insights into query performance.</p>
+            
+                <h4><strong>Using EXPLAIN</strong>:</h4>
+                    <ul>
+                        <strong>Syntax :</strong>
+                            <pre>
+                                <code>
+                                    EXPLAIN query;
+                                </code>
+                            </pre>
+                        <strong>Example :</strong>
+                            <pre>
+                                <code>
+                                    EXPLAIN SELECT * FROM employees WHERE department = 'Sales';
+                                </code>
+                            </pre>
+                    </ul>
+            
+                <h4><strong>Understanding EXPLAIN Output</strong>:</h4>
+                    <ul>
+                        <li><strong>id</strong>: The identifier of the query or subquery.</li>
+                        <li><strong>select_type</strong>: The type of SELECT (e.g., SIMPLE, PRIMARY, SUBQUERY).</li>
+                        <li><strong>table</strong>: The table being accessed.</li>
+                        <li><strong>type</strong>: The type of join (e.g., ALL, index, range).</li>
+                        <li><strong>possible_keys</strong>: The indexes that might be used.</li>
+                        <li><strong>key</strong>: The actual index used.</li>
+                        <li><strong>key_len</strong>: The length of the key used.</li>
+                        <li><strong>ref</strong>: The columns or constants compared to the index.</li>
+                        <li><strong>rows</strong>: The estimated number of rows examined.</li>
+                        <li><strong>Extra</strong>: Additional information (e.g., Using where, Using index).</li>
+                        
+                        <span>
+                            <strong>Example Analysis</strong>:
+                            <pre id="dept-idx">
+                                <code>
+                                    id | select_type | table     | type | possible_keys | key        | key_len | ref    | rows | Extra
+                                    1  | SIMPLE      | employees | ref  | dept_index    | dept_index | 5       | const  | 100  | Using where
+                                </code>
+                            </pre>
+                        </span>
+                        <ul>
+                            <li>This indicates that the <code>dept_index</code> is used for filtering and estimates examining 100 rows.</li>
+                        </ul>
+                    </ul>
+        </div>
+
+        <div class="opt-q" id="oqai">
+            <h3><strong>Optimizing Queries and Indexes</strong></h3>
+                <p>Efficient queries and proper indexing are crucial for performance. Here’s how to optimize them:</p>
+            
+                <h4><strong>Optimizing Queries</strong>:</h4>
+                    <ul>
+                        <li><strong>Select Only Required Columns</strong>:</li>
+                            <ul>
+                                <li>Instead of <code>SELECT *</code>, specify the columns you need.</li>
+                            </ul>
+                        <strong>Example :</strong>
+                            <pre>
+                                <code>
+                                    SELECT first_name, last_name FROM employees WHERE department = 'Sales';
+                                </code>
+                            </pre>
+
+                        <li><strong>Avoid Unnecessary Calculations</strong>:</li>
+                            <ul>
+                                <li>Perform calculations outside the query if possible.</li>
+                            </ul>
+                        <strong>Example :</strong>
+                        <pre>
+                            <code>
+                                -- Instead of this:
+                                SELECT id, (price * quantity) AS total FROM orders;
+    
+                                -- Perform calculation in application code.
+                            </code>
+                        </pre>
+    
+                            <strong>Use LIMIT :</strong>
+                        </li>
+                        <li>Restrict the number of rows returned if only a subset is needed.</li>
+                        <strong>Example :</strong>
+                            <pre>
+                                <code>
+                                    SELECT * FROM employees LIMIT 10;
+                                </code>
+                            </pre>
+                    </ul>
+            
+                <h4><strong>Optimizing Indexes</strong>:</h4>
+                    <ul>
+                        <li><strong>Create Indexes</strong>:</li>
+                            <ul>
+                                <li>Create indexes on columns that are frequently used in <code>WHERE</code>, <code>JOIN</code>, or <code>ORDER BY</code> clauses.</li>
+                            </ul>
+                        <strong>Syntax :</strong>
+                            <pre>
+                                <code>
+                                    CREATE INDEX index_name ON table_name (column_name);
+                                </code>
+                            </pre>
+                        <strong>Example :</strong>
+                            <pre>
+                                <code>
+                                    CREATE INDEX dept_index ON employees (department);
+                                </code>
+                            </pre>
+
+                        <li><strong>Use Composite Indexes</strong>:</li>
+                            <ul>
+                                <li>Combine multiple columns into a single index if queries frequently filter by multiple columns.</li>
+                            </ul>
+                        <strong>Syntax :</strong>
+                            <pre>
+                                <code>
+                                    CREATE INDEX idx_name ON table_name (column1, column2);
+                                </code>
+                            </pre>
+                            <strong>Example :</strong>
+                                <pre>
+                                    <code>
+                                        CREATE INDEX emp_dept_index ON employees (department, last_name);
+                                    </code>
+                                </pre>
+    
+                        <li><strong>Avoid Over-Indexing</strong>:</li>
+                            <ul>
+                                <li>Too many indexes can slow down <code>INSERT</code>, <code>UPDATE</code>, and <code>DELETE</code> operations.</li>
+                            </ul>
+                        <li>Regularly review and remove unused indexes.</li>
+    
+                        <li><strong>Analyze Index Usage</strong>:</li>
+                            <ul>
+                                <li>Use <code>SHOW INDEX</code> to review index details and <code>ANALYZE TABLE</code> to update index statistics.</li>
+                            </ul>
+                        <strong>Syntax :</strong>
+                            <pre>
+                                <code>
+                                    SHOW INDEX FROM table_name;
+                                    ANALYZE TABLE table_name;
+                                </code>
+                            </pre>
+                    </ul>
+        </div>
+
+        <div class="config-perform" id="mscp">
+            <h3><strong>MySQL Configuration for Performance</strong></h3>
+                <p>Proper configuration can significantly impact MySQL performance. Adjust settings in the <code>my.cnf</code> (or <code>my.ini</code> on Windows) file to optimize performance.</p>
+            
+                <h4><strong>Key Configuration Parameters</strong>:</h4>
+                    <ul>
+                        <li><strong>Buffer Pool Size</strong>:</li>
+                            <ul>
+                                <li>InnoDB buffer pool size affects the amount of data cached in memory.</li>
+                            </ul>
+                        <strong>Syntax :</strong>
+                            <pre>
+                                <code>
+                                    [mysqld]
+                                    innodb_buffer_pool_size = 2G
+                                </code>
+                            </pre>
+                        <strong>Example :</strong>
+                        <ul>
+                            <li>Set to 2 GB for better performance with large datasets.</li>
+                        </ul>
+    
+                        <li><strong>Query Cache</strong>:</li>
+                            <ul>
+                                <li>Query cache can store the result of SELECT queries to speed up subsequent requests.</li>
+                            </ul>
+                        <strong>Syntax :</strong>
+                            <pre>
+                                <code>
+                                    [mysqld]
+                                    query_cache_type = 1
+                                    query_cache_size = 64M
+                                </code>
+                            </pre>
+                        <strong>Example :</strong>
+                            <ul>
+                                <li>Enable and set cache size to 64 MB.</li>
+                            </ul>
+    
+                        <li><strong>Max Connections</strong>:</li>
+                            <ul>
+                                <li>Configure the maximum number of concurrent connections.</li>
+                            </ul>
+                        <strong>Syntax :</strong>
+                            <pre>
+                                <code>
+                                    [mysqld]
+                                    max_connections = 200
+                                </code>
+                            </pre>
+                        <strong>Example :</strong>
+                        <ul>
+                            <li>Increase to 200 if your application requires more concurrent connections.</li>
+                        </ul>
+    
+                        <li><strong>Log File Size</strong>:</li>
+                            <ul>
+                                <li>Adjust log file sizes for better performance and recovery.</li>
+                            </ul>
+                        <strong>Syntax :</strong>
+                            <pre>
+                                <code>
+                                    [mysqld]
+                                    innodb_log_file_size = 256M
+                                </code>
+                            </pre>
+                        <strong>Example :</strong>
+                            <ul>
+                                <li>Set log file size to 256 MB.</li>
+                            </ul>
+                    </ul>
+        </div>
+
+        <div class="monitor-perform" id="mmsp">
+            <h3><strong>Monitoring MySQL Performance</strong></h3>
+                <p>Regular monitoring helps identify performance issues and optimize database operations.</p>
+            
+                <h4><strong>Using MySQL Performance Schema</strong>:</h4>
+                    <ul>
+                        <li><strong>Enabling Performance Schema</strong>:</li>
+                        <strong>Syntax :</strong>
+                            <pre>
+                                <code>
+                                    [mysqld]
+                                    performance_schema = ON
+                                </code>
+                            </pre>
+    
+                        <strong>Example :</strong>
+                            <ul>
+                                <li>Enable the Performance Schema in <code>my.cnf</code>.</li>
+                            </ul>
+    
+                        <li>
+                            <strong>Querying Performance Schema Tables</strong>:
+                        </li>
+                        <strong>Example :</strong>
+                            <pre>
+                                <code>
+                                    SELECT * FROM performance_schema.events_statements_summary_by_digest;
+                                </code>
+                            </pre>
+                    </ul>
+            
+                <h4><strong>Using MySQL Status Variables</strong>:</h4>
+                    <ul>
+                        <li><strong>Viewing Status Variables</strong>:</li>
+                        <strong>Syntax  :</strong>
+                            <pre>
+                                <code>
+                                    SHOW STATUS;
+                                </code>
+                            </pre>
+                        <strong>Example :</strong>
+                            <pre>
+                                <code>
+                                    SHOW STATUS LIKE 'Threads_running';
+                                </code>
+                            </pre>
+                        <ul>
+                            <li>This shows the number of currently running threads.</li>
+                        </ul>
+    
+                        <li><strong>Monitoring Key Metrics</strong>:</li>
+                        <li><strong>Key Metrics</strong>:
+                            <ul>
+                                <li><code>Threads_running</code>: Number of active threads.</li>
+                                <li><code>Questions</code>: Number of queries executed.</li>
+                                <li><code>Innodb_buffer_pool_reads</code>: Number of reads from the buffer pool.</li>
+                            </ul>
+                        </li>
+                    </ul>
+    
+                <h4><strong>Using Third-Party Monitoring Tools</strong>:</h4>
+                    <ul>
+                        <li><strong>Tools</strong>:</li>
+                        <ul>
+                            <li><strong>MySQL Workbench</strong>: Provides performance dashboards and query analysis tools.</li>
+                            <li><strong>Percona Monitoring and Management (PMM)</strong>: Offers detailed metrics and alerts.</li>
+                            <li><strong>New Relic</strong>: Provides application performance monitoring including MySQL metrics.</li>
+                        </ul>
+                    </ul>
+        </div>
+    </section>
+
+    <footer>
+        <h6>Pramu Programming Concept</h6>
+    </footer>
+</body>
+</html>

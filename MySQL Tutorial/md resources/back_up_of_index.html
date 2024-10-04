@@ -1,0 +1,4494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<h1>MySQL Tutorial</h1>
+	<hr/>
+	<h3>MySQL Tutorial Index</h3>
+	<ol>
+		<li><strong>Introduction to MySQL</strong>
+			<ul>
+				<li>What is MySQL?</li>
+				<li>History and Development</li>
+				<li>Key Features of MySQL</li>
+				<li>Use Cases of MySQL</li>
+			</ul>
+		</li>
+
+		<li><strong>Setting Up MySQL</strong>
+			<ul>
+				<li>Installing MySQL on Different Platforms (Windows, macOS, Linux)</li>
+				<li>Configuring MySQL Server</li>
+				<li>Starting and Stopping MySQL Server</li>
+				<li>Accessing MySQL Command Line Interface (CLI)</li>
+			</ul>
+		</li>
+		
+		<li><strong>Basic MySQL Operations</strong>
+			<ul>
+				<li>Connecting to MySQL Server</li>
+				<li>Creating and Managing Databases</li>
+				<li>Creating and Managing Tables</li>
+				<li>Inserting Data into Tables</li>
+				<li>Querying Data with SELECT</li>
+				<li>Updating and Deleting Data</li>
+			</ul>
+		</li>
+
+		<li><strong>Data Types in MySQL</strong>
+			<ul>
+				<li>Numeric Data Types</li>
+				<li>String Data Types</li>
+				<li>Date and Time Data Types</li>
+				<li>Other Data Types (ENUM, SET, etc.)</li>
+			</ul>
+		</li>
+
+		<li><strong>Advanced SQL Queries</strong>
+			<ul>
+				<li>Using WHERE Clause for Filtering Data</li>
+				<li>Sorting and Grouping Data with ORDER BY and GROUP BY</li>
+				<li>Joins (INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL JOIN)</li>
+				<li>Subqueries and Nested Queries</li>
+				<li>Using Aggregate Functions (COUNT, SUM, AVG, MAX, MIN)</li>
+			</ul>
+		</li>
+
+		<li><strong>Working with Indexes</strong>
+			<ul>
+				<li>What are Indexes?</li>
+				<li>Types of Indexes (Primary, Unique, Full-Text, etc.)</li>
+				<li>Creating and Dropping Indexes</li>
+				<li>Impact of Indexes on Performance</li>
+			</ul>
+		</li>
+
+		<li><strong>MySQL Functions and Operators</strong>
+			<ul>
+				<li>String Functions</li>
+				<li>Numeric Functions</li>
+				<li>Date and Time Functions</li>
+				<li>Logical Operators</li>
+				<li>Comparison Operators</li>
+			</ul>
+		</li>
+
+		<li><strong>Stored Procedures and Triggers</strong>
+			<ul>
+				<li>Introduction to Stored Procedures</li>
+				<li>Creating and Executing Stored Procedures</li>
+				<li>Working with Parameters in Procedures</li>
+				<li>Introduction to Triggers</li>
+				<li>Creating and Managing Triggers</li>
+			</ul>
+		</li>
+
+		<li><strong>Transactions and Concurrency Control</strong>
+			<ul>
+				<li>What are Transactions?</li>
+				<li>ACID Properties</li>
+				<li>Implementing Transactions in MySQL</li>
+				<li>Handling Transaction Errors and Rollbacks</li>
+				<li>Concurrency Control and Locking Mechanisms</li>
+			</ul>
+		</li>
+	
+		<li><strong>Database Security</strong>
+			<ul>
+				<li>User Management and Permissions</li>
+				<li>Securing MySQL Server</li>
+				<li>Backup and Restore Databases</li>
+				<li>Data Encryption</li>
+			</ul>
+		</li>
+		
+		<li><strong>Optimizing MySQL Performance</strong>
+			<ul>
+				<li>Analyzing Query Performance with EXPLAIN</li>
+				<li>Optimizing Queries and Indexes</li>
+				<li>MySQL Configuration for Performance</li>
+				<li>Monitoring MySQL Performance</li>
+			</ul>
+		</li>
+	
+		<li><strong>Connecting MySQL to Applications</strong>
+			<ul>
+				<li>Introduction to MySQL Connectors (Python, PHP, Java, etc.)</li>
+				<li>Connecting MySQL to Web Applications</li>
+				<li>Executing Queries from Application Code</li>
+			</ul>
+		</li>
+		
+		
+		<li><strong>MySQL Best Practices</strong>
+			<ul>
+				<li>Database Design Principles</li>
+				<li>Naming Conventions</li>
+				<li>Data Integrity and Normalization</li>
+				<li>Regular Maintenance Tasks</li>
+			</ul>
+		</li>
+		
+		
+		<li><strong>Troubleshooting Common MySQL Issues</strong>
+			<ul>
+				<li>Common Errors and Solutions</li>
+				<li>Handling Data Corruption</li>
+				<li>Debugging Slow Queries</li>
+				<li>Repairing and Optimizing Tables</li>
+			</ul>
+		</li>
+		
+		
+		<li><strong>Conclusion and Additional Resources</strong>
+			<ul>
+				<li>Summary of Key Concepts</li>
+				<li>Additional Learning Resources</li>
+				<li>Community and Support</li>
+			</ul>
+		</li>
+	</ol>
+
+	<hr/>
+	<hr/>
+	<hr/>
+
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\  Introduction to MySQL  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+	<h2><strong>Introduction to MySQL</strong></h2>
+		<h3><strong>1. What is MySQL ?</strong></h3>
+			<p>MySQL is an <strong>open-source relational database management system</strong> (RDBMS) that allows users to store, manage, and retrieve data using structured query language (SQL). It is widely used in various applications, from small web-based projects to large-scale enterprise applications.</p>
+			<p>MySQL is known for its speed, reliability, and ease of use. It is designed to handle large volumes of data and can be used for a wide range of purposes, including data warehousing, e-commerce, logging applications, and more.</p>
+			<p>Key points:
+				- <strong>Relational Database</strong>: MySQL stores data in tables that are related to each other through keys, making it easier to manage and retrieve related data.
+				- <strong>Open Source</strong>: MySQL is free to use, modify, and distribute, making it accessible to developers and organizations of all sizes.
+				- <strong>SQL-Based</strong>: MySQL uses SQL (Structured Query Language) as its standard language for interacting with the database.
+			</p>
+		
+		<h3><strong>2. History and Development</strong></h3>
+			<p>MySQL was initially developed in <strong>1994</strong> by a Swedish company called <strong>MySQL AB</strong>, founded by <strong>Michael "Monty" Widenius</strong>, <strong>David Axmark</strong>, and <strong>Allan Larsson</strong>. The first version of MySQL was released in <strong>1995</strong>. Over the years, MySQL gained popularity for its performance, simplicity, and <strong>open-source</strong> nature.</p>
+			<p>In 2008, <strong>Sun Microsystems</strong> acquired MySQL AB, and later in 2010, <strong>Oracle Corporation</strong> acquired Sun Microsystems, making MySQL part of Oracle's product portfolio.</p>
+			<p>Key milestones:
+			- <strong>1994</strong>: Development of MySQL began.
+			- <strong>1995</strong>: First version of MySQL (v1.0) was released.
+			- <strong>2001</strong>: MySQL 4.0 introduced, featuring support for transactions and subqueries.
+			- <strong>2008</strong>: Sun Microsystems acquired MySQL AB.
+			- <strong>2010</strong>: Oracle Corporation acquired Sun Microsystems and MySQL.</p>
+		
+		<h3><strong>3. Key Features of MySQL</strong></h3>
+			<p>MySQL offers a wide range of features that make it one of the most popular RDBMSs in the world. Some of the key features include:</p>
+				<ul>
+					<li><strong>Scalability and Flexibility</strong>: MySQL can handle small and large databases with ease, making it suitable for various types of applications.</li>
+					<li><strong>High Performance</strong>: MySQL is optimized for speed and efficiency, allowing it to process large volumes of data quickly.</li>
+					<li><strong>Security</strong>: MySQL offers robust security features, including user authentication, data encryption, and access control.</li>
+					<li><strong>Cross-Platform Support</strong>: MySQL runs on various platforms, including Windows, macOS, Linux, and Unix, making it versatile and accessible.</li>
+					<li><strong>Replication</strong>: MySQL supports replication, allowing data to be copied from one server to another for backup and load balancing.</li>
+					<li><strong>Support for Large Databases</strong>: MySQL can manage databases with billions of rows and terabytes of data.</li>
+					<li><strong>Community and Support</strong>: MySQL has a large community of developers and users who contribute to its development and provide support.</li>
+				</ul>
+		
+		<h3><strong>4. Use Cases of MySQL</strong></h3>
+			<p>MySQL is used in various industries and applications due to its versatility and reliability. Some common use cases include:</p>
+			<ul>
+				<li><strong>Web Applications</strong>: MySQL is often used as the database backend for web applications, including content management systems (CMS) like WordPress, e-commerce platforms like Magento, and social media platforms.</li>
+				<li><strong>Data Warehousing</strong>: MySQL can be used to store and manage large volumes of data for analytical and reporting purposes.</li>
+				<li><strong>E-commerce</strong>: Online stores use MySQL to manage product inventories, customer data, and transactions.</li>
+				<li><strong>Content Management</strong>: MySQL is the database of choice for many CMS platforms, enabling users to manage and organize website content.</li>
+				<li><strong>Logging Applications</strong>: MySQL can store logs and other types of data generated by applications, providing a reliable way to track and analyze events.</li>
+			</ul>
+			<p>MySQL's flexibility and robust features make it a popular choice for various types of applications, from simple websites to complex enterprise systems.</p>
+
+
+	<hr/>
+	<hr/>
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\  Setting Up MySQL \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+	<h2><strong>Setting Up MySQL</strong></h2>
+	
+		<h3><strong>1. Installing MySQL on Different Platforms</strong></h3>
+			<p>MySQL can be installed on various operating systems, including Windows, macOS, and Linux. Below are step-by-step instructions for each platform.</p>
+
+			<h4><strong>Installing MySQL on Windows</strong></h4>
+				<ol>
+					<li><strong>Download MySQL Installer</strong>:</li>
+						<ul>
+							<li><p>Visit the <a href="https://dev.mysql.com/downloads/installer/">MySQL official website</a> and download the MySQL Installer for Windows.</p></li>
+						</ul>
+
+					<li><p><strong>Run the Installer</strong>:</p></li>
+						<ul>
+							<li><p>Open the downloaded installer file. You can choose between a "Developer Default" installation, which includes MySQL Server, MySQL Workbench, and other tools, or a "Server Only" installation if you only need the MySQL server.</p></li>
+						</ul>
+
+					<li><p><strong>Configure MySQL Server</strong>:</p></li>
+						<ul>
+							<li><p>During installation, you'll be prompted to configure the MySQL server. Set the root password, and choose the server type (e.g., Development Machine, Server Machine).</p></li>
+						</ul>
+
+					<li><p><strong>Complete Installation</strong>:</p></li>
+						<ul>
+							<li><p>Continue with the installation and click "Finish" once it’s complete.</p></li>
+						</ul>
+
+					<li><p><strong>Verify Installation</strong>:</p></li>
+						<ul>
+							<li>Open the Command Prompt and type <code>mysql -u root -p</code>. Enter the root password you set during installation to log in to the MySQL command line interface (CLI).</li>
+						</ul>
+				</ol>
+				
+			<h4><strong>Installing MySQL on macOS</strong></h4>
+				<ol>
+					<li><strong>Download MySQL DMG File</strong>:</li>
+						<ul>
+							<li><p>Visit the <a href="https://dev.mysql.com/downloads/mysql/">MySQL official website</a> and download the MySQL DMG file for macOS.</p></li>
+						</ul>
+					
+					<li><p><strong>Install MySQL</strong>:</p></li>
+						<ul>
+							<li><p>Open the downloaded DMG file and run the installer package. Follow the on-screen instructions.</p></li>
+						</ul>
+					
+					<li><p><strong>Configure MySQL Server</strong>:</p></li>
+						<ul>
+							<li><p>After installation, open "System Preferences" and select "MySQL". Click "Start MySQL Server" to start the server.</p></li>
+						</ul>
+
+					<li><p><strong>Add MySQL to PATH</strong>:</p></li>
+						<ul>
+							<li>Open Terminal and run:
+								<code>bash
+									echo 'export PATH="/usr/local/mysql/bin:$PATH"' &gt;&gt; ~/.bash_profile
+									source ~/.bash_profile
+								</code>
+							</li>
+							<li><p>This allows you to access MySQL commands from the terminal.</p></li>
+						</ul>
+
+					<li><p><strong>Verify Installation</strong>:</p></li>
+						<ul>
+							<li>In Terminal, type 
+								<code>mysql -u root -p</code>,
+								and enter the root password to log in to the MySQL CLI.
+							</li>
+						</ul>
+				</ol>
+
+			<h4><strong>Installing MySQL on Linux (Ubuntu/Debian)</strong></h4>
+				<ol>
+					<li><strong>Update Package Index</strong>:</li>
+						<ul>
+							<li>
+								<p>Open Terminal and run:
+									<code>bash
+										sudo apt-get update
+									</code>
+								</p>
+							</li>
+						</ul>
+
+					<li><p><strong>Install MySQL</strong>:</p></li>
+						<ul>
+							<li>
+								<p>Run the following command to install MySQL:
+									<code>bash
+										sudo apt-get install mysql-server
+									</code>
+								</p>
+							</li>
+						</ul>
+
+					<li><p><strong>Secure MySQL Installation</strong>:</p></li>
+						<ul>
+							<li>Run the security script to improve the security of your MySQL installation:
+								<pre>
+									<code>bash
+										sudo mysql_secure_installation
+									</code>
+								</pre>
+							</li>
+							<li>
+								<p>Follow the prompts to set a root password, remove anonymous users, disallow root login remotely, and remove test databases.</p>
+							</li>
+						</ul>
+
+					<li><p><strong>Start MySQL Server</strong>:</p></li>
+						<ul>
+							<li>To start the MySQL server, run:
+								<pre>
+									<code>bash
+										sudo systemctl start mysql
+									</code>
+								</pre>
+							</li>
+		
+							<li>
+								<p>You can also enable it to start at boot:
+									<pre>
+										<code>bash
+											sudo systemctl enable mysql
+										</code>
+									</pre>
+								</p>
+							</li>
+						</ul>
+
+	
+					<li><p><strong>Verify Installation</strong>:</p></li>
+					<ul>
+						<li>Log in to the MySQL CLI by typing 
+							<pre>
+								<code>mysql -u root -p</code> 
+							</pre>
+							- in the terminal and entering the root password.</li>
+					</ul>
+				</ol>
+
+
+		<h3><strong>2. Configuring MySQL Server</strong></h3>
+			<p>After installation, MySQL needs to be configured to suit your specific environment. Here are some basic configurations you might need to adjust:</p>
+			<h4><strong>MySQL Configuration File</strong></h4>
+				<ul>
+					<li>The primary configuration file for MySQL is <code>my.cnf</code> (on Linux/macOS) or <code>my.ini</code> (on Windows). This file controls various settings such as networking, memory usage, and storage engine options.</li>
+					<li>On Linux/macOS, the file is usually located at <code>/etc/mysql/my.cnf</code>.</li>
+					<li>On Windows, it is located in the MySQL installation directory.</li>
+				</ul>
+			
+			<h4><strong>Key Configuration Settings</strong></h4>
+			<ol>
+				<li><strong>Port Number</strong>:
+					<ul>
+						<li>
+							<p>By default, MySQL runs on port 3306. You can change this in the configuration file under <code>[mysqld]</code>:
+								<pre>
+									<code>ini
+										port = 3306
+									</code>
+								</pre>
+							</p>
+						</li>
+					</ul>
+				</li>
+				
+				<li><strong>Bind Address</strong>:
+					<ul>
+						<li>To allow remote connections, you may need to change the bind address:
+							<pre>
+								<code>ini
+									bind-address = 0.0.0.0
+								</code>
+							</pre>
+						</li>
+						<li>
+							<p>This allows MySQL to accept connections from any IP address.</p>
+						</li>
+					</ul>
+				</li>
+
+				<li><strong>Max Connections</strong>:
+					<ul>
+						<li>
+							<p>Set the maximum number of connections to the server:
+								<pre>
+									<code>ini
+										max_connections = 150
+									</code>
+								</pre>
+							</p>
+						</li>
+					</ul>
+				</li>
+
+				<li><strong>Character Set</strong>:
+					<ul>
+						<li>Define the default character set for the server:
+							<pre>
+								<code>ini
+									character-set-server = utf8mb4
+									collation-server = utf8mb4_unicode_ci
+								</code>
+							</pre>
+						</li>
+					</ul>
+				</li>
+			</ol>
+
+		<h3><strong>3. Starting and Stopping MySQL Server</strong></h3>
+			<p>Depending on your operating system, the commands to start and stop the MySQL server may vary.</p>
+			<h4><strong>On Windows</strong>:</h4>
+				<ul>
+					<li>Start MySQL Server:
+						<pre>
+							<code>cmd
+								net start MySQL
+							</code>
+						</pre>
+					</li>
+
+					<li>Stop MySQL Server:
+						<pre>
+							<code>cmd
+								net stop MySQL
+							</code>
+						</pre>
+					</li>
+				</ul>
+			
+			<h4><strong>On macOS/Linux</strong>:</h4>
+				<ul>
+					<li>Start MySQL Server:
+						<pre>
+							<code>bash
+								sudo systemctl start mysql
+							</code>
+						</pre>
+					</li>
+					<li>
+						<p>Stop MySQL Server:
+							<pre>
+								<code>bash
+									sudo systemctl stop mysql
+								</code>
+							</pre>
+						</p>
+					</li>
+					<li>
+						<p>You can also restart the server with:
+							<pre>
+								<code>bash
+									sudo systemctl restart mysql
+								</code>
+							</pre>
+						</p>
+					</li>
+				</ul>
+
+		<h3><strong>4. Accessing MySQL Command Line Interface (CLI)</strong></h3>
+			<p>The MySQL Command Line Interface (CLI) is a powerful tool for interacting with your MySQL server. Here’s how to access it:</p>
+			<ol>
+				<li><strong>Open the CLI</strong>:
+					<ul>
+						<li>On Windows: Open the Command Prompt.</li>
+						<li>
+							<p>On macOS/Linux: Open Terminal.</p>
+						</li>
+						
+					</ul>
+				</li>
+				<li><strong>Log in to MySQL</strong>:
+					<ul>
+						<li>Type the following command and press Enter:
+							<code>bash
+								mysql -u root -p
+							</code>
+						</li>
+						<li>
+							<p>Enter the root password when prompted.</p>
+						</li>
+					</ul>
+				</li>
+				
+				<li><strong>Basic Commands</strong>:</li>
+				<li><strong>Show Databases</strong>: List all databases on the server:
+					<code>sql
+						SHOW DATABASES;
+					</code>
+				</li>
+				<li><strong>Select a Database</strong>: Choose a database to work with:
+					<code>sql
+						USE database_name;
+					</code>
+				</li>
+				<li><strong>Show Tables</strong>: List all tables in the selected database:
+					<code>sql
+						SHOW TABLES;
+					</code>
+				</li>
+				<li><strong>Exit the CLI</strong>: To exit the MySQL CLI, type:
+					<code>sql
+						EXIT;
+					</code>
+				</li>
+			</ol>
+
+			
+	<hr/>
+	<hr/>
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ Basic MySQL Operations \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+	<h2><strong>Basic MySQL Operations</strong></h2>
+
+		<h3><strong>1. Connecting to MySQL Server</strong></h3>
+			<p>Before performing any operations, you need to connect to the MySQL server. You can do this through the MySQL Command Line Interface (CLI) or a graphical tool like MySQL Workbench.</p>
+			<h4><strong>Using MySQL CLI</strong>:</h4>
+				<ol>
+					<li><strong>Open the CLI</strong>:</li>
+						<ul>
+							<li>On Windows: Open the Command Prompt.</li>
+							<li><p>On macOS/Linux: Open Terminal.</p></li>
+						</ul>
+
+					<li><p><strong>Connect to the Server</strong>:</p></li>
+						<ul>
+							<li>Run the following command:
+								<code>bash
+									mysql -u username -p
+								</code>
+							</li>
+							<li>Replace <code>username</code> with your MySQL username (e.g., <code>root</code>).</li>
+							<li>Enter your password when prompted.</li>
+						</ul>
+				</ol>
+
+			<h4><strong>Using MySQL Workbench</strong>:</h4>
+			<ol>
+				<li><strong>Open MySQL Workbench</strong>:</li>
+					<ul>
+						<li><p>Launch MySQL Workbench from your applications.</p></li>
+					</ul>
+
+				<li><p><strong>Create a New Connection</strong>:</p></li>
+					<ul>
+						<li>Click on the "+" icon to create a new connection.</li>
+						<li>Enter your connection name, hostname (usually <code>localhost</code>), port (default is <code>3306</code>), and username (e.g., <code>root</code>).</li>
+						<li><p>Click "Test Connection" to ensure the connection works, then click "OK."</p></li>
+					</ul>
+				
+				<li><p><strong>Connect to the Server</strong>:</p></li>
+					<ul>
+						<li>Double-click the connection name to connect to the server.</li>
+					</ul>
+			</ol>
+
+		<h3><strong>2. Creating and Managing Databases</strong></h3>
+			<p>MySQL allows you to create and manage databases, which are used to store and organize your data.</p>
+
+			<h4><strong>Creating a Database</strong>:</h4>
+				<ol>
+					<li><strong>Using MySQL CLI</strong>:</li>
+						<ul>
+							<li>Run the following command:
+								<pre>
+									<code>sql
+										CREATE DATABASE database_name;
+									</code>
+								</pre>
+							</li>
+							<li><p>Replace <code>database_name</code> with the desired name of your database.</p></li>
+						</ul>
+
+					<li><p><strong>Using MySQL Workbench</strong>:</p></li>
+						<ul>
+							<li>In the "Schemas" tab, right-click and select "Create Schema."</li>
+							<li>Enter the name of the database and click "Apply."</li>
+						</ul>
+				</ol>
+
+			<h4><strong>Listing Databases</strong>:</h4>
+				<ul>
+					<li>
+						<p><strong>Using MySQL CLI</strong>:
+							<pre>
+								<code>sql
+									SHOW DATABASES;
+								</code>
+							</pre>
+						</p>
+					</li>
+
+					<li><p><strong>Using MySQL Workbench</strong>:</p></li>
+						<ul>
+							<li>Databases will be listed under the "Schemas" tab.</li>
+						</ul>
+				</ul>
+
+			<h4><strong>Selecting a Database</strong>:</h4>
+				<ul>
+					<li>
+						<p><strong>Using MySQL CLI</strong>:
+							<pre>
+								<code>sql
+									USE database_name;
+								</code>
+							</pre>
+						</p>
+					</li>
+					<li>
+						<p><strong>Using MySQL Workbench</strong>:</p>
+					</li>
+						<ul>
+							<li>Double-click the database name under "Schemas" to select it.</li>
+						</ul>
+				</ul>
+
+			<h4><strong>Dropping a Database</strong>:</h4>
+				<ul>
+					<li>
+						<p><strong>Using MySQL CLI</strong>:
+							<pre>
+								<code>sql
+									DROP DATABASE database_name;
+								</code>
+							</pre>
+						</p>
+					</li>
+					<li>
+						<p><strong>Using MySQL Workbench</strong>:</p>
+					</li>
+						<ul>
+							<li>Right-click on the database name under "Schemas" and select "Drop Schema."</li>
+						</ul>
+				</ul>
+
+		<h3><strong>3. Creating and Managing Tables</strong></h3>
+			<p>Tables are used to store data in a structured format. Each table consists of rows and columns.</p>
+
+			<h4><strong>Creating a Table</strong>:</h4>
+				<ol>
+					<li><strong>Using MySQL CLI</strong>:
+						<ul>
+							<pre>
+								<code>sql
+										CREATE TABLE table_name (
+											id INT AUTO_INCREMENT PRIMARY KEY,
+											column1_name data_type,
+											column2_name data_type,
+											...
+										);
+								</code>
+							</pre>	
+							<li><p>Replace <code>table_name</code>, <code>column1_name</code>, <code>column2_name</code>, etc., with your desired table and column names, and <code>data_type</code> with the appropriate MySQL data type (e.g., <code>INT</code>, <code>VARCHAR(255)</code>, <code>DATE</code>).</p></li>
+						</ul>
+					</li>
+
+
+					<li><p><strong>Using MySQL Workbench</strong>:</p></li>
+						<ul>
+							<li>Right-click on the database name under "Schemas" and select "Create Table."</li>
+							<li>Enter the table name and define the columns by specifying their names, data types, and constraints (e.g., <code>NOT NULL</code>, <code>PRIMARY KEY</code>).</li>
+							<li>Click "Apply" to create the table.</li>
+						</ul>
+				</ol>
+	
+			<h4><strong>Listing Tables</strong>:</h4>
+				<ul>
+					<li>
+						<p><strong>Using MySQL CLI</strong>:
+							<pre>
+								<code>sql
+									SHOW TABLES;
+								</code>
+							</pre>
+						</p>
+					</li>
+
+					<li><p><strong>Using MySQL Workbench</strong>:</p></li>
+					<ul>
+						<li>Tables will be listed under the selected database in the "Schemas" tab.</li>
+					</ul>
+				</ul>
+
+			<h4><strong>Describing a Table</strong>:</h4>
+				<ul>
+					<li><strong>Using MySQL CLI</strong>:
+						<pre>
+							<code>sql
+								DESCRIBE table_name;
+							</code>
+						</pre>
+					</li>
+					<ul>
+						<li>This command shows the structure of the table, including column names, data types, and constraints.</li>
+					</ul>
+				</ul>
+
+			<h4><strong>Dropping a Table</strong>:</h4>
+				<ul>
+					<li>
+						<p><strong>Using MySQL CLI</strong>:
+							<pre>
+								<code>sql
+									DROP TABLE table_name;
+								</code>
+							</pre>
+						</p>
+					</li>
+
+					<li><p><strong>Using MySQL Workbench</strong>:</p></li>
+						<ul>
+							<li>Right-click on the table name under "Schemas" and select "Drop Table."</li>
+						</ul>
+				</ul>
+
+		<h3><strong>4. Inserting Data into Tables</strong></h3>
+			<p>After creating a table, you can insert data into it.</p>
+
+			<h4><strong>Inserting a Single Row</strong>:</h4>
+				<ol>
+					<li><strong>Using MySQL CLI</strong>:
+						<pre>
+							<code>sql
+								INSERT INTO table_name (column1_name, column2_name, ...)
+								VALUES (value1, value2, ...);
+							</code>
+						</pre>
+					</li>
+					<ul>
+						<li><p>Replace <code>table_name</code>, <code>column1_name</code>, etc., with the table and column names, and <code>value1</code>, <code>value2</code>, etc., with the actual data.</p></li>
+					</ul>
+
+					<li><p><strong>Using MySQL Workbench</strong>:</p></li>
+						<ul>
+							<li>Right-click on the table name under "Schemas" and select "Select Rows - Limit 1000."</li>
+							<li>In the result grid, manually enter the values into the columns and click "Apply."</li>
+						</ul>
+				</ol>
+
+			<h4><strong>Inserting Multiple Rows</strong>:</h4>
+				<ul>
+					<li>
+						<p><strong>Using MySQL CLI</strong>:
+							<pre>
+								<code>sql
+									INSERT INTO table_name (column1_name, column2_name, ...)
+									VALUES (value1, value2, ...),
+											(value3, value4, ...),
+											...;
+								</code>
+							</pre>
+						</p>
+					</li>
+
+					<li><p><strong>Using MySQL Workbench</strong>:</p></li>
+						<ul>
+							<li>Use the same method as above to add multiple rows in the result grid.</li>
+						</ul>
+				</ul>
+		
+		<h3><strong>5. Querying Data with SELECT</strong></h3>
+			<p>The <code>SELECT</code> statement is used to retrieve data from one or more tables.</p>
+
+			<h4><strong>Basic SELECT Query</strong>:</h4>
+				<ul>
+					<li><strong>Using MySQL CLI</strong>:
+						<pre>
+							<code>sql
+								SELECT column1_name, column2_name, ...
+								FROM table_name;
+							</code></li>
+						</pre>
+						<ul>
+							<li><p>This retrieves the specified columns from the table.</p></li>
+						</ul>
+
+					<li><p><strong>Using MySQL Workbench</strong>:</p></li>
+						<ul>
+							<li>Use the SQL editor to run the same query, and the results will be displayed below the editor.</li>
+						</ul>
+				</ul>
+
+			<h4><strong>Selecting All Columns</strong>:</h4>
+				<ul>
+					<li><strong>Using MySQL CLI</strong>:
+						<pre>
+							<code>sql
+								SELECT * FROM table_name;
+							</code>
+						</pre>
+					</li>
+						<ul>
+							<li>The <code>*</code> wildcard selects all columns from the table.</li>
+						</ul>
+				</ul>
+		
+			<h4><strong>Filtering Data with WHERE Clause</strong>:</h4>
+				<ul>
+					<li><strong>Using MySQL CLI</strong>:
+						<pre>
+							<code>sql
+								SELECT column1_name, column2_name, ...
+								FROM table_name
+								WHERE condition;
+							</code>
+						</pre>
+					</li>
+					<ul>
+						<li>Replace <code>condition</code> with the criteria for filtering (e.g., <code>column1_name = 'value'</code>).</li>
+					</ul>
+				</ul>
+				
+			<h4><strong>Sorting Data with ORDER BY</strong>:</h4>
+				<ul>
+					<li><strong>Using MySQL CLI</strong>:
+						<pre>
+							<code>sql
+								SELECT column1_name, column2_name, ...
+								FROM table_name
+								ORDER BY column1_name ASC|DESC;
+							</code>
+						</pre>
+					</li>
+				</ul>
+		
+			<h4><strong>Limiting the Number of Results</strong>:</h4>
+				<ul>
+					<li><strong>Using MySQL CLI</strong>:
+						<pre>
+							<code>sql
+								SELECT column1_name, column2_name, ...
+								FROM table_name
+								LIMIT number;
+							</code>
+						</pre>
+					</li>
+					<ul>
+						<li>Replace <code>number</code> with the maximum number of rows to return.</li>
+					</ul>
+				</ul>
+
+		<h3><strong>6. Updating and Deleting Data</strong></h3>
+			<p>You can modify or remove existing data using <code>UPDATE</code> and <code>DELETE</code> statements.</p>
+			<h4><strong>Updating Data</strong>:</h4>
+				<ul>
+					<li><strong>Using MySQL CLI</strong>:
+						<pre>
+							<code>sql
+								UPDATE table_name
+								SET column1_name = new_value, column2_name = new_value, ...
+								WHERE condition;
+							</code>
+						</pre>
+					</li>
+					<ul>
+						<li><p>Ensure you include a <code>WHERE</code> clause to specify which rows to update, or else all rows will be updated.</p></li>
+					</ul>
+
+					
+					<li><p><strong>Using MySQL Workbench</strong>:</p></li>
+						<ul>
+							<li>Use the result grid to update values directly and then click "Apply."</li>
+						</ul>
+				</ul>
+		
+			<h4><strong>Deleting Data</strong>:</h4>
+				<ul>
+					<li><strong>Using MySQL CLI</strong>:
+						<pre>
+							<code>sql
+								DELETE FROM table_name
+								WHERE condition;
+							</code>
+						</pre>
+					</li>
+					<ul>
+						<li>
+							<p>Again, use a <code>WHERE</code> clause to target specific rows for deletion.</p>
+						</li>
+	
+					</ul>
+					<li>
+						<p><strong>Using MySQL Workbench</strong>:</p>
+					</li>
+					<ul>
+						<li>Right-click on the rows in the result grid and select "Delete Row(s)." Click "Apply" to execute.</li>
+					</ul>
+				</ul>
+
+	<hr/>
+	<hr/>
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ Data Types in MySQL \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+	<h2><strong>Data Types in MySQL</strong></h2>
+		<p>Understanding data types in MySQL is crucial for defining how your data will be stored, managed, and retrieved. MySQL offers a variety of data types for different kinds of data, categorized into numeric, string, date and time, and other specialized types like ENUM and SET.</p>
+	
+		<h3><strong>1. Numeric Data Types</strong></h3>
+			<p>MySQL provides several numeric data types to store various kinds of numbers, ranging from integers to floating-point numbers and decimal values.</p>
+			<h4><strong>Integer Types</strong></h4>
+				<ul>
+					<li><strong>TINYINT</strong>:</li>
+						<ul>
+							<li>Range: -128 to 127 (Signed), 0 to 255 (Unsigned)</li>
+							<li>Storage: 1 byte</li>
+							<li>
+								<p>Example:
+									<pre>
+										<code>sql
+											age TINYINT UNSIGNED;
+										</code>
+									</pre>
+								</p>
+							</li>
+						</ul>
+
+					<li><p><strong>SMALLINT</strong>:</p></li>
+						<ul>
+							<li>Range: -32,768 to 32,767 (Signed), 0 to 65,535 (Unsigned)</li>
+							<li>Storage: 2 bytes</li>
+							<li>
+								<p>Example:
+									<pre>
+										<code>sql
+											year SMALLINT UNSIGNED;
+										</code>
+									</pre>
+								</p>
+							</li>
+						</ul>
+					
+					<li><p><strong>MEDIUMINT</strong>:</p></li>
+						<ul>
+							<li>Range: -8,388,608 to 8,388,607 (Signed), 0 to 16,777,215 (Unsigned)</li>
+							<li>Storage: 3 bytes</li>
+							<li>
+								<p>Example:
+									<pre>
+										<code>sql
+											population MEDIUMINT UNSIGNED;
+										</code>
+									</pre>
+								</p>
+							</li>
+						</ul>
+
+					<li><p><strong>INT (or INTEGER)</strong>:</p></li>
+						<ul>
+							<li>Range: -2,147,483,648 to 2,147,483,647 (Signed), 0 to 4,294,967,295 (Unsigned)</li>
+							<li>Storage: 4 bytes</li>
+							<li>
+								<p>Example:
+									<pre>
+										<code>sql
+											id INT NOT NULL AUTO_INCREMENT PRIMARY KEY;
+										</code>
+									</pre>
+								</p>
+							</li>
+						</ul>
+
+					<li><p><strong>BIGINT</strong>:</p></li>
+						<ul>
+							<li>Range: -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807 (Signed), 0 to 18,446,744,073,709,551,615 (Unsigned)</li>
+							<li>Storage: 8 bytes</li>
+							<p>Example:
+								<pre>
+									<code>sql
+										revenue BIGINT;
+									</code>
+								</pre>
+							</p>
+						</ul>
+				</ul>
+	
+			<h4><strong>Floating-Point Types</strong></h4>
+				<ul>
+					<li><strong>FLOAT</strong>:</li>
+						<ul>
+							<li>Approximate numeric data type for floating-point numbers.</li>
+							<li>Storage: 4 bytes</li>
+							<p>Example:
+								<pre>
+									<code>sql
+										temperature FLOAT(5, 2);
+									</code>
+								</pre>
+							</p>
+							<li><p>Here, <code>5</code> is the total number of digits, and <code>2</code> is the number of digits after the decimal point.</p></li>
+						</ul>
+
+					<li><p><strong>DOUBLE</strong>:</p></li>
+						<ul>
+							<li>More precision than <code>FLOAT</code>.</li>
+							<li>Storage: 8 bytes</li>
+							<p>Example:
+								<pre>
+									<code>sql
+										price DOUBLE(10, 2);
+									</code>
+								</pre>
+							</p>
+						</ul>
+				</ul>
+
+			<h4><strong>Fixed-Point Types</strong></h4>
+				<ul>
+					<li><strong>DECIMAL (or NUMERIC)</strong>:</li>
+						<ul>
+							<li>Used for storing exact numeric values, especially when dealing with financial data.</li>
+							<li>Storage: Varies based on the precision</li>
+							<p>Example:
+								<pre>
+									<code>sql
+										salary DECIMAL(10, 2);
+									</code>
+								</pre>
+							</p>
+						</ul>
+				</ul>
+
+		<h3><strong>2. String Data Types</strong></h3>
+			<p>MySQL provides a variety of string data types to store text data of different lengths and purposes.</p>
+
+			<h4><strong>Character Types</strong></h4>
+					<ul>
+						<li><strong>CHAR</strong>:</li>
+							<ul>
+								<li>Fixed-length string.</li>
+								<li>Storage: 1 byte per character</li>
+								<p>Example:
+									<pre>
+										<code>sql
+											country_code CHAR(2);
+										</code>
+									</pre>
+								</p>
+							</ul>
+
+						<li><p><strong>VARCHAR</strong>:</p></li>
+							<ul>
+								<li>Variable-length string.</li>
+								<li>Storage: 1 byte per character + 1 or 2 bytes for length</li>
+								<p>Example:
+									<pre>
+										<code>sql
+											name VARCHAR(255);
+										</code>
+									</pre>
+								</p>
+							</ul>
+					</ul>
+
+			<h4><strong>Text Types</strong></h4>
+				<ul>
+					<li><strong>TINYTEXT</strong>:</li>
+						<ul>
+							<li>Maximum length: 255 characters</li>
+							<li>Storage: 1 byte + actual size</li>
+							<p>Example:
+								<pre>
+									<code>sql
+										short_description TINYTEXT;
+									</code>
+								</pre>
+							</p>
+						</ul>
+
+					<li><p><strong>TEXT</strong>:</p></li>
+						<ul>
+							<li>Maximum length: 65,535 characters</li>
+							<li>Storage: 2 bytes + actual size</li>
+							<p>Example:
+								<pre>
+									<code>sql
+										content TEXT;
+									</code>
+								</pre>
+							</p>
+						</ul>
+
+					<li><p><strong>MEDIUMTEXT</strong>:</p></li>
+						<ul>
+							<li>Maximum length: 16,777,215 characters</li>
+							<li>Storage: 3 bytes + actual size</li>
+							<p>Example:
+								<pre>
+									<code>sql
+										article MEDIUMTEXT;
+									</code>
+								</pre>
+							</p>
+						</ul>
+
+					<li><p><strong>LONGTEXT</strong>:</p></li>
+						<ul>
+							<li>Maximum length: 4,294,967,295 characters</li>
+							<li>Storage: 4 bytes + actual size</li>
+								<pre>
+									<code>sql
+										full_content LONGTEXT;
+									</code>
+								</pre>
+						</ul>
+				</ul>
+
+			<h4><strong>Binary Types</strong></h4>
+				<ul>
+					<li><strong>BINARY</strong>:</li>
+						<ul>
+							<li>Fixed-length binary data.</li>
+							<p>Example:
+								<pre>
+									<code>sql
+										bin_data BINARY(16);
+									</code>
+								</pre>
+							</p>
+						</ul>
+
+					<li><p><strong>VARBINARY</strong>:</p></li>
+						<ul>
+							<li>Variable-length binary data.</li>
+							<p>Example:
+								<pre>
+									<code>sql
+										file_data VARBINARY(255);
+									</code>
+								</pre>
+							</p>
+						</ul>
+
+					<li><p><strong>BLOB</strong> (Binary Large Object):</p></li>
+						<ul>
+							<li>Used for storing large binary data like images or files.</li>
+							<li>Comes in <code>TINYBLOB</code>, <code>BLOB</code>, <code>MEDIUMBLOB</code>, and <code>LONGBLOB</code> variants, similar to text types.</li>
+							<p>Example:
+								<pre>
+									<code>sql
+										image LONGBLOB;
+									</code>
+								</pre>
+							</p>
+						</ul>
+				</ul>
+
+		<h3><strong>3. Date and Time Data Types</strong></h3>
+			<p>Date and time data types in MySQL are used to store temporal data, including dates, times, and combinations of both.</p>
+			<ul>
+				<li><strong>DATE</strong>:</li>
+					<ul>
+						<li>Format: <code>'YYYY-MM-DD'</code></li>
+						<p>Example:
+							<pre>
+								<code>sql
+									birth_date DATE;
+								</code>
+							</pre>
+						</p>
+					</ul>
+
+				<li><p><strong>TIME</strong>:</p></li>
+					<ul>
+						<li>Format: <code>'HH:MM:SS'</code></li>
+						<p>Example:
+							<pre>
+								<code>sql
+									start_time TIME;
+								</code>
+							</pre>
+						</p>
+					</ul>
+				
+
+				<li><p><strong>DATETIME</strong>:</p></li>
+					<ul>
+						<li>Combines date and time. Format: <code>'YYYY-MM-DD HH:MM:SS'</code></li>
+						<p>Example:
+							<pre>
+								<code>sql
+									created_at DATETIME;
+								</code>
+							</pre>
+						</p>
+					</ul>
+				
+				<li><p><strong>TIMESTAMP</strong>:</p></li>
+					<ul>
+						<li>Similar to <code>DATETIME</code>, but also includes time zone conversion.</li>
+						<p>Example:
+							<pre>
+								<code>sql
+									last_updated TIMESTAMP;
+								</code>
+							</pre>
+						</p>
+					</ul>
+				<li><p><strong>YEAR</strong>:</p></li>
+					<ul>
+						<li>Format: <code>'YYYY'</code></li>
+						<p>Example:
+							<pre>
+								<code>sql
+									year_of_graduation YEAR;
+								</code>
+							</pre>
+						</p>
+					</ul>
+			
+			</ul>
+	
+		<h3><strong>4. Other Data Types</strong></h3>
+			<p>MySQL also supports specialized data types like <code>ENUM</code> and <code>SET</code>, which are useful for specific use cases.</p>
+			<h4><strong>ENUM</strong>:</h4>
+				<ul>
+					<li>Used to define a column with a predefined set of values.</li>
+					<p>Example:
+						<pre>
+							<code>sql
+								status ENUM('active', 'inactive', 'pending');
+							</code>
+						</pre>
+					</p>
+				</ul>
+			
+			<h4><strong>SET</strong>:</h4>
+				<ul>
+					<li>Similar to <code>ENUM</code>, but allows multiple values from the predefined set.</li>
+					<p>Example:
+						<pre>
+							<code>sql
+								tags SET('technology', 'science', 'health', 'education');
+							</code>
+						</pre>
+					</p>
+				</ul>
+		
+			<h4><strong>JSON</strong>:</h4>
+				<ul>
+					<li>Used to store JSON-formatted data.</li>
+					<p>Example:
+						<pre>
+							<code>sql
+								metadata JSON;
+							</code>
+						</pre>
+					</p>
+				</ul>
+			
+			<h4><strong>Spatial Data Types</strong>:</h4>
+				<ul>
+					<li>Used for storing geometric data, such as points, lines, and polygons.</li>
+					<p>Example:
+						<pre>
+							<code>sql
+								location POINT;
+							</code>
+						</pre>
+					</p>
+				</ul>
+
+	<hr/>
+	<hr/>
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ Advanced SQL Queries \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+	<h2><strong>Advanced SQL Queries</strong></h2>
+			<p>This section covers advanced SQL queries, including filtering data, sorting and grouping results, using joins, subqueries, and applying aggregate functions. These techniques are essential for extracting and manipulating data efficiently in MySQL.</p>
+	
+		<h3><strong>1. Using WHERE Clause for Filtering Data</strong></h3>
+			<p>The <code>WHERE</code> clause is used to filter records based on specific conditions. It can be used with various comparison operators, logical operators, and functions.</p>
+	
+			<h4><strong>Basic Filtering</strong>:</h4>
+			<ul>
+				<p><strong>Example</strong>:
+					<pre>
+						<code>sql
+							SELECT * FROM employees
+							WHERE department = 'Sales';
+						</code>
+					</pre>
+				</p>
+				<ul>
+					<li>This query retrieves all records from the <code>employees</code> table where the <code>department</code> is 'Sales'.</li>
+				</ul>
+			</ul>
+	
+			<h4><strong>Using Comparison Operators</strong>:</h4>
+				<ul>
+					<li><strong>Operators</strong>: <code>=</code>, <code>!=</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code></li>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								SELECT * FROM orders
+								WHERE order_date &gt;= '2024-01-01';
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This query retrieves all orders placed on or after January 1, 2024.</li>
+					</ul>
+				</ul>
+	
+			<h4><strong>Using Logical Operators</strong>:</h4>
+				<ul>
+					<li><strong>Operators</strong>: <code>AND</code>, <code>OR</code>, <code>NOT</code></li>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								SELECT * FROM products
+								WHERE price &gt; 100 AND in_stock = TRUE;
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This query retrieves all products with a price greater than 100 that are in stock.</li>
+					</ul>
+				</ul>
+
+			<h4><strong>Using Pattern Matching with LIKE</strong>:</h4>
+				<ul>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								SELECT * FROM customers
+								WHERE name LIKE 'J%';
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This query retrieves all customers whose names start with 'J'.</li>
+					</ul>
+				</ul>
+	
+			<h4><strong>Using IN and BETWEEN</strong>:</h4>
+				<ul>
+					<p><strong>Example (IN)</strong>:
+						<pre>
+							<code>sql
+								SELECT * FROM employees
+								WHERE department IN ('HR', 'IT', 'Marketing');
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>
+							This query retrieves employees who work in the HR, IT, or Marketing departments.
+						</li>
+					</ul>
+					<p>
+						<strong>Example (BETWEEN)</strong>:
+						<pre>
+							<code>sql
+								SELECT * FROM orders
+								WHERE total_amount BETWEEN 100 AND 500;
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This query retrieves orders where the total amount is between 100 and 500.</li>
+					</ul>
+
+				</ul>
+
+		<h3><strong>2. Sorting and Grouping Data with ORDER BY and GROUP BY</strong></h3>
+			<h4><strong>Sorting Data with ORDER BY</strong>:</h4>
+				<p>The <code>ORDER BY</code> clause is used to sort the result set in ascending or descending order.</p>
+				<ul>
+					<p><strong>Example (Ascending Order)</strong>:
+						<pre>
+							<code>sql
+								SELECT * FROM employees
+								ORDER BY last_name ASC;
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This query sorts the employees by their last names in ascending order.</li>
+					</ul>
+						<strong>Example (Descending Order)</strong>:
+						<pre>
+							<code>sql
+								SELECT * FROM products
+								ORDER BY price DESC;
+							</code>
+						</pre>
+					<ul>
+						<li>This query sorts the products by price in descending order.</li>
+					</ul>
+				</ul>
+	
+			<h4><strong>Grouping Data with GROUP BY</strong>:</h4>
+				<p>The <code>GROUP BY</code> clause is used to group rows that have the same values in specified columns. It’s often used with aggregate functions.</p>
+				<ul>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								SELECT department, COUNT(*) AS employee_count
+								FROM employees
+								GROUP BY department;
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This query counts the number of employees in each department.</li>
+					</ul>
+				</ul>
+	
+			<h4><strong>Filtering Grouped Data with HAVING</strong>:</h4>
+				<ul>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								SELECT department, AVG(salary) AS avg_salary
+								FROM employees
+								GROUP BY department
+								HAVING AVG(salary) &gt; 50000;
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This query retrieves departments with an average salary greater than 50,000.</li>
+					</ul>
+				</ul>
+	
+		<h3><strong>3. Joins (INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL JOIN)</strong></h3>
+				<p>Joins are used to combine rows from two or more tables based on related columns.</p>
+			<h4><strong>INNER JOIN</strong>:</h4>
+				<p>Returns records that have matching values in both tables.</p>
+				<ul>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								SELECT employees.name, departments.name
+								FROM employees
+								INNER JOIN departments ON employees.department_id = departments.id;
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This query retrieves the names of employees and their corresponding department names.</li>
+					</ul>
+				</ul>
+	
+			<h4><strong>LEFT JOIN</strong>:</h4>
+				<p>Returns all records from the left table and the matched records from the right table. Unmatched records from the right table will be <code>NULL</code>.</p>
+				<ul>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								SELECT customers.name, orders.order_date
+								FROM customers
+								LEFT JOIN orders ON customers.id = orders.customer_id;
+							</code>
+						</pre>
+					</>
+					<ul>
+						<li>This query retrieves all customers and their orders, including customers who have not placed any orders.</li>
+					</ul>
+				</ul>
+	
+			<h4><strong>RIGHT JOIN</strong>:</h4>
+				<p>Returns all records from the right table and the matched records from the left table. Unmatched records from the left table will be <code>NULL</code>.</p>
+				<ul>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								SELECT orders.order_date, products.name
+								FROM orders
+								RIGHT JOIN products ON orders.product_id = products.id;
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This query retrieves all products and the orders associated with them, including products that have not been ordered.</li>
+					</ul>
+				</ul>
+	
+			<h4><strong>FULL JOIN</strong>:</h4>
+				<p>Returns all records when there is a match in either left or right table. If there is no match, the result is <code>NULL</code> on the side that doesn’t have a match. Note that MySQL doesn't support <code>FULL JOIN</code> directly, but you can achieve this with a combination of <code>LEFT JOIN</code> and <code>RIGHT JOIN</code> using <code>UNION</code>.</p>
+				<ul>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								SELECT customers.name, orders.order_date
+								FROM customers
+								LEFT JOIN orders ON customers.id = orders.customer_id
+								UNION
+								SELECT customers.name, orders.order_date
+								FROM orders
+								RIGHT JOIN customers ON orders.customer_id = customers.id;
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This query retrieves all customers and orders, showing matches from both sides.</li>
+					</ul>
+				</ul>
+	
+		<h3><strong>4. Subqueries and Nested Queries</strong></h3>
+			<p>Subqueries are queries nested inside another query. They can be used in <code>SELECT</code>, <code>INSERT</code>, <code>UPDATE</code>, and <code>DELETE</code> statements.</p>
+	
+			<h4><strong>Using Subqueries in SELECT</strong>:</h4>
+				<ul>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								SELECT name, (SELECT AVG(salary) FROM employees) AS avg_salary
+								FROM employees;
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This query retrieves each employee's name along with the average salary of all employees.</li>
+					</ul>
+				</ul>
+				
+			<h4><strong>Subqueries with WHERE Clause</strong>:</h4>
+				<ul>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								SELECT name
+								FROM employees
+								WHERE salary &gt; (SELECT AVG(salary) FROM employees);
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This query retrieves the names of employees who earn more than the average salary.</li>
+					</ul>
+				</ul>
+
+			<h4><strong>Using EXISTS with Subqueries</strong>:</h4>
+				<ul>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+									SELECT name
+									FROM customers
+									WHERE EXISTS (
+										SELECT 1
+										FROM orders
+										WHERE customers.id = orders.customer_id
+								);
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This query retrieves customers who have placed at least one order.</li>
+					</ul>
+				</ul>
+
+		<h3><strong>5. Using Aggregate Functions (COUNT, SUM, AVG, MAX, MIN)</strong></h3>
+			<p>Aggregate functions perform calculations on multiple values and return a single value.</p>
+			
+			<h4><strong>COUNT</strong>:</h4>
+				<p>Counts the number of rows that match a specified condition.</p>
+				<ul>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								SELECT COUNT(*) AS total_orders
+								FROM orders;
+							</code>
+						</pre>
+					</p>
+				</ul>
+
+			<h4><strong>SUM</strong>:</h4>
+				<p>Returns the sum of a numeric column.</p>
+				<ul>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								SELECT SUM(total_amount) AS total_revenue
+								FROM orders;
+							</code>
+						</pre>
+					</p>
+				</ul>
+
+			<h4><strong>AVG</strong>:</h4>
+				<p>Returns the average value of a numeric column.</p>
+				<ul>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								SELECT AVG(salary) AS average_salary
+								FROM employees;
+							</code>
+						</pre>
+					</p>
+				</ul>
+
+			<h4><strong>MAX</strong>:</h4>
+				<p>Returns the maximum value in a set of values.</p>
+				<ul>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								SELECT MAX(price) AS highest_price
+								FROM products;
+							</code>
+						</pre>
+					</p>
+				</ul>
+
+			<h4><strong>MIN</strong>:</h4>
+				<p>Returns the minimum value in a set of values.</p>
+				<ul>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								SELECT MIN(price) AS lowest_price
+								FROM products;
+							</code>
+						</pre>
+					</p>
+				</ul>
+
+	<hr/>
+	<hr/>
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ Working with Indexes \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+	<h2><strong>Working with Indexes</strong></h2>
+		<p>Indexes are essential tools in database management that help optimize the performance of SQL queries by enabling faster data retrieval. This section covers what indexes are, the different types of indexes available in MySQL, how to create and drop indexes, and their impact on performance.</p>
+	
+		<h3><strong>1. What are Indexes?</strong></h3>
+				<p>An index in MySQL is a data structure that improves the speed of data retrieval operations on a database table. Indexes are similar to the index in a book, which allows you to quickly find information without scanning every page.</p>
+				<ul>
+					<li><strong>How Indexes Work</strong>:</li>
+						<ul>
+							<li>When you create an index on a column, MySQL creates a separate structure that holds the column's values along with pointers to the corresponding rows in the table.</li>
+							<li>When a query searches for data, MySQL uses the index to locate the data more efficiently, rather than scanning the entire table.</li>
+						</ul>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								CREATE INDEX idx_name ON employees(last_name);
+							</code>
+						</pre>
+						<ul>
+							<li>This creates an index on the <code>last_name</code> column of the <code>employees</code> table, allowing faster searches on last names.</li>
+						</ul>
+					</p>
+				</ul>
+
+		<h3><strong>2. Types of Indexes</strong></h3>
+				<p>MySQL provides several types of indexes, each serving different purposes:</p>
+	
+			<h4><strong>Primary Index</strong>:</h4>
+				<ul>
+					<li><strong>Description</strong>:</li>
+						<ul>
+							<li>A primary index is automatically created when you define a primary key on a table. It uniquely identifies each row in the table.</li>
+							<li>There can be only one primary index per table.</li>
+						</ul>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								CREATE TABLE employees (
+									id INT PRIMARY KEY,
+									name VARCHAR(100)
+								);
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>The <code>id</code> column is the primary key, and a primary index is automatically created.</li>
+					</ul>
+				</ul>
+
+			<h4><strong>Unique Index</strong>:</h4>
+				<ul>
+					<li><strong>Description</strong>:</li>
+						<ul>
+							<li>A unique index ensures that all values in the indexed column are unique. This is similar to a primary index, but a table can have multiple unique indexes.</li>
+						</ul>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								CREATE UNIQUE INDEX idx_email ON employees(email);
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This ensures that all email addresses in the <code>employees</code> table are unique.</li>
+					</ul>
+				</ul>
+	
+			<h4><strong>Full-Text Index</strong>:</h4>
+				<ul>
+					<li><strong>Description</strong>:</li>
+						<ul>
+							<li>A full-text index is used for full-text searches, enabling efficient searching of text data within columns.</li>
+							<li>Full-text indexes are typically used with large text fields like <code>TEXT</code> or <code>VARCHAR</code>.</li>
+						</ul>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								CREATE FULLTEXT INDEX idx_description ON articles(description);
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This allows full-text search capabilities on the <code>description</code> column of the <code>articles</code> table.</li>
+					</ul>
+				</ul>
+	
+			<h4><strong>Composite Index</strong>:</h4>
+				<ul>
+					<li><strong>Description</strong>:</li>
+					<ul>
+						<li>A composite index is an index on multiple columns. It can be useful when queries often filter by multiple columns.</li>
+					</ul>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								CREATE INDEX idx_name_dept ON employees(last_name, department);
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This creates an index on both the <code>last_name</code> and <code>department</code> columns.</li>
+					</ul>
+				</ul>
+
+			<h4><strong>Spatial Index</strong>:</h4>
+				<ul>
+					<li><strong>Description</strong>:</li>
+					<ul>
+						<li>Spatial indexes are used with spatial data types (e.g., <code>POINT</code>, <code>LINESTRING</code>, <code>POLYGON</code>). They are commonly used in geographic information systems (GIS).</li>
+					</ul>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								CREATE SPATIAL INDEX idx_location ON locations(geom);
+							</code>
+						</pre>
+					</p>
+				</ul>
+
+		<h3><strong>3. Creating and Dropping Indexes</strong></h3>
+			<p>Indexes can be created and dropped as needed to optimize database performance.</p>
+
+			<h4><strong>Creating Indexes</strong>:</h4>
+				<ul>
+					<li><strong>Basic Syntax</strong>:
+						<pre>
+							<code>sql
+								CREATE INDEX index_name ON table_name(column_name);
+							</code>
+						</pre>
+					</li>
+					<ul>
+						<li>This command creates an index on a specified column.</li>
+					</ul>
+
+					<li><strong>Creating Unique Index</strong>:
+						<pre>
+							<code>sql
+								CREATE UNIQUE INDEX idx_unique_name ON employees(last_name);
+							</code>
+						</pre>
+					</li>
+					<li><strong>Creating Composite Index</strong>:
+						<pre>
+							<code>sql
+								CREATE INDEX idx_composite ON orders(customer_id, order_date);
+							</code>
+						</pre>
+					</li>
+				</ul>
+			
+			<h4><strong>Dropping Indexes</strong>:</h4>
+				<ul>
+					<li><strong>Basic Syntax</strong>:
+						<pre>
+							<code>sql
+								DROP INDEX index_name ON table_name;
+							</code>
+						</pre>
+					</li>
+					<ul>
+						<li>This command removes an index from a table.</li>
+					</ul>
+
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								DROP INDEX idx_name ON employees;
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This drops the <code>idx_name</code> index from the <code>employees</code> table.</li>
+					</ul>
+				</ul>
+	
+		<h3><strong>4. Impact of Indexes on Performance</strong></h3>
+			<p>Indexes can significantly improve query performance, but they also come with trade-offs.</p>
+			<h4><strong>Benefits of Indexes</strong>:</h4>
+				<ul>
+					<li><strong>Faster Data Retrieval</strong>:</li>
+					<ul>
+						<li>Indexes make SELECT queries faster by allowing the database to quickly locate the data without scanning the entire table.</li>
+					</ul>
+					
+					<li><strong>Improved Query Efficiency</strong>:</li>
+					<ul>
+						<li>Indexes help optimize queries that filter, sort, or join large datasets, reducing execution time.</li>
+					</ul>
+				</ul>
+
+			<h4><strong>Drawbacks of Indexes</strong>:</h4>
+				<ul>
+					<li><strong>Increased Storage Requirements</strong>:</li>
+					<ul><li>Indexes require additional storage space. The more indexes you have, the more space is consumed.</li></ul>
+
+					<li><strong>Slower Write Operations</strong>:</li>
+					<ul><li>Indexes can slow down INSERT, UPDATE, and DELETE operations because the database needs to update the index structure every time the data changes.</li></ul>
+
+					<li><strong>Overhead in Maintenance</strong>:</li>
+					<ul><li>Indexes need to be maintained by the database engine, which can add overhead during data modifications.</li></ul>
+				</ul>
+			<h4><strong>Balancing Index Use</strong>:</h4>
+				<ul>
+					<li><strong>Best Practices</strong>:</li>
+					<ul>
+						<li>Only create indexes on columns frequently used in WHERE clauses, JOIN operations, or ORDER BY/GROUP BY clauses.</li>
+						<li>Avoid indexing columns that are rarely used or have low cardinality (e.g., boolean fields).</li>
+						<li>Regularly monitor and analyze query performance to determine if indexes are effective.</li>
+					</ul>
+				</ul>
+
+	<hr/>
+	<hr/>
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ MySQL Functions and Operators \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+	<h2><strong>MySQL Functions and Operators</strong></h2>
+		<p>MySQL offers a rich set of functions and operators that allow you to manipulate and retrieve data efficiently. In this section, we'll explore various string, numeric, date and time functions, as well as logical and comparison operators.</p>
+		
+		<h3><strong>1. String Functions</strong></h3>
+			<p>String functions in MySQL are used to perform operations on string data types like <code>CHAR</code>, <code>VARCHAR</code>, and <code>TEXT</code>.</p>
+			
+			<h4><strong>CONCAT()</strong>:</h4>
+				<ul>
+					<li><strong>Description</strong>: Combines multiple strings into one.</li>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								SELECT CONCAT(first_name, ' ', last_name) AS full_name
+								FROM employees;
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This query concatenates the <code>first_name</code> and <code>last_name</code> columns with a space in between.</li>
+					</ul>
+				</ul>
+			
+			<h4><strong>SUBSTRING()</strong>:</h4>
+				<ul>
+					<li><strong>Description</strong>: Extracts a substring from a string.</li>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								SELECT SUBSTRING(name, 1, 5) AS short_name
+								FROM products;
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This extracts the first 5 characters from the <code>name</code> column.</li>
+					</ul>
+				</ul>
+			
+			<h4><strong>LENGTH()</strong>:</h4>
+				<ul>
+					<li><strong>Description</strong>: Returns the length of a string.</li>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								SELECT LENGTH(description) AS desc_length
+								FROM articles;
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This returns the length of each <code>description</code>.</li>
+					</ul>
+				</ul>
+		
+			<h4><strong>UPPER() and LOWER()</strong>:</h4>
+				<ul>
+					<li><strong>Description</strong>: Converts a string to uppercase or lowercase.</li>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								SELECT UPPER(name) AS upper_name
+								FROM employees;
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This converts the <code>name</code> column to uppercase.</li>
+					</ul>
+				</ul>
+		
+			<h4><strong>TRIM()</strong>:</h4>
+				<ul>
+					<li><strong>Description</strong>: Removes leading and trailing spaces from a string.</li>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								SELECT TRIM(name) AS trimmed_name
+								FROM customers;
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This removes any leading or trailing spaces in the <code>name</code> column.</li>
+					</ul>
+				</ul>
+		
+		<h3><strong>2. Numeric Functions</strong></h3>
+				<p>Numeric functions perform operations on numeric data types like <code>INT</code>, <code>FLOAT</code>, <code>DECIMAL</code>, etc.</p>
+		
+			<h4><strong>ROUND()</strong>:</h4>
+				<ul>
+					<li><strong>Description</strong>: Rounds a number to a specified number of decimal places.</li>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								SELECT ROUND(price, 2) AS rounded_price
+								FROM products;
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This rounds the <code>price</code> column to 2 decimal places.</li>
+					</ul>
+				</ul>
+		
+			<h4><strong>FLOOR() and CEIL()</strong>:</h4>
+				<ul>
+					<li><strong>Description</strong>: <code>FLOOR()</code> returns the largest integer less than or equal to a given number, while <code>CEIL()</code> returns the smallest integer greater than or equal to a given number.</li>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								SELECT FLOOR(price) AS floored_price, CEIL(price) AS ceiled_price
+								FROM products;
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This returns the floored and ceiled values of the <code>price</code> column.</li>
+					</ul>
+				</ul>
+		
+			<h4><strong>ABS()</strong>:</h4>
+				<ul>
+					<li><strong>Description</strong>: Returns the absolute value of a number.</li>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								SELECT ABS(profit) AS absolute_profit
+								FROM sales;
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This returns the absolute value of the <code>profit</code> column.</li>
+					</ul>
+				</ul>
+	
+			<h4><strong>MOD()</strong>:</h4>
+				<ul>
+					<li><strong>Description</strong>: Returns the remainder of the division of two numbers.</li>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								SELECT MOD(10, 3) AS remainder;
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This returns the remainder of 10 divided by 3, which is 1.</li>
+					</ul>
+				</ul>
+	
+			<h4><strong>POWER()</strong>:</h4>
+				<ul>
+					<li><strong>Description</strong>: Returns the value of a number raised to the power of another number.</li>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								SELECT POWER(2, 3) AS result;
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This returns 2 raised to the power of 3, which is 8.</li>
+					</ul>
+				</ul>
+	
+		<h3><strong>3. Date and Time Functions</strong></h3>
+			<p>Date and time functions are used to manipulate and format date and time data types like <code>DATE</code>, <code>DATETIME</code>, and <code>TIMESTAMP</code>.</p>
+
+			<h4><strong>NOW()</strong>:</h4>
+				<ul>
+					<li><strong>Description</strong>: Returns the current date and time.</li>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								SELECT NOW() AS current_datetime;
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This returns the current date and time.</li>
+					</ul>
+				</ul>
+	
+			<h4><strong>CURDATE() and CURTIME()</strong>:</h4>
+				<ul>
+					<li><strong>Description</strong>: <code>CURDATE()</code> returns the current date, while <code>CURTIME()</code> returns the current time.</li>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								SELECT CURDATE() AS current_date, CURTIME() AS current_time;
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This returns the current date and time separately.</li>
+					</ul>
+				</ul>
+	
+			<h4><strong>DATE_FORMAT()</strong>:</h4>
+				<ul>
+					<li><strong>Description</strong>: Formats a date according to a specified format.</li>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								SELECT DATE_FORMAT(order_date, '%M %d, %Y') AS formatted_date
+								FROM orders;
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This formats the <code>order_date</code> as "Month Day, Year" (e.g., "August 16, 2024").</li>
+					</ul>
+				</ul>
+	
+			<h4><strong>DATEDIFF()</strong>:</h4>
+				<ul>
+					<li><strong>Description</strong>: Returns the difference in days between two dates.</li>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								SELECT DATEDIFF(NOW(), order_date) AS days_since_order
+								FROM orders;
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This returns the number of days since each order was placed.</li>
+					</ul>
+				</ul>
+	
+			<h4><strong>ADDDATE() and SUBDATE()</strong>:</h4>
+				<ul>
+					<li><strong>Description</strong>: 
+						<ul>
+							<code>ADDDATE()</code> adds a specified number of days to a date, while <br>
+							<code>SUBDATE()</code> subtracts a specified number of days from a date.
+						</ul>
+					</li>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								SELECT ADDDATE(order_date, INTERVAL 7 DAY) AS delivery_date
+								FROM orders;
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This adds 7 days to the <code>order_date</code>.</li>
+					</ul>
+				</ul>
+	
+		<h3><strong>4. Logical Operators</strong></h3>
+			<p>Logical operators are used to combine multiple conditions in SQL queries.</p>
+
+			<h4><strong>AND</strong>:</h4>
+				<ul>
+					<li><strong>Description</strong>: Returns true if both conditions are true.</li>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								SELECT * FROM employees
+								WHERE department = 'Sales' AND salary &gt; 50000;
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This retrieves employees in the Sales department with a salary greater than 50,000.</li>
+					</ul>
+				</ul>
+	
+			<h4><strong>OR</strong>:</h4>
+				<ul>
+					<li><strong>Description</strong>: Returns true if at least one of the conditions is true.</li>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								SELECT * FROM employees
+								WHERE department = 'Sales' OR department = 'Marketing';
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This retrieves employees in either the Sales or Marketing departments.</li>
+					</ul>
+				</ul>
+	
+			<h4><strong>NOT</strong>:</h4>
+				<ul>
+					<li><strong>Description</strong>: Negates a condition.</li>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								SELECT * FROM employees
+								WHERE NOT department = 'HR';
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This retrieves employees who are not in the HR department.</li>
+					</ul>
+				</ul>
+	
+			<h4><strong>IS NULL</strong>:</h4>
+				<ul>
+					<li><strong>Description</strong>: Checks if a value is NULL.</li>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								SELECT * FROM employees
+								WHERE department IS NULL;
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This retrieves employees with a NULL department value.</li>
+					</ul>
+				</ul>
+	
+		<h3><strong>5. Comparison Operators</strong></h3>
+			<p>Comparison operators are used to compare two values.</p>
+	
+			<h4><strong>= (Equal)</strong>:</h4>
+				<ul>
+					<li><strong>Description</strong>: Checks if two values are equal.</li>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								SELECT * FROM employees
+								WHERE salary = 60000;
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This retrieves employees with a salary of 60,000.</li>
+					</ul>
+				</ul>
+	
+			<h4><strong>!= (Not Equal)</strong>:</h4>
+				<ul>
+					<li><strong>Description</strong>: Checks if two values are not equal.</li>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								SELECT * FROM employees
+								WHERE department != 'HR';
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This retrieves employees who are not in the HR department.</li>
+					</ul>
+				</ul>
+	
+			<h4><strong>&gt; (Greater Than)</strong>:</h4>
+				<ul>
+					<li><strong>Description</strong>: Checks if the left value is greater than the right value.</li>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								SELECT * FROM employees
+								WHERE salary &gt; 50000;
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This retrieves employees with a salary greater than 50,000.</li>
+					</ul>
+				</ul>
+	
+			<h4><strong>&lt; (Less Than)</strong>:</h4>
+				<ul>
+					<li><strong>Description</strong>: Checks if the left value is less than the right value.</li>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								SELECT * FROM products
+								WHERE price &lt; 100;
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This retrieves products with a price less than 100.</li>
+					</ul>
+				</ul>
+	
+			<h4><strong>&gt;= (Greater Than or Equal To)</strong>:</h4>
+				<ul>
+					<li><strong>Description</strong>: Checks if the left value is greater than or equal to the right value.</li>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								SELECT * FROM employees
+								WHERE salary &gt;= 50000;
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This retrieves employees with a salary of 50,000 or more.</li>
+					</ul>
+				</ul>
+	
+			<h4><strong>&lt;= (Less Than or Equal To)</strong>:</h4>
+				<ul>
+					<li><strong>Description</strong>: Checks if the left value is less than or equal to the right value.</li>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								SELECT * FROM products
+								WHERE price &lt;= 200;
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This retrieves products with a price of 200 or less.</li>
+					</ul>
+				</ul>
+
+	<hr/>
+	<hr/>
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ Stored Procedures and Triggers \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+	<h2><strong>Stored Procedures and Triggers</strong></h2>
+		<p>Stored procedures and triggers are powerful features in MySQL that allow you to automate tasks and enforce business logic within your database. In this section, we'll cover the basics of stored procedures, how to create and execute them, work with parameters, and introduce triggers.</p>
+		
+		<h3><strong>1. Introduction to Stored Procedures</strong></h3>
+				<p>A stored procedure is a set of SQL statements that can be stored in the database and executed as a single unit. Stored procedures are used to encapsulate and reuse logic, making your database operations more efficient and maintainable.</p>
+				<ul>
+					<li><strong>Benefits of Stored Procedures</strong>:</li>
+					<li><strong>Code Reusability</strong>: Write once, use multiple times.</li>
+					<li><strong>Performance</strong>: Execution plans are cached, improving performance.</li>
+					<li><strong>Security</strong>: You can grant users access to stored procedures without giving them access to the underlying tables.</li>
+					<li><strong>Maintainability</strong>: Centralized logic makes updates easier.</li>
+				</ul>
+
+		<h3><strong>2. Creating and Executing Stored Procedures</strong></h3>
+
+			<h4><strong>Creating a Stored Procedure</strong>:</h4>
+				<p>To create a stored procedure, you use the <code>CREATE PROCEDURE</code> statement. Here's the basic syntax:</p>
+				<pre>
+					<code>sql
+						DELIMITER //
+						CREATE PROCEDURE procedure_name (parameters)
+						BEGIN
+							-- SQL statements
+						END //
+						DELIMITER ;
+					</code>
+				</pre>
+				<ul>
+					<li>
+						<strong>DELIMITER</strong>: By default, MySQL uses <code>;</code> to end a statement. The <code>DELIMITER</code> command changes the delimiter temporarily so you can define the procedure with multiple statements.</p>
+					</li>
+					<p>
+						<strong>Example</strong>:
+						<pre>
+							<code>sql
+								DELIMITER //
+								CREATE PROCEDURE GetEmployeeCount()
+								BEGIN
+									SELECT COUNT(*) AS employee_count FROM employees;
+								END //
+
+								DELIMITER ;
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<p>This procedure,</code>GetEmployeeCount<code>, returns the number of employees in the</code>employees` table.</p>
+					</ul>
+				</ul>
+	
+			<h4><strong>Executing a Stored Procedure</strong>:</h4>
+				<p>You can execute a stored procedure using the <code>CALL</code> statement.</p>
+				<ul>
+					<li>
+						<strong>Syntax</strong>:
+							<code>sql
+								CALL procedure_name(parameters);
+							</code>
+					</li>
+					<p>
+						<strong>Example</strong>:
+							<code>sql
+								CALL GetEmployeeCount();
+							</code>
+					</p>
+					<ul>
+						<li>This calls the <code>GetEmployeeCount</code> procedure and returns the number of employees.</li>
+					</ul>
+				</ul>
+	
+		<h3><strong>3. Working with Parameters in Procedures</strong></h3>
+			<p>Stored procedures can accept parameters to make them more flexible. Parameters can be input (<code>IN</code>), output (<code>OUT</code>), or both (<code>INOUT</code>).</p>
+	
+			<h4><strong>IN Parameter</strong>:</h4>
+				<ul>
+					<li><strong>Description</strong>: Passes a value to the procedure.</li>
+					<p><strong>Example</strong>:</p>
+						<pre>
+							<code>sql
+								DELIMITER //
+							
+								CREATE PROCEDURE GetEmployeeByID(IN emp_id INT)
+								BEGIN
+									SELECT * FROM employees WHERE id = emp_id;
+								END //
+								DELIMITER ;
+							</code>
+						</pre>
+						<ul>
+							<p>This procedure, GetEmployeeByID`, accepts an employee ID as input and returns the corresponding employee's details.</p>
+						</ul>
+				</ul>
+	
+			<h4><strong>OUT Parameter</strong>:</h4>
+				<ul>
+					<li><strong>Description</strong>: Returns a value from the procedure.</li>
+					<p><strong>Example</strong>:</p>
+					<pre>
+						<code>sql
+							DELIMITER //
+							
+							CREATE PROCEDURE GetEmployeeCount(OUT emp_count INT)
+							BEGIN
+								SELECT COUNT(*) INTO emp_count FROM employees;
+							END //
+							DELIMITER ;
+	
+							CALL GetEmployeeCount(@count);
+							SELECT @count AS total_employees;
+						</code>
+					</pre>
+				</ul>
+				<ul>
+					<p>This procedure, <code>GetEmployeeCount</code>, returns the number of employees in the <code>emp_count</code> output parameter.</p>
+				</ul>
+	
+			<h4><strong>INOUT Parameter</strong>:</h4>
+				<ul>
+					<li><strong>Description</strong>: Accepts and returns a value.</li>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								DELIMITER //
+								CREATE PROCEDURE IncreaseSalary(INOUT emp_salary DECIMAL(10,2), IN increment DECIMAL(10,2))
+								BEGIN
+									SET emp_salary = emp_salary + increment;
+								END //
+								DELIMITER ;
+								sql
+								SET @salary = 50000;
+								CALL IncreaseSalary(@salary, 5000);
+								SELECT @salary AS new_salary;
+							</code>
+						</pre>
+					</p>
+				</ul>
+				<ul>
+					<p>This procedure, <code>IncreaseSalary</code>, increases an employee's salary by a specified amount.</p>
+				</ul>
+	
+		<h3><strong>4. Introduction to Triggers</strong></h3>
+			<p>A trigger is a set of SQL statements that automatically executes in response to certain events on a table, such as <code>INSERT</code>, <code>UPDATE</code>, or <code>DELETE</code>. Triggers are used to enforce business rules, maintain data integrity, and automate tasks.</p>
+				<ul>
+					<li><strong>Types of Triggers</strong>:</li>
+					<ul>
+						<li><strong>BEFORE Triggers</strong>: Execute before the triggering event.</li>
+						<li><strong>AFTER Triggers</strong>: Execute after the triggering event.</li>
+					</ul>
+				</ul>
+	
+		<h3><strong>5. Creating and Managing Triggers</strong></h3>
+			<h4><strong>Creating a Trigger</strong>:</h4>
+				
+				<p>You use the <code>CREATE TRIGGER</code> statement to create a trigger. Here's the basic syntax:</p>
+				<p>
+					<pre>
+						<code>sql
+							CREATE TRIGGER trigger_name
+							BEFORE | AFTER INSERT | UPDATE | DELETE
+							ON table_name
+							FOR EACH ROW
+							BEGIN
+								-- SQL statements
+							END;
+						</code>
+					</pre>
+				</p>
+				<ul>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								CREATE TRIGGER before_employee_insert
+								BEFORE INSERT ON employees
+								FOR EACH ROW
+								BEGIN
+									SET NEW.created_at = NOW();
+								END;
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<p>This trigger, <code>before_employee_insert</code>, automatically sets the <code>created_at</code> column to the current date and time before a new employee record is inserted.</p>
+					</ul>
+				</ul>
+	
+			<h4><strong>Managing Triggers</strong>:</h4>
+				<ul>
+					<li><strong>Viewing Triggers</strong>:</li>
+						<ul>
+							<li>You can view existing triggers using the <code>SHOW TRIGGERS</code> statement:
+								<pre>
+									<code>sql
+										SHOW TRIGGERS;
+									</code>
+								</pre>
+							</li>
+						</ul>
+					<li><strong>Dropping a Trigger</strong>:</li>
+						<ul>
+							<li>
+								Use the <code>DROP TRIGGER</code> statement to remove a trigger:
+								<pre>
+									<code>sql
+										DROP TRIGGER IF EXISTS trigger_name;
+									</code>
+								</pre>
+							</li>
+						</ul>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								DROP TRIGGER IF EXISTS before_employee_insert;
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This removes the <code>before_employee_insert</code> trigger.</li>
+					</ul>
+				</ul>
+	
+		<h3><strong>Conclusion</strong></h3>
+			<p>Stored procedures and triggers are powerful tools that allow you to encapsulate and automate database logic. By understanding how to create and use these features, you can enhance the functionality, performance, and maintainability of your MySQL databases.</p>
+
+	<hr/>
+	<hr/>
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ Transactions and Concurrency Control \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+	<h2><strong>Transactions and Concurrency Control</strong></h2>
+		<p>Transactions and concurrency control are critical for maintaining data integrity and consistency in a multi-user database environment. This section covers the fundamentals of transactions, ACID properties, implementing transactions in MySQL, handling errors and rollbacks, and understanding concurrency control and locking mechanisms.</p>
+
+		<h3><strong>1. What are Transactions?</strong></h3>
+			<p>A transaction is a sequence of one or more SQL operations executed as a single unit of work. Transactions ensure that either all operations in the transaction are completed successfully or none are applied, preserving database integrity.</p>
+
+			<h4><strong>Key Characteristics</strong>:</h4>
+				<ul>
+					<li><strong>Atomicity</strong>: A transaction is an atomic unit of work. All operations within the transaction are completed successfully, or none are applied.</li>
+					<li><strong>Consistency</strong>: A transaction brings the database from one valid state to another, maintaining data integrity.</li>
+					<li><strong>Isolation</strong>: Transactions operate independently of each other. The changes made by one transaction are not visible to others until committed.</li>
+					<li><strong>Durability</strong>: Once a transaction is committed, its changes are permanent, even in the case of a system failure.</li>
+				</ul>
+
+
+		<h3><strong>2. ACID Properties</strong></h3>
+				<p>The ACID properties are essential principles that ensure reliable transaction processing:</p>
+				<ul>
+					<li><strong>Atomicity</strong>: Ensures that all parts of a transaction are executed. If one part fails, the entire transaction is rolled back.</li>
+					<li><strong>Example</strong>: Transferring money from one account to another involves debiting one account and crediting another. Both operations must succeed, or neither should apply.</li>
+					<li><strong>Consistency</strong>: Ensures that a transaction brings the database from one consistent state to another. The database rules (constraints) must be maintained before and after the transaction.</li>
+					<li><strong>Example</strong>: After transferring money, the total balance across all accounts should remain the same.</li>
+					<li><strong>Isolation</strong>: Ensures that concurrent transactions do not interfere with each other. Changes made by one transaction are not visible to others until committed.</li>
+					<li><strong>Example</strong>: Two transactions updating the same account balance should not conflict with each other.</li>
+					<li><strong>Durability</strong>: Ensures that once a transaction is committed, its changes are permanent and survive system failures.</li>
+					<li><strong>Example</strong>: Even if the database crashes immediately after committing a transaction, the changes will be preserved.</li>
+				</ul>
+	
+		<h3><strong>3. Implementing Transactions in MySQL</strong></h3>
+			<p>Transactions in MySQL are managed using the following commands:</p>
+	
+			<h4><strong>Starting a Transaction</strong>:</h4>
+				<ul>
+					<li><strong>Syntax</strong>:
+						<code>sql
+							START TRANSACTION;
+						</code>
+					</li>
+					<p>Alternatively, you can use:
+						<code>sql
+							BEGIN;
+						</code>
+						</p>
+					<p>
+						<p><strong>Example</strong>:
+							<code>sql
+								START TRANSACTION;
+							</code>
+						</p>
+					</p>
+				</ul>
+	
+			<h4><strong>Committing a Transaction</strong>:</h4>
+				<ul>
+					<li>
+						<strong>Syntax</strong>:
+						<code>sql
+							COMMIT;</code>
+						</li>
+					<p>
+						<strong>Example</strong>:
+						<code>sql
+							COMMIT;</code>
+						</p>
+					<p>This saves all changes made during the transaction to the database.</p>
+				</ul>
+	
+			<h4><strong>Rolling Back a Transaction</strong>:</h4>
+				<ul>
+					<li>
+						<strong>Syntax</strong>:
+						<code>sql
+							ROLLBACK;
+						</code>
+					</li>
+					<p>
+						<p><strong>Example</strong>:
+						<code>sql
+							ROLLBACK;
+						</code>
+					</p>
+					<p>This undoes all changes made during the transaction if an error occurs or if you choose to cancel.</p>
+				</ul>
+	
+			<h4><strong>Example Transaction</strong>:</h4>
+				<pre>
+					<code>sql
+						START TRANSACTION;
+						UPDATE accounts SET balance = balance - 100 WHERE account_id = 1;
+						UPDATE accounts SET balance = balance + 100 WHERE account_id = 2;
+
+						-- Assuming both updates are successful:
+						COMMIT;
+
+						-- If there's an error, rollback:
+						ROLLBACK;
+					</code>
+				</pre>
+				
+	
+		<h3><strong>4. Handling Transaction Errors and Rollbacks</strong></h3>
+			<p>Handling errors and rollbacks is crucial for maintaining data integrity:</p>
+				<ul>
+					<li>
+						<strong>Error Handling</strong>: Use proper error handling in your application logic to detect transaction failures and handle them appropriately.
+					</li>
+					<li>
+						<strong>Automatic Rollback</strong>: In MySQL, if an error occurs during a transaction, the system automatically rolls back to the last committed state if using InnoDB storage engine with 
+						<code>SET AUTOCOMMIT=0</code>.
+					</li>
+					<li>
+						<strong>Manual Rollback</strong>: Ensure that your application explicitly performs a rollback if an error is detected during a transaction.
+					</li>
+				</ul>
+	
+		<h3><strong>5. Concurrency Control and Locking Mechanisms</strong></h3>
+			<p>Concurrency control ensures that multiple transactions can operate simultaneously without causing data inconsistencies. MySQL uses various locking mechanisms to manage concurrent access.</p>
+	
+			<h4><strong>Types of Locks</strong>:</h4>
+				<ul>
+					<li><strong>Table-Level Locks</strong>: Locks an entire table, preventing other transactions from modifying it.</li>
+					<p>
+						<strong>Example</strong>:
+							<code>sql
+								LOCK TABLES accounts WRITE;
+								-- Perform operations
+								UNLOCK TABLES;
+							</code>
+						</p>
+					<li><strong>Row-Level Locks</strong>: Locks specific rows, allowing other transactions to access different rows in the same table.</li>
+					<li><strong>Example</strong>: Managed automatically by InnoDB during transactions.</li>
+				</ul>
+	
+			<h4><strong>Isolation Levels</strong>:</h4>
+				<p>Isolation levels control the visibility of changes made by a transaction to other concurrent transactions. MySQL supports four isolation levels:</p>
+				<ol>
+					<li><strong>READ UNCOMMITTED</strong>: Allows dirty reads. Transactions can see uncommitted changes made by others.</li>
+					<li><strong>READ COMMITTED</strong>: Prevents dirty reads. Transactions see only committed changes.</li>
+					<li><strong>REPEATABLE READ</strong>: Ensures consistent reads. Transactions see the same data throughout the transaction.</li>
+					<li><strong>SERIALIZABLE</strong>: Ensures complete isolation. Transactions are executed sequentially, as if one at a time.</li>
+					<li><strong>Setting Isolation Level</strong>:
+						<code>sql
+							SET SESSION TRANSACTION ISOLATION LEVEL REPEATABLE READ;
+						</code>
+					</li>
+				</ol>
+	
+			<h4><strong>Deadlocks</strong>:</h4>
+				<p>A deadlock occurs when two or more transactions are waiting for each other to release locks, resulting in a standstill.</p>
+				<ul>
+					<li>
+						<p><strong>Detecting Deadlocks</strong>: MySQL's InnoDB storage engine automatically detects and resolves deadlocks by rolling back one of the transactions.</p>
+					</li>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								-- Transaction 1
+								START TRANSACTION;
+								UPDATE accounts SET balance = balance - 100 WHERE account_id = 1;
+							</code>
+						</pre>
+
+						<pre>
+							<code>
+								-- Transaction 2
+								START TRANSACTION;
+								UPDATE accounts SET balance = balance - 100 WHERE account_id = 2;
+								-- Both transactions attempt to update each other's rows, causing a deadlock.
+							</code>
+						</pre>
+					</p>
+				</ul>
+				<ul>
+					<li><strong>Handling Deadlocks</strong>: Ensure that your application handles deadlock errors by retrying the transaction or implementing appropriate retry logic.</li>
+				</ul>
+
+	<hr/>
+	<hr/>
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ Database Security \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+	<h2><strong>Database Security</strong></h2>
+		<p>Ensuring the security of your MySQL databases is crucial to protecting sensitive data, preventing unauthorized access, and maintaining the integrity and availability of your database systems. This section covers user management and permissions, securing the MySQL server, backup and restore procedures, and data encryption.</p>
+		
+		<h3><strong>1. User Management and Permissions</strong></h3>
+			<p>Proper user management and permission settings help control access to your MySQL database and its resources.</p>
+		
+			<h4><strong>Creating and Managing Users</strong>:</h4>
+				<ul>
+					<li><strong>Creating a User</strong>:</li>
+					<li><strong>Syntax</strong>:
+						<pre>
+							<code>sql
+								CREATE USER 'username'@'host' IDENTIFIED BY 'password';
+							</code>
+						</pre>
+					</li>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								CREATE USER 'john_doe'@'localhost' IDENTIFIED BY 'securepassword123';
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This creates a new user <code>john_doe</code> who can connect from <code>localhost</code> with the password <code>securepassword123</code>.</li>
+					</ul>
+
+					<li>
+						<p><strong>Granting Permissions</strong>:</p>
+					</li>
+					<li><strong>Syntax</strong>:
+						<pre>
+							<code>sql
+								GRANT privilege ON database.table TO 'username'@'host';
+							</code>
+						</pre>
+					</li>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								GRANT SELECT, INSERT, UPDATE ON mydb.* TO 'john_doe'@'localhost';
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This grants the user <code>john_doe</code> read and write access to all tables in the <code>mydb</code> database.</li>
+					</ul>
+					<li>
+						<p><strong>Revoking Permissions</strong>:</p>
+					</li>
+
+					<li><strong>Syntax</strong>:
+						<pre>
+							<code>sql
+								REVOKE privilege ON database.table FROM 'username'@'host';
+							</code>
+						</pre>
+					</li>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								REVOKE INSERT ON mydb.* FROM 'john_doe'@'localhost';
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This revokes the <code>INSERT</code> permission from <code>john_doe</code> on the <code>mydb</code> database.</li>
+					</ul>
+
+					<li>
+						<p><strong>Dropping a User</strong>:</p>
+					</li>
+					<li><strong>Syntax</strong>:
+						<pre>
+							<code>sql
+								DROP USER 'username'@'host';
+							</code>
+						</pre>
+					</li>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								DROP USER 'john_doe'@'localhost';
+							</code>
+						</pre>
+						<ul>
+							<li>This removes the user <code>john_doe</code> from the <code>localhost</code>.</li>
+						</ul>
+					</p>
+				</ul>
+		
+			<h4><strong>Managing User Permissions</strong>:</h4>
+				<ul>
+					<li><strong>Viewing User Privileges</strong>:</li>
+					<li><strong>Syntax</strong>:
+						<pre>
+							<code>sql
+								SHOW GRANTS FOR 'username'@'host';
+							</code>
+						</pre>
+					</li>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								SHOW GRANTS FOR 'john_doe'@'localhost';
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This shows all the privileges granted to the user <code>john_doe</code>.</li>
+					</ul>
+
+					<li>
+						<p><strong>Modifying User Privileges</strong>:</p>
+					</li>
+					<ul>
+						<li>Modify permissions by using <code>GRANT</code> or <code>REVOKE</code> statements as needed.</li>
+					</ul>
+				</ul>
+		
+		<h3><strong>2. Securing MySQL Server</strong></h3>
+			<p>Securing your MySQL server involves configuring it to prevent unauthorized access and vulnerabilities.</p>
+		
+			<h4><strong>Configuring MySQL Security Settings</strong>:</h4>
+				<ul>
+					<li><strong>Update the Root Password</strong>:</li>
+					<li><strong>Syntax</strong>:
+						<pre>
+							<code>sql
+								ALTER USER 'root'@'localhost' IDENTIFIED BY 'newpassword';
+							</code>
+						</pre>
+					</li>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								ALTER USER 'root'@'localhost' IDENTIFIED BY 'newsecurepassword!';
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This updates the root user's password.</li>
+					</ul>
+
+					<li>
+						<p><strong>Removing Anonymous Users</strong>:</p>
+					</li>
+					<li><strong>Syntax</strong>:
+						<pre>
+							<code>sql
+								DELETE FROM mysql.user WHERE User='';
+							</code>
+						</pre>
+					</li>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								DELETE FROM mysql.user WHERE User='';
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This removes any anonymous users from the MySQL database.</li>
+					</ul>
+
+					<li>
+						<p><strong>Disabling Remote Root Login</strong>:</p>
+					</li>
+					<li><strong>Syntax</strong>:
+						<pre>
+							<code>sql
+								UPDATE mysql.user SET Host='localhost' WHERE User='root';
+								FLUSH PRIVILEGES;
+							</code>
+						</pre>
+					</li>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								UPDATE mysql.user SET Host='localhost' WHERE User='root';
+								FLUSH PRIVILEGES;
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This restricts root access to localhost only.</li>
+					</ul>
+
+					<li>
+						<p><strong>Configuring MySQL Configuration File</strong>:</p>
+					</li>
+					<li>Modify the <code>my.cnf</code> (or <code>my.ini</code> on Windows) file to set security options like <code>bind-address</code> to restrict access to the MySQL server.</li>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>ini
+								[mysqld]
+								bind-address = 127.0.0.1
+							</code>
+						</pre>
+					</p>
+				</ul>
+		
+			<h4><strong>Monitoring and Auditing</strong>:</h4>
+				<ul>
+					<li><strong>Enable General Query Log</strong>:</li>
+					<li><strong>Syntax</strong>:
+						<pre>
+							<code>sql
+								SET GLOBAL general_log = 'ON';
+							</code>
+						</pre>
+					</li>
+					<p>
+						<strong>Example</strong>:
+						<pre>
+							<code>sql
+								SET GLOBAL general_log = 'ON';
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This enables logging of all queries for auditing purposes.</li>
+					</ul>
+
+					<li>
+						<p><strong>Using MySQL Enterprise Audit Plugin</strong>:</p>
+					</li>
+					<ul>
+						<li>Install and configure the MySQL Enterprise Audit plugin for advanced auditing features.</li>
+					</ul>
+				</ul>
+		
+		
+		<h3><strong>3. Backup and Restore Databases</strong></h3>
+			<p>Regular backups are essential for data recovery in case of data loss or corruption.</p>
+		
+			<h4><strong>Creating Backups</strong>:</h4>
+				<ul>
+					<li><strong>Using <code>mysqldump</code></strong>:</li>
+					<li><strong>Syntax</strong>:
+						<pre>
+							<code>sh
+								mysqldump -u username -p database_name &gt; backup_file.sql
+							</code>
+						</pre>
+					</li>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sh
+								mysqldump -u root -p mydb &gt; mydb_backup.sql
+							</code>
+						</pre>
+					</p>
+					<ul>
+						<li>This creates a backup of the <code>mydb</code> database into the file <code>mydb_backup.sql</code>.</li>
+					</ul>
+
+					<li>
+						<p><strong>Backing Up All Databases</strong>:</p>
+					</li>
+					<li><strong>Syntax</strong>:
+						<pre>
+							<code>sh
+								mysqldump -u username -p --all-databases &gt; all_databases_backup.sql
+							</code>
+						</pre>
+					</li>
+					
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sh
+								mysqldump -u root -p --all-databases &gt; all_databases_backup.sql
+							</code>
+						</pre>
+						<ul>
+							<li>This creates a backup of all databases.</li>
+						</ul>
+					</p>
+				</ul>
+		
+			<h4><strong>Restoring Backups</strong>:</h4>
+				<ul>
+					<li><strong>Using <code>mysql</code> Command</strong>:</li>
+					
+					<li><strong>Syntax</strong>:
+						<pre>
+							<code>sh
+								mysql -u username -p database_name &lt; backup_file.sql
+							</code>
+						</pre>
+					</li>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sh
+								mysql -u root -p mydb &lt; mydb_backup.sql
+							</code>
+						</pre>
+						<ul>
+							<li>This restores the <code>mydb</code> database from the backup file <code>mydb_backup.sql</code>.</li>
+						</ul>
+					</p>
+				</ul>
+	
+			<h4><strong>Automating Backups</strong>:</h4>
+				<ul>
+					<li><strong>Using Cron Jobs (Linux)</strong>:</li>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sh
+								0 2 * * * /usr/bin/mysqldump -u root -p'password' mydb &gt; /backup/mydb_backup.sql
+							</code>
+						</pre>
+						<ul>
+							<li>This schedules a daily backup of the <code>mydb</code> database at 2 AM.</li>
+						</ul>
+					</p>
+				</ul>
+	
+	
+		<h3><strong>4. Data Encryption</strong></h3>
+			<p>Data encryption protects sensitive information by converting it into a secure format that is unreadable without proper decryption.</p>
+	
+			<h4><strong>Encrypting Data at Rest</strong>:</h4>
+				<ul>
+					<li><strong>InnoDB Encryption</strong>:</li>
+					<li>
+						<p><strong>Enabling Encryption</strong>:</p>
+						<ul>
+							<li><strong>Syntax</strong>:
+								<pre>
+									<code>sql
+										ALTER TABLE table_name ENCRYPTION='Y';
+									</code>
+								</pre>
+							</li>
+							<p><strong>Example</strong>:
+								<pre>
+									<code>sql
+										ALTER TABLE sensitive_data ENCRYPTION='Y';
+									</code>
+								</pre>
+							</p>
+							<ul>
+								<li>This enables encryption for the <code>sensitive_data</code> table.</li>
+							</ul>
+						</ul>
+					</li>
+					<li>
+						<p><strong>Configuring Encryption Keys</strong>:</p>
+					</li>
+					<li><strong>Syntax</strong>:
+						<pre>
+							<code>ini
+								[mysqld]
+								innodb_encrypt_tables=ON
+								innodb_encrypt_log=ON
+								innodb_encryption_rotate_key_age=1
+							</code>
+						</pre>
+					</li>
+					<p><strong>Example</strong>:
+						<ul>
+							<li>Configure the <code>my.cnf</code> file to enable table and log encryption.</li>
+						</ul>
+					</p>
+				</ul>
+	
+	
+			<h4><strong>Encrypting Data in Transit</strong>:</h4>
+				<ul>
+					<li><strong>Using SSL/TLS</strong>:</li>
+					<li><strong>Generating Certificates</strong>:
+						<ul>
+							<li>Generate server and client certificates for SSL/TLS encryption.</li>
+						</ul>
+					</li>
+					<li><strong>Configuring SSL/TLS</strong>:
+						<ul>
+							<li><strong>Syntax</strong>:
+								<pre>
+									<code>ini
+										[mysqld]
+										ssl-ca=/path/to/ca.pem
+										ssl-cert=/path/to/server-cert.pem
+										ssl-key=/path/to/server-key.pem
+									</code>
+								</pre>
+							</li>
+							<p><strong>Example</strong>:</p>
+							<li>Add SSL/TLS configuration to <pre><code>my.cnf</code></pre> for secure connections.</li>
+						</ul>
+					</li>
+				</ul>
+	
+			<h4><strong>Encrypting Individual Columns</strong>:</h4>
+				<ul>
+					<li><strong>Using AES Encryption</strong>:</li>
+					<li><strong>Syntax</strong>:
+						<pre>
+							<code>sql
+								INSERT INTO my_table (sensitive_column)
+								VALUES (AES_ENCRYPT('secret_data', 'encryption_key'));
+							</code>
+						</pre>
+					</li>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								INSERT INTO users (ssn) VALUES (AES_ENCRYPT('123-45-6789', 'encryption_key'));
+							</code>
+						</pre>
+					</p>
+					<li>
+						<p><strong>Decrypting Data</strong>:
+						<pre>
+							<code>sql
+								SELECT AES_DECRYPT(sensitive_column, 'encryption_key') AS decrypted_data
+								FROM my_table;
+							</code>
+						</pre>
+						</p>
+						<ul>
+							<li>This decrypts the data using the specified key.</li>
+						</ul>
+					</li>
+				</ul>
+				
+	<hr/>
+	<hr/>
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ Optimizing MySQL Performance \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+	<h2><strong>Optimizing MySQL Performance</strong></h2>
+		<p>Optimizing MySQL performance is essential for ensuring that your database operates efficiently and can handle the required load. This section covers how to analyze and optimize query performance, configure MySQL for better performance, and monitor MySQL’s performance.</p>
+		
+		<h3><strong>1. Analyzing Query Performance with EXPLAIN</strong></h3>
+			<p>The <code>EXPLAIN</code> statement helps you understand how MySQL executes a query and can provide insights into query performance.</p>
+		
+			<h4><strong>Using EXPLAIN</strong>:</h4>
+				<ul>
+					<li><strong>Syntax</strong>:
+						<pre>
+							<code>sql
+								EXPLAIN query;
+							</code>
+						</pre>
+					</li>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								EXPLAIN SELECT * FROM employees WHERE department = 'Sales';
+							</code>
+						</pre>
+					</p>
+				</ul>
+		
+			<h4><strong>Understanding EXPLAIN Output</strong>:</h4>
+				<ul>
+					<li><strong>id</strong>: The identifier of the query or subquery.</li>
+					<li><strong>select_type</strong>: The type of SELECT (e.g., SIMPLE, PRIMARY, SUBQUERY).</li>
+					<li><strong>table</strong>: The table being accessed.</li>
+					<li><strong>type</strong>: The type of join (e.g., ALL, index, range).</li>
+					<li><strong>possible_keys</strong>: The indexes that might be used.</li>
+					<li><strong>key</strong>: The actual index used.</li>
+					<li><strong>key_len</strong>: The length of the key used.</li>
+					<li><strong>ref</strong>: The columns or constants compared to the index.</li>
+					<li><strong>rows</strong>: The estimated number of rows examined.</li>
+					<li><strong>Extra</strong>: Additional information (e.g., Using where, Using index).</li>
+					
+					<span>
+						<p><strong>Example Analysis</strong>:
+							<code>plaintext
+								id | select_type | table     | type | possible_keys | key        | key_len | ref    | rows | Extra
+								1  | SIMPLE      | employees | ref  | dept_index    | dept_index | 5       | const  | 100  | Using where
+							</code>
+						</p>
+					</span>
+					<ul>
+						<li>This indicates that the <code>dept_index</code> is used for filtering and estimates examining 100 rows.</li>
+					</ul>
+				</ul>
+		
+		
+		<h3><strong>2. Optimizing Queries and Indexes</strong></h3>
+			<p>Efficient queries and proper indexing are crucial for performance. Here’s how to optimize them:</p>
+		
+			<h4><strong>Optimizing Queries</strong>:</h4>
+				<ul>
+					<li><strong>Select Only Required Columns</strong>:</li>
+						<ul>
+							<li>Instead of <code>SELECT *</code>, specify the columns you need.</li>
+						</ul>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								SELECT first_name, last_name FROM employees WHERE department = 'Sales';
+							</code>
+						</pre>
+					</p>
+
+					<li><p><strong>Avoid Unnecessary Calculations</strong>:</p></li>
+						<ul>
+							<li>Perform calculations outside the query if possible.</li>
+						</ul>
+					<p><strong>Example</strong>:</p>
+					<pre>
+						</code>sql
+							-- Instead of this:
+							SELECT id, (price * quantity) AS total FROM orders;
+
+							-- Perform calculation in application code.
+						<code>
+					</pre>
+
+						<p><strong>Use LIMIT</strong>:</p>
+					</li>
+					<li>Restrict the number of rows returned if only a subset is needed.</li>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								SELECT * FROM employees LIMIT 10;
+							</code>
+						</pre>
+					</p>
+				</ul>
+		
+			<h4><strong>Optimizing Indexes</strong>:</h4>
+				<ul>
+					<li><strong>Create Indexes</strong>:</li>
+						<ul>
+							<li>Create indexes on columns that are frequently used in <code>WHERE</code>, <code>JOIN</code>, or <code>ORDER BY</code> clauses.</li>
+						</ul>
+					<p><strong>Syntax</strong>:
+						<pre>
+							<code>sql
+								CREATE INDEX index_name ON table_name (column_name);
+							</code>
+						</pre>
+					</p>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								CREATE INDEX dept_index ON employees (department);
+							</code>
+						</pre>
+					</p>
+
+					<li><p><strong>Use Composite Indexes</strong>:</p></li>
+						<ul>
+							<li>Combine multiple columns into a single index if queries frequently filter by multiple columns.</li>
+						</ul>
+					<li><strong>Syntax</strong>:
+						<code>sql
+							CREATE INDEX idx_name ON table_name (column1, column2);
+						</code>
+					</li>
+						<p><strong>Example</strong>:
+							<pre>
+								<code>sql
+									CREATE INDEX emp_dept_index ON employees (department, last_name);
+								</code>
+							</pre>
+						</p>
+
+					<li><p><strong>Avoid Over-Indexing</strong>:</p></li>
+						<ul>
+							<li>Too many indexes can slow down <code>INSERT</code>, <code>UPDATE</code>, and <code>DELETE</code> operations.</li>
+						</ul>
+					<li>
+						<p>Regularly review and remove unused indexes.</p>
+					</li>
+
+					<li><p><strong>Analyze Index Usage</strong>:</p></li>
+						<ul>
+							<li>Use <code>SHOW INDEX</code> to review index details and <code>ANALYZE TABLE</code> to update index statistics.</li>
+						</ul>
+					<li><strong>Syntax</strong>:
+						<pre>
+							<code>sql
+								SHOW INDEX FROM table_name;
+								ANALYZE TABLE table_name;
+							</code>
+						</pre>
+					</li>
+				</ul>
+		
+		
+		<h3><strong>3. MySQL Configuration for Performance</strong></h3>
+			<p>Proper configuration can significantly impact MySQL performance. Adjust settings in the <code>my.cnf</code> (or <code>my.ini</code> on Windows) file to optimize performance.</p>
+		
+			<h4><strong>Key Configuration Parameters</strong>:</h4>
+				<ul>
+					<li><strong>Buffer Pool Size</strong>:</li>
+						<ul>
+							<li>InnoDB buffer pool size affects the amount of data cached in memory.</li>
+						</ul>
+					<li><strong>Syntax</strong>:
+						<pre>
+							<code>ini
+								[mysqld]
+								innodb_buffer_pool_size = 2G
+							</code>
+						</pre>
+					</li>
+					<p><strong>Example</strong>:</p>
+					<ul>
+						<li>Set to 2 GB for better performance with large datasets.</li>
+					</ul>
+
+					<li><p><strong>Query Cache</strong>:</p></li>
+						<ul>
+							<li>Query cache can store the result of SELECT queries to speed up subsequent requests.</li>
+						</ul>
+					<li><strong>Syntax</strong>:
+						<pre>
+							<code>ini
+								[mysqld]
+								query_cache_type = 1
+								query_cache_size = 64M
+							</code>
+						</pre>
+					</li>
+					<p><strong>Example</strong>:</p>
+						<ul>
+							<li>Enable and set cache size to 64 MB.</li>
+						</ul>
+
+					<li><p><strong>Max Connections</strong>:</p></li>
+						<ul>
+							<li>Configure the maximum number of concurrent connections.</li>
+						</ul>
+					<li><strong>Syntax</strong>:
+						<pre>
+							<code>ini
+								[mysqld]
+								max_connections = 200
+							</code>
+						</pre>
+					</li>
+					<p><strong>Example</strong>:</p>
+					<ul>
+						<li>Increase to 200 if your application requires more concurrent connections.</li>
+					</ul>
+
+					<li><p><strong>Log File Size</strong>:</p></li>
+						<ul>
+							<li>Adjust log file sizes for better performance and recovery.</li>
+						</ul>
+					<li><strong>Syntax</strong>:
+						<pre>
+							<code>ini
+								[mysqld]
+								innodb_log_file_size = 256M
+							</code>
+						</pre>
+					</li>
+					<p><strong>Example</strong>:
+						<ul>
+							<li>Set log file size to 256 MB.</li>
+						</ul>
+					</p>
+				</ul>
+		
+		
+		<h3><strong>4. Monitoring MySQL Performance</strong></h3>
+			<p>Regular monitoring helps identify performance issues and optimize database operations.</p>
+		
+			<h4><strong>Using MySQL Performance Schema</strong>:</h4>
+				<ul>
+					<li><strong>Enabling Performance Schema</strong>:</li>
+					<li><strong>Syntax</strong>:
+						<pre>
+							<code>ini
+								[mysqld]
+								performance_schema = ON
+							</code>
+						</pre>
+					</li>
+
+					<p><strong>Example</strong>:</p>
+						<ul>
+							<li>Enable the Performance Schema in <code>my.cnf</code>.</li>
+						</ul>
+
+					<li>
+						<p><strong>Querying Performance Schema Tables</strong>:</p>
+					</li>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								SELECT * FROM performance_schema.events_statements_summary_by_digest;
+							</code>
+						</pre>
+					</p>
+				</ul>
+		
+			<h4><strong>Using MySQL Status Variables</strong>:</h4>
+				<ul>
+					<li><strong>Viewing Status Variables</strong>:</li>
+					<li><strong>Syntax</strong>:
+						<pre>
+							<code>sql
+								SHOW STATUS;
+							</code>
+						</pre>
+					</li>
+					<p><strong>Example</strong>:
+						<code>sql
+							SHOW STATUS LIKE 'Threads_running';
+						</code>
+					</p>
+					<ul>
+						<li>This shows the number of currently running threads.</li>
+					</ul>
+	
+					<li><p><strong>Monitoring Key Metrics</strong>:</p></li>
+					<li><strong>Key Metrics</strong>:
+						<ul>
+							<li><code>Threads_running</code>: Number of active threads.</li>
+							<li><code>Questions</code>: Number of queries executed.</li>
+							<li><code>Innodb_buffer_pool_reads</code>: Number of reads from the buffer pool.</li>
+						</ul>
+					</li>
+				</ul>
+
+			<h4><strong>Using Third-Party Monitoring Tools</strong>:</h4>
+				<ul>
+					<li><strong>Tools</strong>:</li>
+					<ul>
+						<li><strong>MySQL Workbench</strong>: Provides performance dashboards and query analysis tools.</li>
+						<li><strong>Percona Monitoring and Management (PMM)</strong>: Offers detailed metrics and alerts.</li>
+						<li><strong>New Relic</strong>: Provides application performance monitoring including MySQL metrics.</li>
+					</ul>
+				</ul>
+				
+	<hr/>
+	<hr/>
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ Connecting MySQL to Applications \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+	<h2><strong>Connecting MySQL to Applications</strong></h2>
+		<p>Connecting MySQL to applications is essential for enabling your applications to interact with the database. This section covers the basics of MySQL connectors for various programming languages, connecting MySQL to web applications, and executing queries from application code.</p>
+
+		<h3><strong>1. Introduction to MySQL Connectors</strong></h3>
+			<p>MySQL connectors provide a way for different programming languages to communicate with MySQL databases. Each language typically has its own MySQL connector.</p>
+
+			<h4><strong>Python Connector:</strong></h4>
+				<pre>
+					<code>mysql-connector-python</code>
+				</pre>
+				<ul>
+					<li>
+						<p><strong>Installation</strong>:
+							<pre>
+								<code>sh
+									pip install mysql-connector-python
+								</code>
+							</pre>
+						</p>
+					</li>
+						
+					<p><strong>Example Connection</strong>:
+						<pre>
+							<code>python
+								import mysql.connector
+								conn = mysql.connector.connect(
+									host="localhost",
+									user="root",
+									password="password",
+									database="mydb"
+								)
+								cursor = conn.cursor()
+								cursor.execute("SELECT * FROM employees")
+
+								for row in cursor.fetchall():
+									print(row)
+									cursor.close()
+									conn.close()
+							</code>
+						</pre>
+					</p>
+				</ul>
+	
+			<h4><strong>PHP Connector: <code>mysqli</code></strong></h4>
+				<ul>
+					<li><strong>Installation</strong>:</li>
+						<ul>
+							<li><p>Usually comes bundled with PHP. Ensure <code>mysqli</code> extension is enabled in <code>php.ini</code>.</p></li>
+						</ul>
+					<p><strong>Example Connection</strong>:
+						<pre>
+							</code>php
+								<?php
+								$conn = new mysqli("localhost", "root", "password", "mydb");
+								
+								if ($conn->connect_error) {
+									die("Connection failed: " . $conn->connect_error);
+								}
+								
+								$result = $conn->query("SELECT * FROM employees");
+								
+								while ($row = $result->fetch_assoc()) {
+									echo "id: " . $row["id"] . " - Name: " . $row["name"] . "<br>";
+								}
+								
+								$conn->close();
+								?>
+							</code>
+						</pre>
+					</p>
+				</ul>
+			
+			<h4><strong>Java Connector: <code>mysql-connector-java</code></strong></h4>
+				<ul>
+					<li><strong>Installation</strong>:</li>
+						<ul>
+							<li><p>Add the connector JAR file to your project's build path. Download from the <a href="https://dev.mysql.com/downloads/connector/j/">MySQL website</a>.</p></li>
+						</ul>
+
+						<p><strong>Example Connection</strong>:
+						<pre>
+							<code>java
+								import java.sql.Connection;
+								import java.sql.DriverManager;
+								import java.sql.ResultSet;
+								import java.sql.Statement;
+
+								public class MySQLExample {
+									public static void main(String[] args) {
+										try {
+											Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "password");
+											Statement stmt = conn.createStatement();
+											ResultSet rs = stmt.executeQuery("SELECT * FROM employees");</p>
+											while (rs.next()) {
+											System.out.println("ID: " + rs.getInt("id") + ", Name: " + rs.getString("name"));
+										}
+								
+										conn.close();
+									} catch (Exception e) {
+										e.printStackTrace();
+									}
+								}
+							}
+							</code>
+						</pre>
+				</ul>
+	
+	
+		<h3><strong>2. Connecting MySQL to Web Applications</strong></h3>
+			<p>Connecting MySQL to web applications involves integrating the MySQL connector into the application's backend to handle database operations.</p>
+			<h4><strong>Example with PHP and MySQL</strong>:</h4>
+				<ul>
+					<li><strong>Create a Simple Web Page</strong>:
+						<pre>
+							<code>php
+								<?php
+								$conn = new mysqli("localhost", "root", "password", "mydb");
+								
+								if ($conn->connect_error) {
+									die("Connection failed: " . $conn->connect_error);
+								}
+
+								$sql = "SELECT * FROM employees";
+								$result = $conn->query($sql);
+
+								if ($result->num_rows > 0) {
+									echo "<table><tr><th>ID</th><th>Name</th></tr>";
+
+										while($row = $result->fetch_assoc()) {
+										echo "<tr><td>" . $row["id"] . "</td><td>" . $row["name"] . "</td></tr>";
+									}
+									echo "</table>";
+								} else {
+									echo "0 results";
+								}
+
+								$conn->close();
+								?>
+							</code>
+						</pre>
+					</li>
+				</ul>
+	
+			<h4><strong>Example with Python (Flask) and MySQL</strong>:</h4>
+				<ul>
+					<li>
+						<p><strong>Install Flask and MySQL Connector</strong>:
+							<pre>
+								<code>sh
+									pip install Flask mysql-connector-python
+								</code>
+							</pre>
+						</p>
+					</li>
+					<li>
+						<p><strong>Create a Flask Application</strong>:
+							<pre>
+								<code>python
+									from flask import Flask, render_template
+									import mysql.connector
+								</code>
+							</pre>
+						</p>
+					</li>
+				</ul>
+
+				<pre>
+					<code>
+						app = Flask(__name__)
+						
+						@app.route('/')
+						
+						def index():
+							conn = mysql.connector.connect(
+								host="localhost",
+								user="root",
+								password="password",
+								database="mydb"
+							)
+							cursor = conn.cursor()
+							cursor.execute("SELECT * FROM employees")
+							employees = cursor.fetchall()
+							cursor.close()
+							conn.close()
+							return render_template('index.html', employees=employees)</p>
+						
+							if name=='main':
+								app.run(debug=True)
+						<code>
+					</pre>
+
+				<li><strong>Create a Template (<code>templates/index.html</code>)</strong>:
+					<pre>
+						<code>html
+							<!DOCTYPE html>
+							<html>
+							<head>
+								<title>Employee List</title>
+							</head>
+							<body>
+								<h1>Employee List</h1>
+								<table border="1">
+									<tr>
+										<th>ID</th>
+										<th>Name</th>
+									</tr>
+									{% for emp in employees %}
+									<tr>
+										<td>{{ emp[0] }}</td>
+										<td>{{ emp[1] }}</td>
+									</tr>
+									{% endfor %}
+								</table>
+							</body>
+							</html>
+						</code>
+					</pre>
+				</li>
+				
+				
+		<h3><strong>3. Executing Queries from Application Code</strong></h3>
+			<p>Executing queries from your application code involves writing code to perform various CRUD (Create, Read, Update, Delete) operations.</p>
+		
+			<h4><strong>Executing SELECT Queries</strong>:</h4>
+				<ul>
+					<li>
+						<p><strong>Python</strong>:
+							<pre>
+								<code>python
+									cursor.execute("SELECT * FROM employees")
+									rows = cursor.fetchall()
+									for row in rows:
+										print(row)
+								</code>
+							</pre>
+						</p>
+					</li>
+					<li>
+						<p><strong>PHP</strong>:
+							<pre>
+								<code>php
+									$result = $conn-&gt;query("SELECT * FROM employees");
+									while ($row = $result-&gt;fetch_assoc()) {
+										echo "ID: " . $row["id"] . " - Name: " . $row["name"] . "&lt;br&gt;";
+									}
+								</code>
+							</pre>
+						</p>
+					</li>
+					<li>
+						<p><strong>Java</strong>:
+							<pre>
+								<code>java
+									ResultSet rs = stmt.executeQuery("SELECT * FROM employees");
+									while (rs.next()) {
+										System.out.println("ID: " + rs.getInt("id") + ", Name: " + rs.getString("name"));
+									}
+								</code>
+							</pre>
+						</p>
+					</li>
+				</ul>
+		
+			<h4><strong>Executing INSERT, UPDATE, and DELETE Queries</strong>:</h4>
+				<ul>
+					<li>
+						<p><strong>Python</strong>:
+							<pre>
+								<code>python
+									cursor.execute("INSERT INTO employees (name) VALUES ('John Doe')")
+									conn.commit()
+								</code>
+							</pre>
+						</p>
+					</li>
+					<li>
+						<p><strong>PHP</strong>:
+							<pre>
+								<code>php
+									$conn-&gt;query("INSERT INTO employees (name) VALUES ('John Doe')");
+								</code>
+							</pre>
+						</p>
+					</li>
+					<li>
+						<p><strong>Java</strong>:
+							<pre>
+								<code>java
+									int rowsAffected = stmt.executeUpdate("INSERT INTO employees (name) VALUES ('John Doe')");
+								</code>
+							</pre>
+						</p>
+					</li>
+				</ul>
+		
+			<h4><strong>Handling Errors</strong>:</h4>
+				<ul>
+					<li>
+						<p><strong>Python</strong>:
+							<pre>
+								<code>python
+									try:
+										cursor.execute("SELECT * FROM non_existent_table")
+									except mysql.connector.Error as err:
+										print(f"Error: {err}")
+								</code>
+							</pre>
+						</p>
+					</li>
+					<li>
+						<p><strong>PHP</strong>:
+							<pre>
+								<code>php
+									if ($conn-&gt;query("SELECT * FROM non_existent_table") === FALSE) {
+										echo "Error: " . $conn-&gt;error;
+									}
+								</code>
+							</pre>
+						</p>
+					</li>
+					<li>
+						<p><strong>Java</strong>:
+							<pre>
+								<code>java
+									try {
+										ResultSet rs = stmt.executeQuery("SELECT * FROM non_existent_table");
+									} catch (SQLException e) {
+										e.printStackTrace();
+									}
+								</code>
+							</pre>
+						</p>
+					</li>
+				</ul>
+
+	<hr/>
+	<hr/>
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ MySQL Best Practices \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+	<h2><strong>MySQL Best Practices</strong></h2>
+
+		<p>Adhering to best practices in MySQL ensures that your database is robust, efficient, and manageable. This section covers key principles in database design, naming conventions, maintaining data integrity, normalization, and regular maintenance tasks.</p>
+
+		<h3><strong>1. Database Design Principles</strong></h3>
+			<p>Good database design is fundamental for creating efficient and scalable databases. Follow these principles to achieve a well-structured database:</p>
+	
+			<h4><strong>Normalization</strong></h4>
+				<ul>
+					<li><strong>Definition</strong>:</li>
+						<li>
+							<p>Normalization is the process of organizing database tables to reduce redundancy and improve data integrity.</p>
+						</li>
+
+					<li>
+						<p><strong>Normal Forms</strong>:</p>
+					</li>
+					<li><strong>First Normal Form (1NF)</strong>: Ensure each column contains atomic (indivisible) values.</li>
+					<li><strong>Second Normal Form (2NF)</strong>: Ensure that all non-key columns are fully functionally dependent on the primary key.</li>
+					<li>
+						<p><strong>Third Normal Form (3NF)</strong>: Ensure that all columns are dependent only on the primary key and not on other non-key columns.</p>
+					</li>
+
+					<p><strong>Example</strong>:</p>
+					
+					<li><strong>Before Normalization</strong>:
+						<pre>
+							<code>plaintext
+								Orders (OrderID, CustomerName, ProductName, Quantity)
+							</code>
+						</pre>
+					</li>
+
+					<li><strong>After Normalization</strong>:
+						<ul>
+							<li><strong>Customers</strong>: <code>CustomerID</code>, <code>CustomerName</code></li>
+							<li><strong>Products</strong>: <code>ProductID</code>, <code>ProductName</code></li>
+							<li><strong>Orders</strong>: <code>OrderID</code>, <code>CustomerID</code>, <code>ProductID</code>, <code>Quantity</code></li>
+						</ul>
+					</li>
+				</ul>
+
+			<h4><strong>Data Types and Size</strong></h4>
+				<ul>
+					<li><strong>Choosing Appropriate Data Types</strong>:</li>
+						<li>Use the most specific data type for each column to save space and improve performance.</li>
+						<p><strong>Example</strong>:</p>
+						<ul>
+							<li>Use <code>TINYINT</code> for small integer values, <code>VARCHAR</code> for variable-length strings, and <code>DATE</code> for dates.</li>
+						</ul>
+
+					<li><p><strong>Avoiding Over-Allocation</strong>:</p></li>
+					<ul>
+						<li>Allocate enough space for data without excessive over-allocation to optimize storage.</li>
+					</ul>
+				</ul>
+
+			<h4><strong>Indexes</strong></h4>
+				<ul>
+					<li><strong>Index Creation</strong>:</li>
+					<li>Create indexes on columns that are frequently used in <code>WHERE</code>, <code>JOIN</code>, or <code>ORDER BY</code> clauses.</li>
+						<p><strong>Example</strong>:
+							<code>sql
+								CREATE INDEX idx_customer_name ON customers (name);
+							</code>
+						</p>
+					
+					<li><p><strong>Index Maintenance</strong>:</p></li>
+					<ul>
+						<li>Regularly review and optimize indexes to ensure they provide the intended performance benefits.</li>
+					</ul>
+				</ul>
+	
+	
+		<h3><strong>2. Naming Conventions</strong></h3>
+			<p>Consistent naming conventions improve code readability and maintainability. Follow these conventions for naming tables, columns, and other database objects.</p>
+		
+			<h4><strong>Tables and Columns</strong></h4>
+				<ul>
+					<li><strong>Tables</strong>:</li>
+						<ul>
+							<li>Use plural names for tables to represent collections of entities.</li>
+						</ul>
+
+						<p><strong>Example</strong>:
+							<pre>
+								<code>sql
+									CREATE TABLE employees (id INT PRIMARY KEY, name VARCHAR(100));
+								</code>
+							</pre>
+						</p>
+					
+					<li><p><strong>Columns</strong>:</p></li>
+						<ul>
+							<li>Use descriptive names that clearly indicate the purpose of the column.</li>
+						</ul>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								CREATE TABLE orders (order_id INT PRIMARY KEY, order_date DATE, customer_id INT);
+							</code>
+						</pre>
+					</p>
+				</ul>
+	
+			<h4><strong>Consistency</strong></h4>
+				<ul>
+					<li><strong>Case Sensitivity</strong>:</li>
+						<ul>
+							<li>Use a consistent case style (e.g., lowercase with underscores) for names to avoid confusion.</li>
+						</ul>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								CREATE TABLE customer_orders (customer_id INT, order_id INT);
+							</code>
+						</pre>
+					</p>
+	
+					<li><p><strong>Abbreviations</strong>:</p></li>
+					<ul>
+						<li>Avoid ambiguous abbreviations and ensure that names are intuitive.</li>
+					</ul>
+				</ul>
+	
+		<h3><strong>3. Data Integrity and Normalization</strong></h3>
+			<p>Maintaining data integrity and applying normalization principles are crucial for ensuring reliable and accurate data.</p>
+			
+			<h4><strong>Data Integrity</strong></h4>
+				<ul>
+					<li><strong>Primary Keys</strong>:</li>
+						<ul>
+							<li>Define primary keys to uniquely identify each row in a table.</li>
+						</ul>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								CREATE TABLE employees (id INT PRIMARY KEY, name VARCHAR(100));
+							</code>
+						</pre>
+					</p>
+
+					<li><p><strong>Foreign Keys</strong>:</p></li>
+						<ul>
+							<li>Use foreign keys to enforce relationships between tables and ensure referential integrity.</li>
+						</ul>
+						<p><strong>Example</strong>:
+							<pre>
+								<code>sql
+									CREATE TABLE orders (
+										order_id INT PRIMARY KEY,
+										customer_id INT,
+										FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+									);
+								</code>
+							</pre>
+						</p>
+
+					<li><p><strong>Constraints</strong>:</p></li>
+						<ul>
+							<li>Apply constraints such as <code>NOT NULL</code>, <code>UNIQUE</code>, and <code>CHECK</code> to enforce data validation rules.</li>
+						</ul>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>sql
+								CREATE TABLE products (
+									product_id INT PRIMARY KEY,
+									price DECIMAL(10, 2) CHECK (price &gt; 0)
+								);
+							</code>
+						</pre>
+					</p>
+				</ul>
+	
+			<h4><strong>Normalization</strong></h4>
+				<ul>
+					<li><strong>Advantages</strong>:</li>
+					<ul>
+						<li>Reduces data redundancy and improves data consistency.</li>
+						<li><p>Ensures that data is stored in logical, related tables.</p></li>
+					</ul>
+
+					<li><p><strong>Applying Normal Forms</strong>:</p></li>
+					<ul>
+						<li>Regularly review and adjust database schema to comply with higher normal forms as necessary.</li>
+					</ul>
+				</ul>
+	
+	
+		<h3><strong>4. Regular Maintenance Tasks</strong></h3>
+			<p>Routine maintenance tasks help ensure that your MySQL database remains performant and reliable.</p>
+			<h4><strong>Backups</strong></h4>
+				<ul>
+					<li><strong>Regular Backups</strong>:</li>
+					<ul>
+						<li>Schedule regular backups to safeguard against data loss.</li>
+							<p><strong>Example</strong>:
+								<pre>
+									<code>sh
+										mysqldump -u root -p mydb &gt; mydb_backup.sql
+									</code>
+								</pre>
+							</p>
+						</li>
+					</ul>
+
+					<li><p><strong>Testing Restores</strong>:</p></li>
+					<ul>
+						<li>Periodically test restore procedures to ensure backup integrity.</li>
+					</ul>
+				</ul>
+	
+			<h4><strong>Performance Tuning</strong></h4>
+				<ul>
+					<li><strong>Analyzing Queries</strong>:</li>
+					<ul>
+						<li>Use tools like <code>EXPLAIN</code> to analyze and optimize slow queries.</li>
+							<p><strong>Example</strong>:
+								<pre>
+									<code>sql
+										EXPLAIN SELECT * FROM employees WHERE department = 'Sales';
+									</code>
+								</pre>
+							</p>
+						</li>
+					</ul>
+
+					<li><p><strong>Optimizing Indexes</strong>:</p></li>
+					<ul>
+						<li>Regularly review and optimize indexes based on query performance.</li>
+					</ul>
+				</ul>
+	
+			<h4><strong>Monitoring</strong></h4>
+				<ul>
+					<li><strong>Monitoring Tools</strong>:</li>
+						<ul>
+							<li>Use monitoring tools to track database performance and identify potential issues.</li>
+						</ul>
+						<p><strong>Examples</strong>:</p>
+						<ul>
+							<li>MySQL Workbench, Percona Monitoring and Management (PMM), New Relic.</li>
+						</ul>
+					</li>
+
+					<li><p><strong>Review Logs</strong>:</p></li>
+					<ul>
+						<li>Regularly review MySQL logs for errors and performance issues.</li>
+	
+						<p><strong>Example</strong>:
+							<pre>
+								<code>sh
+									tail -f /var/log/mysql/error.log
+								</code>
+							</pre>
+						</p>
+					</ul>
+				</ul>
+	
+			<h4><strong>Security</strong></h4>
+				<ul>
+					<li><strong>User Management</strong>:</li>
+					<ul>
+						<li>Regularly review and update user permissions and roles.</li>
+							<p><strong>Example</strong>:
+								<pre>
+									<code>sql
+										REVOKE ALL PRIVILEGES ON mydb.* FROM 'guest'@'localhost';
+									</code>
+								</pre>
+							</p>
+						</li>
+					</ul>
+					<li><p><strong>Applying Patches</strong>:</p></li>
+					<ul>
+						<li>Keep MySQL up-to-date with the latest security patches and updates.</li>
+					</ul>
+				</ul>
+	
+	<hr/>
+	<hr/>
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ Troubleshooting Common MySQL Issues \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+	<h2><strong>Troubleshooting Common MySQL Issues</strong></h2>
+		<p>Troubleshooting MySQL issues involves identifying, diagnosing, and resolving problems that can affect database performance and reliability. This section addresses common errors and their solutions, handling data corruption, debugging slow queries, and repairing and optimizing tables.</p>
+		
+		<h3><strong>1. Common Errors and Solutions</strong></h3>
+			<p>MySQL errors can arise from various issues such as configuration problems, incorrect queries, or connectivity issues. Here are some common errors and their solutions:</p>
+		
+			<h4><strong>Connection Errors</strong></h4>
+				<ul>
+					<li><strong>Error</strong>: <code>ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2)</code></li>
+					<li>
+						<p><strong>Solution</strong>:</p>
+						<ul>
+							<li>Ensure the MySQL server is running.</li>
+							<li>Check the <code>my.cnf</code> file for the correct socket path.</li>
+							<li>Restart MySQL service.
+								<pre>
+									<code>sh
+										sudo systemctl restart mysql
+									</code>
+								</pre>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<p><strong>Error</strong>: <code>ERROR 1045 (28000): Access denied for user 'username'@'localhost' (using password: YES)</code></p>
+					</li>
+					<li><strong>Solution</strong>:
+						<ul>
+							<li>Verify the username and password.</li>
+							<li>Ensure the user has sufficient privileges.</li>
+							<li>Reset the password if necessary.
+								<pre>
+									<code>sql
+										ALTER USER 'username'@'localhost' IDENTIFIED BY 'newpassword';
+									</code>
+								</pre>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			
+			<h4><strong>Query Errors</strong></h4>
+				<ul>
+					<li><strong>Error</strong>:
+						<pre>
+							<code>ERROR 1064 (42000): You have an error in your SQL syntax</code>
+						</pre>
+					</li>
+					<li>
+						<p><strong>Solution</strong>:</p>
+						<ul>
+							<li>Check the syntax of the query.</li>
+							<li>Ensure all keywords and table names are correct.</li>
+							<li>Use MySQL documentation to verify syntax.</li>
+						</ul>
+					</li>
+					<li>
+						<p>
+							<strong>Error</strong>:
+							<pre>
+								<code>ERROR 1146 (42S02): Table 'database.table' doesn't exist</code>
+							</pre>
+						</p>
+					</li>
+					<li><strong>Solution</strong>:
+						<ul>
+							<li>Verify the table name and database name.</li>
+							<li>Check if the table was accidentally dropped.</li>
+							<li>Restore the table from a backup if needed.</li>
+						</ul>
+					</li>
+				</ul>
+			
+			
+		<h3><strong>2. Handling Data Corruption</strong></h3>
+			<p>Data corruption can result from hardware failures, software bugs, or improper shutdowns. Handling data corruption involves diagnosing the issue and recovering data if necessary.</p>
+
+			<h4><strong>Identifying Corruption</strong></h4>
+				<ul>
+					<li><strong>Using <code>CHECK TABLE</code></strong>:</li>
+					<li>
+						<p>Run <code>CHECK TABLE</code> to identify table corruption.
+							<pre>
+								<code>sql
+									CHECK TABLE table_name;
+								</code>
+							</pre>
+						</p>
+					</li>
+					<li>
+						<p><strong>Using <code>mysqlcheck</code></strong>:</p>
+					</li>
+					<li>Run <code>mysqlcheck</code> to check and repair tables.
+						<pre>
+							<code>sh
+								mysqlcheck -u root -p --all-databases
+							</code>
+						</pre>
+					</li>
+				</ul>
+
+			<h4><strong>Repairing Corrupted Tables</strong></h4>
+				<ul>
+					<li><strong>Using <code>REPAIR TABLE</code></strong>:</li>
+					<li>
+						<p>Attempt to repair a corrupted table using <code>REPAIR TABLE</code>.
+							<pre>
+								<code>sql
+									REPAIR TABLE table_name;
+								</code>
+							</pre>
+						</p>
+					</li>
+					<li>
+						<p><strong>Restoring from Backup</strong>:</p>
+					</li>
+					<ul>
+						<li>If repair fails, restore the table from a backup.</li>
+					</ul>
+				</ul>
+
+			<h4><strong>Preventive Measures</strong></h4>
+				<ul>
+					<li><strong>Regular Backups</strong>:</li>
+					<ul>
+						<li>Schedule regular backups to mitigate the risk of data loss.</li>
+					</ul>
+
+					<li><strong>Hardware and Software Maintenance</strong>:</li>
+					<ul>
+						<li>Ensure hardware is reliable and software is up-to-date.</li>
+					</ul>
+				</ul>
+
+
+		<h3><strong>3. Debugging Slow Queries</strong></h3>
+			<p>Slow queries can impact database performance. Debugging involves identifying and optimizing these queries.</p>
+
+			<h4><strong>Identifying Slow Queries</strong></h4>
+				<ul>
+					<li><strong>Using <code>slow_query_log</code></strong>:</li>
+					<li>
+						<p>Enable the slow query log to capture queries that exceed a specified execution time.
+							<ul>
+								<pre>
+									<code>sql
+										SET GLOBAL slow_query_log = 'ON';
+										SET GLOBAL long_query_time = 2;
+									</code>
+								</pre>
+							</ul>
+						</p>
+					</li>
+					<li>
+						<p><strong>Using <code>performance_schema</code></strong>:</p>
+					</li>
+					<li>Query the <code>performance_schema</code> to find slow queries.
+						<pre>
+							<code>sql
+								SELECT * FROM performance_schema.events_statements_summary_by_digest
+								WHERE AVG_TIMER_WAIT &gt; 1000000000;
+							</code>
+						</pre>
+					</li>
+				</ul>
+
+			<h4><strong>Optimizing Slow Queries</strong></h4>
+				<ul>
+					<li><strong>Analyzing with <code>EXPLAIN</code></strong>:</li>
+					<li>
+						<p>Use <code>EXPLAIN</code> to analyze query execution plans and identify inefficiencies.
+							<pre>
+								<code>sql
+									EXPLAIN SELECT * FROM employees WHERE department = 'Sales';
+								</code>
+							</pre>
+						</p>
+					</li>
+
+					<li><p><strong>Index Optimization</strong>:</p></li>
+					<li>
+						<p>Add or modify indexes based on the query patterns.
+							<pre>
+								<code>sql
+									CREATE INDEX idx_department ON employees (department);
+								</code>
+							</pre>
+						</p>
+					</li>
+
+					<li><p><strong>Query Refactoring</strong>:</p></li>
+					<li>Rewrite complex queries for better performance.</li>
+					<p><strong>Example</strong>:
+						<pre>
+							<code>
+								-- Instead of this:
+								SELECT * FROM orders WHERE customer_id IN (SELECT id FROM customers WHERE active = 1);
+								
+								-- Use a JOIN:
+								SELECT orders.* FROM orders
+								JOIN customers ON orders.customer_id = customers.id
+								WHERE customers.active = 1;
+							</code>
+						</pre>
+					</p>
+				</ul>
+
+
+		<h3><strong>4. Repairing and Optimizing Tables</strong></h3>
+			<p>Maintaining and optimizing tables ensures that they perform efficiently and use resources effectively.</p>
+
+			<h4><strong>Repairing Tables</strong></h4>
+				<ul>
+					<li><strong>Using <code>mysqlcheck</code></strong>:</li>
+					<li>
+						<p>Run <code>mysqlcheck</code> to check and repair tables.
+							<pre>
+								<code>sh
+									mysqlcheck -u root -p --auto-repair mydb
+								</code>
+							</pre>
+						</p>
+					</li>
+
+					<li><p><strong>Using <code>REPAIR TABLE</code></strong>:</p></li>
+					<li>Attempt table repairs if needed.
+						<pre>
+							<code>sql
+								REPAIR TABLE table_name;
+							</code>
+						</pre>
+					</li>
+				</ul>
+
+			<h4><strong>Optimizing Tables</strong></h4>
+				<ul>
+					<li><strong>Using <code>OPTIMIZE TABLE</code></strong>:</li>
+					<li>
+						<p>Run <code>OPTIMIZE TABLE</code> to defragment tables and reclaim unused space.
+							<pre>
+								<code>sql
+									OPTIMIZE TABLE table_name;
+								</code>
+							</pre>
+						</p>
+					</li>
+
+					<li><p><strong>Using <code>ANALYZE TABLE</code></strong>:</p></li>
+					<li>Run <code>ANALYZE TABLE</code> to update table statistics and improve query optimization.
+						<pre>
+							<code>sql
+								ANALYZE TABLE table_name;
+							</code>
+						</pre>
+					</li>
+				</ul>
+
+			<h4><strong>Reviewing Table Structure</strong></h4>
+				<ul>
+					<li><strong>Using <code>SHOW TABLE STATUS</code></strong>:</li>
+					<ul>
+						<p>Review table status to check for issues.
+					</ul>
+						<pre>
+							<code>sql
+								SHOW TABLE STATUS LIKE 'table_name';
+							</code>
+						</pre>
+					</p>
+
+					<li><p><strong>Using <code>INFORMATION_SCHEMA</code></strong>:</p></li>
+					<ul>
+						Query <code>INFORMATION_SCHEMA</code> to get detailed table information.
+					</ul>
+					<pre>
+						<code>sql
+							SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'table_name';
+						</code>
+					</pre>
+				</ul>
+	
+	<hr/>
+	<hr/>
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ Conclusion and Additional Resources \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+	
+	<h2><strong>Conclusion and Additional Resources</strong></h2>
+		<p>In this final section, we'll summarize the key concepts covered in this tutorial, provide additional resources for further learning, and point out where you can find community support and assistance.</p>
+
+		<h3><strong>1. Summary of Key Concepts</strong></h3>
+		<p>This tutorial has provided a comprehensive overview of MySQL, focusing on the following key areas:</p>
+
+			<h4><strong>Introduction to MySQL</strong></h4>
+				<ul>
+					<li><strong>What is MySQL?</strong>: An open-source relational database management system known for its reliability and performance.</li>
+					<li><strong>History and Development</strong>: Originating in the mid-1990s, MySQL has evolved significantly, becoming a key player in database technologies.</li>
+					<li><strong>Key Features</strong>: Includes scalability, high performance, ease of use, and strong community support.</li>
+					<li><strong>Use Cases</strong>: Suitable for web applications, data warehousing, and more.</li>
+				</ul>
+	
+			<h4><strong>Setting Up MySQL</strong></h4>
+				<ul>
+					<li><strong>Installation</strong>: Steps for installing MySQL on various platforms (Windows, macOS, Linux).</li>
+					<li><strong>Configuration</strong>: Basic server configuration and management.</li>
+					<li><strong>Accessing MySQL CLI</strong>: How to connect and interact with MySQL through the command line.</li>
+				</ul>
+	
+			<h4><strong>Basic MySQL Operations</strong></h4>
+				<ul>
+					<li><strong>Database Management</strong>: Creating, managing databases, and tables.</li>
+					<li><strong>Data Manipulation</strong>: Inserting, querying, updating, and deleting data.</li>
+				</ul>
+	
+			<h4><strong>Data Types in MySQL</strong></h4>
+				<ul>
+					<li><strong>Numeric, String, Date, and Other Types</strong>: Understanding different data types for efficient data storage and manipulation.</li>
+				</ul>
+
+			<h4><strong>Advanced SQL Queries</strong></h4>
+				<ul>
+					<li><strong>Complex Queries</strong>: Using <code>WHERE</code>, <code>ORDER BY</code>, <code>GROUP BY</code>, and various joins to extract meaningful data.</li>
+				</ul>
+	
+			<h4><strong>Working with Indexes</strong></h4>
+				<ul>
+					<li><strong>Types and Impact</strong>: Creating and managing indexes to optimize query performance.</li>
+				</ul>
+	
+			<h4><strong>MySQL Functions and Operators</strong></h4>
+				<ul>
+					<li><strong>Functions</strong>: Using string, numeric, and date functions to manipulate data.</li>
+					<li><strong>Operators</strong>: Applying logical and comparison operators in queries.</li>
+				</ul>
+	
+			<h4><strong>Stored Procedures and Triggers</strong></h4>
+				<ul>
+					<li><strong>Stored Procedures</strong>: Creating reusable SQL code blocks.</li>
+					<li><strong>Triggers</strong>: Automatically performing actions in response to changes in data.</li>
+				</ul>
+	
+			<h4><strong>Transactions and Concurrency Control</strong></h4>
+				<ul>
+					<li><strong>Transactions</strong>: Ensuring data integrity with ACID properties.</li>
+					<li><strong>Concurrency Control</strong>: Managing simultaneous operations and avoiding conflicts.</li>
+				</ul>
+	
+			<h4><strong>Database Security</strong></h4>
+				<ul>
+					<li><strong>User Management</strong>: Setting permissions and roles.</li>
+					<li><strong>Backup and Restore</strong>: Ensuring data safety through regular backups.</li>
+					<li><strong>Data Encryption</strong>: Protecting sensitive information.</li>
+				</ul>
+	
+			<h4><strong>Optimizing MySQL Performance</strong></h4>
+				<ul>
+					<li><strong>Performance Analysis</strong>: Using <code>EXPLAIN</code> and other tools to enhance query performance.</li>
+					<li><strong>Configuration and Monitoring</strong>: Adjusting settings and tracking performance metrics.</li>
+				</ul>
+	
+			<h4><strong>Connecting MySQL to Applications</strong></h4>
+				<ul>
+					<li><strong>Application Integration</strong>: Using MySQL connectors for Python, PHP, Java, and web applications.</li>
+				</ul>
+	
+			<h4><strong>MySQL Best Practices</strong></h4>
+				<ul>
+					<li><strong>Design Principles</strong>: Normalization, indexing, and data integrity.</li>
+					<li><strong>Naming Conventions</strong>: Consistent naming for clarity and maintenance.</li>
+					<li><strong>Maintenance Tasks</strong>: Regular backups, performance tuning, and security measures.</li>
+				</ul>
+	
+			<h4><strong>Troubleshooting Common MySQL Issues</strong></h4>
+				<ul>
+					<li><strong>Error Handling</strong>: Resolving common MySQL errors and connectivity issues.</li>
+					<li><strong>Data Corruption</strong>: Identifying and repairing corrupted data.</li>
+					<li><strong>Slow Queries</strong>: Debugging and optimizing slow queries.</li>
+					<li><strong>Table Maintenance</strong>: Repairing and optimizing tables for better performance.</li>
+				</ul>
+	
+		<h3><strong>2. Additional Learning Resources</strong></h3>
+			<p>To further your knowledge of MySQL, explore the following resources:</p>
+	
+			<h4><strong>Books</strong></h4>
+				<ul>
+					<li><strong>"MySQL Cookbook"</strong> by Paul DuBois: Practical solutions for everyday MySQL problems.</li>
+					<li><strong>"Learning MySQL"</strong> by Seyed M.M. Tahaghoghi and Hugh E. Williams: A comprehensive introduction to MySQL.</li>
+				</ul>
+	
+			<h4><strong>Online Courses</strong></h4>
+				<ul>
+					<li><strong>Coursera</strong>: <a href="https://www.coursera.org/learn/mysql-for-data-science">MySQL for Data Science</a></li>
+					<li><strong>Udemy</strong>: <a href="https://www.udemy.com/course/the-complete-mysql-bootcamp/">The Complete MySQL Bootcamp</a></li>
+				</ul>
+	
+			<h4><strong>Documentation and Tutorials</strong></h4>
+				<ul>
+					<li><strong>MySQL Documentation</strong>: <a href="https://dev.mysql.com/doc/">MySQL Official Documentation</a></li>
+					<li><strong>W3Schools</strong>: <a href="https://www.w3schools.com/sql/">MySQL Tutorial</a></li>
+				</ul>
+	
+			<h4><strong>Video Tutorials</strong></h4>
+				<ul>
+					<li><strong>YouTube</strong>: <a href="https://www.youtube.com/results?search_query=mysql+tutorial+for+beginners">MySQL Tutorial for Beginners</a></li>
+				</ul>
+
+
+		<h3><strong>3. Community and Support</strong></h3>
+			<p>Engage with the MySQL community and seek support through the following channels:</p>
+
+			<h4><strong>Community Forums</strong></h4>
+				<ul>
+					<li><strong>MySQL Community Forum</strong>: <a href="https://forums.mysql.com/">MySQL Forums</a></li>
+					<li><strong>Stack Overflow</strong>: <a href="https://stackoverflow.com/questions/tagged/mysql">MySQL Questions</a></li>
+				</ul>
+
+			<h4><strong>Official Support</strong></h4>
+				<ul>
+					<li><strong>MySQL Support</strong>: <a href="https://www.mysql.com/support/">MySQL Enterprise Support</a></li>
+					<li><strong>Bug Tracking</strong>: <a href="https://bugs.mysql.com/">MySQL Bug Tracker</a></li>
+				</ul>
+
+			<h4><strong>Social Media and Blogs</strong></h4>
+				<ul>
+					<li><strong>Twitter</strong>: Follow <a href="https://twitter.com/mysql">@MySQL</a> for updates and community news.</li>
+					<li><strong>Blogs</strong>: <a href="https://www.mysql.com/blog/">MySQL Official Blog</a></li>
+				</ul>
+</body>
+</html>

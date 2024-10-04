@@ -1,0 +1,16 @@
+
+.content .init-desc,
+.db-desg,
+.nm-conv,
+.dt-intgr,
+.rgl-mtin{
+    background: var(--div-bg);
+    border-radius: 10px;
+    margin: 10px 10px;
+    padding: 20px 40px;
+    box-shadow: 0 1px 10px #000;
+}
+
+#cons-exmp {
+    width: 940px;
+}

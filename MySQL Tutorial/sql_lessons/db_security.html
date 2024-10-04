@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Security</title>
+    <link rel="stylesheet" href="../styles/css/common-style.css">
+    <link rel="stylesheet" href="../styles/css/db_security.css">
+    <link rel="stylesheet" href="../styles/highlights/syntax_css/sintaxhighlight.css">
+    <script src="../styles/highlights/syntax_js/sintaxhighlight.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+<body>
+
+    <header>
+        <img src="../src_images/db_Connect.png" class="sql-logo" alt="SQL Logo">
+        <h2><strong>Database Security</strong></h2>
+    </header>
+
+    <section class="content">
+
+        <p class="init-desc">Ensuring the security of your MySQL databases is crucial to protecting sensitive data, preventing unauthorized access, and maintaining the integrity and availability of your database systems. This section covers user management and permissions, securing the MySQL server, backup and restore procedures, and data encryption.</p>
+
+
+        <div class="mng-perm" id="umap">
+            <h3><strong>User Management and Permissions</strong></h3>
+                <p>Proper user management and permission settings help control access to your MySQL database and its resources.</p>
+            
+                <h4><strong>Creating and Managing Users:</strong></h4>
+                    <ul>
+                        <li><strong>Creating a User:</strong></li>
+                        <li><strong>Syntax:</strong>
+                            <pre>
+                                <code>
+                                    CREATE USER 'username'@'host' IDENTIFIED BY 'password';
+                                </code>
+                            </pre>
+                        </li>
+                        <strong>Example:</strong>
+                            <pre>
+                                <code>
+                                    CREATE USER 'john_doe'@'localhost' IDENTIFIED BY 'securepassword123';
+                                </code>
+                            </pre>
+                        <ul>
+                            <li>This creates a new user <code>john_doe</code> who can connect from <code>localhost</code> with the password <code>securepassword123</code>.</li>
+                        </ul>
+    
+                        <li><strong>Granting Permissions:</strong></li>
+                        <li><strong>Syntax:</strong>
+                            <pre>
+                                <code>
+                                    GRANT privilege ON database.table TO 'username'@'host';
+                                </code>
+                            </pre>
+                        </li>
+                        <strong>Example:</strong>
+                            <pre>
+                                <code>
+                                    GRANT SELECT, INSERT, UPDATE ON mydb.* TO 'john_doe'@'localhost';
+                                </code>
+                            </pre>
+                        <ul>
+                            <li>This grants the user <code>john_doe</code> read and write access to all tables in the <code>mydb</code> database.</li>
+                        </ul>
+                        <li><strong>Revoking Permissions:</strong></li>
+    
+                        <li><strong>Syntax:</strong>
+                            <pre>
+                                <code>
+                                    REVOKE privilege ON database.table FROM 'username'@'host';
+                                </code>
+                            </pre>
+                        </li>
+                        <strong>Example:</strong>
+                            <pre>
+                                <code>
+                                    REVOKE INSERT ON mydb.* FROM 'john_doe'@'localhost';
+                                </code>
+                            </pre>
+                        <ul>
+                            <li>This revokes the <code>INSERT</code> permission from <code>john_doe</code> on the <code>mydb</code> database.</li>
+                        </ul>
+    
+                        <li><strong>Dropping a User:</strong></li>
+                        <li><strong>Syntax:</strong>
+                            <pre>
+                                <code>
+                                    DROP USER 'username'@'host';
+                                </code>
+                            </pre>
+                        </li>
+                        <strong>Example:</strong>
+                            <pre>
+                                <code>
+                                    DROP USER 'john_doe'@'localhost';
+                                </code>
+                            </pre>
+                            <ul>
+                                <li>This removes the user <code>john_doe</code> from the <code>localhost</code>.</li>
+                            </ul>
+                    </ul>
+            
+                <h4><strong>Managing User Permissions:</strong></h4>
+                    <ul>
+                        <li><strong>Viewing User Privileges:</strong></li>
+                        <li><strong>Syntax:</strong>
+                            <pre>
+                                <code>
+                                    SHOW GRANTS FOR 'username'@'host';
+                                </code>
+                            </pre>
+                        </li>
+                        <strong>Example:</strong>
+                            <pre>
+                                <code>
+                                    SHOW GRANTS FOR 'john_doe'@'localhost';
+                                </code>
+                            </pre>
+                        <ul>
+                            <li>This shows all the privileges granted to the user <code>john_doe</code>.</li>
+                        </ul>
+    
+                        <li><strong>Modifying User Privileges:</strong></li>
+                        <ul>
+                            <li>Modify permissions by using <code>GRANT</code> or <code>REVOKE</code> statements as needed.</li>
+                        </ul>
+                    </ul>
+        </div>
+
+        <div class="sec-sver" id="smss">
+            <h3><strong>Securing MySQL Server</strong></h3>
+                <p>Securing your MySQL server involves configuring it to prevent unauthorized access and vulnerabilities.</p>
+            
+                <h4><strong>Configuring MySQL Security Settings:</strong></h4>
+                    <ul>
+                        <li><strong>Update the Root Password:</strong></li>
+                        <li><strong>Syntax:</strong>
+                            <pre>
+                                <code>
+                                    ALTER USER 'root'@'localhost' IDENTIFIED BY 'newpassword';
+                                </code>
+                            </pre>
+                        </li>
+                        <strong>Example:</strong>
+                            <pre>
+                                <code>
+                                    ALTER USER 'root'@'localhost' IDENTIFIED BY 'newsecurepassword!';
+                                </code>
+                            </pre>
+                        <ul>
+                            <li>This updates the root user's password.</li>
+                        </ul>
+    
+                        <li><strong>Removing Anonymous Users:</strong></li>
+                        <li><strong>Syntax:</strong>
+                            <pre>
+                                <code>
+                                    DELETE FROM mysql.user WHERE User='';
+                                </code>
+                            </pre>
+                        </li>
+                        <strong>Example:</strong>
+                            <pre>
+                                <code>
+                                    DELETE FROM mysql.user WHERE User='';
+                                </code>
+                            </pre>
+                        <ul>
+                            <li>This removes any anonymous users from the MySQL database.</li>
+                        </ul>
+    
+                        <li><strong>Disabling Remote Root Login:</strong></li>
+                        <li><strong>Syntax:</strong>
+                            <pre>
+                                <code>
+                                    UPDATE mysql.user SET Host='localhost' WHERE User='root';
+                                    FLUSH PRIVILEGES;
+                                </code>
+                            </pre>
+                        </li>
+                        <strong>Example:</strong>
+                            <pre>
+                                <code>
+                                    UPDATE mysql.user SET Host='localhost' WHERE User='root';
+                                    FLUSH PRIVILEGES;
+                                </code>
+                            </pre>
+                        <ul>
+                            <li>This restricts root access to localhost only.</li>
+                        </ul>
+    
+                        <li><strong>Configuring MySQL Configuration File:</strong></li>
+                        <li>Modify the <code>my.cnf</code> (or <code>my.ini</code> on Windows) file to set security options like <code>bind-address</code> to restrict access to the MySQL server.</li>
+                        <strong>Example:</strong>
+                            <pre>
+                                <code>
+                                    [mysqld]
+                                    bind-address = 127.0.0.1
+                                </code>
+                            </pre>
+                    </ul>
+            
+                <h4><strong>Monitoring and Auditing:</strong></h4>
+                    <ul>
+                        <li><strong>Enable General Query Log:</strong></li>
+                        <li><strong>Syntax:</strong>
+                            <pre>
+                                <code>
+                                    SET GLOBAL general_log = 'ON';
+                                </code>
+                            </pre>
+                        </li>
+                        <strong>Example:</strong>
+                        <pre>
+                            <code>
+                                SET GLOBAL general_log = 'ON';
+                            </code>
+                        </pre>
+                        <ul>
+                            <li>This enables logging of all queries for auditing purposes.</li>
+                        </ul>
+    
+                        <li><strong>Using MySQL Enterprise Audit Plugin:</strong></li>
+                        <ul>
+                            <li>Install and configure the MySQL Enterprise Audit plugin for advanced auditing features.</li>
+                        </ul>
+                    </ul>
+        </div>
+
+        <div class="backup-restore" id="bard">
+            <h3><strong>Backup and Restore Databases</strong></h3>
+                <p>Regular backups are essential for data recovery in case of data loss or corruption.</p>
+            
+                <h4><strong>Creating Backups:</strong></h4>
+                    <ul>
+                        <li><strong>Using <code>mysqldump</code>:</strong></li>
+                        <li><strong>Syntax:</strong>
+                            <pre>
+                                <code>
+                                    mysqldump -u username -p database_name &gt; backup_file.sql
+                                </code>
+                            </pre>
+                        </li>
+                        <strong>Example:</strong>
+                            <pre>
+                                <code>
+                                    mysqldump -u root -p mydb &gt; mydb_backup.sql
+                                </code>
+                            </pre>
+                        <ul>
+                            <li>This creates a backup of the <code>mydb</code> database into the file <code>mydb_backup.sql</code>.</li>
+                        </ul>
+    
+                        <li><strong>Backing Up All Databases:</strong></li>
+                        <li><strong>Syntax:</strong>
+                            <pre>
+                                <code>
+                                    mysqldump -u username -p --all-databases &gt; all_databases_backup.sql
+                                </code>
+                            </pre>
+                        </li>
+
+                        <strong>Example:</strong>
+                        <pre>
+                            <code>
+                                mysqldump -u root -p --all-databases &gt; all_databases_backup.sql
+                            </code>
+                        </pre>
+                        <ul>
+                            <li>This creates a backup of all databases.</li>
+                        </ul>
+                    </ul>
+            
+                <h4><strong>Restoring Backups:</strong></h4>
+                    <ul>
+                        <li><strong>Using <code>mysql</code> Command:</strong></li>
+                        
+                        <li><strong>Syntax:</strong>
+                            <pre>
+                                <code>
+                                    mysql -u username -p database_name &lt; backup_file.sql
+                                </code>
+                            </pre>
+                        </li>
+                        <strong>Example:</strong>
+                        <pre>
+                            <code>
+                                mysql -u root -p mydb &lt; mydb_backup.sql
+                            </code>
+                        </pre>
+                        <ul>
+                            <li>This restores the <code>mydb</code> database from the backup file <code>mydb_backup.sql</code>.</li>
+                        </ul>
+                    </ul>
+
+                    <h4><strong>Automating Backups:</strong></h4>
+                    <ul>
+                        <li><strong>Using Cron Jobs (Linux):</strong></li>
+                        <strong>Example:</strong>
+                            <pre>
+                                <code>
+                                    0 2 * * * /usr/bin/mysqldump -u root -p'password' mydb &gt; /backup/mydb_backup.sql
+                                </code>
+                            </pre>
+                            <ul>
+                                <li>This schedules a daily backup of the <code>mydb</code> database at 2 AM.</li>
+                            </ul>
+                    </ul>
+        </div>
+
+        <div class="dt-encript" id="de">
+            <h3><strong>Data Encryption</strong></h3>
+                <p>Data encryption protects sensitive information by converting it into a secure format that is unreadable without proper decryption.</p>
+    
+                <h4><strong>Encrypting Data at Rest:</strong></h4>
+                    <ul>
+                        <li><strong>InnoDB Encryption:</strong></li>
+                        <li><strong>Enabling Encryption:</strong></li>
+                        <ul>
+                            <li><strong>Syntax:</strong>
+                                <pre>
+                                    <code>
+                                        ALTER TABLE table_name ENCRYPTION='Y';
+                                    </code>
+                                </pre>
+                            </li>
+                            <strong>Example:</strong>
+                                <pre>
+                                    <code>
+                                        ALTER TABLE sensitive_data ENCRYPTION='Y';
+                                    </code>
+                                </pre>
+                            <ul>
+                                <li>This enables encryption for the <code>sensitive_data</code> table.</li>
+                            </ul>
+                        </ul>
+                        
+
+                        <li><strong>Configuring Encryption Keys:</strong></li>
+                        
+                        <li><strong>Syntax:</strong></li>
+                            <pre>
+                                <code>
+                                    [mysqld]
+                                    innodb_encrypt_tables=ON
+                                    innodb_encrypt_log=ON
+                                    innodb_encryption_rotate_key_age=1
+                                </code>
+                            </pre>
+
+                        <strong>Example:</strong>
+                        <ul>
+                            <li>Configure the <code>my.cnf</code> file to enable table and log encryption.</li>
+                        </ul>
+                    </ul>
+    
+    
+                <h4><strong>Encrypting Data in Transit:</strong></h4>
+                    <ul>
+                        <li><strong>Using SSL/TLS:</strong></li>
+                        <li><strong>Generating Certificates:</strong>
+                            <ul>
+                                <li>Generate server and client certificates for SSL/TLS encryption.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Configuring SSL/TLS:</strong></li>
+                        <ul>
+                            <li><strong>Syntax:</strong>
+                                <pre>
+                                    <code>
+                                        [mysqld]
+                                        ssl-ca=/path/to/ca.pem
+                                        ssl-cert=/path/to/server-cert.pem
+                                        ssl-key=/path/to/server-key.pem
+                                    </code>
+                                </pre>
+                            </li>
+                            <strong>Example:</strong>
+                            <li>Add SSL/TLS configuration to 
+                                <pre>
+                                    <code>
+                                        my.cnf
+                                    </code>
+                                </pre> 
+                                for secure connections.</li>
+                        </ul>
+                        
+                    </ul>
+    
+                <h4><strong>Encrypting Individual Columns:</strong></h4>
+                    <ul>
+                        <li><strong>Using AES Encryption:</strong></li>
+                        <li><strong>Syntax:</strong>
+                            <pre>
+                                <code>
+                                    INSERT INTO my_table (sensitive_column)
+                                    VALUES (AES_ENCRYPT('secret_data', 'encryption_key'));
+                                </code>
+                            </pre>
+                        </li>
+                        <strong>Example:</strong>
+                            <pre>
+                                <code>
+                                    INSERT INTO users (ssn) VALUES (AES_ENCRYPT('123-45-6789', 'encryption_key'));
+                                </code>
+                            </pre>
+                        <li><strong>Decrypting Data:</strong>
+                            <pre>
+                                <code>
+                                    SELECT AES_DECRYPT(sensitive_column, 'encryption_key') AS decrypted_data
+                                    FROM my_table;
+                                </code>
+                            </pre>
+                            <ul>
+                                <li>This decrypts the data using the specified key.</li>
+                            </ul>
+                        </li>
+                    </ul>
+        </div>
+    </section>
+
+    <footer>
+        <h6>Pramu Programming Concept</h6>
+    </footer>
+</body>
+</html>
