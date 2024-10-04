@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Troubleshooting Common MySQL Issues</title>
+    <link rel="stylesheet" href="../styles/css/common-style.css">
+    <link rel="stylesheet" href="../styles/css/troubleshooting.css">
+    <link rel="stylesheet" href="../styles/highlights/syntax_css/sintaxhighlight.css">
+    <script src="../styles/highlights/syntax_js/sintaxhighlight.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+<body>
+    <header>
+        <img src="../src_images/db_Connect.png" class="sql-logo" alt="SQL Logo">
+        <h2><strong>Troubleshooting Common MySQL Issues</strong></h2>
+    </header>
+
+    <section class="content">
+
+        <p class="init-desc">Troubleshooting MySQL issues involves identifying, diagnosing, and resolving problems that can affect database performance and reliability. This section addresses common errors and their solutions, handling data corruption, debugging slow queries, and repairing and optimizing tables.</p>
+
+        <div class="commn-err" id="ceas">
+            <h3><strong>Common Errors and Solutions</strong></h3>
+                <p>MySQL errors can arise from various issues such as configuration problems, incorrect queries, or connectivity issues. Here are some common errors and their solutions:</p>
+            
+                <h4><strong>Connection Errors</strong></h4>
+                    <ul>
+                        <li><strong>Error</strong>:</li>
+                            <pre id="comm-err-con-err-1">
+                                <code>
+                                    ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2)
+                                </code>
+                            </pre>
+                        <li>
+                            <strong>Solution</strong>:
+                            <ul>
+                                <li>Ensure the MySQL server is running.</li>
+                                <li>Check the <code>my.cnf</code> file for the correct socket path.</li>
+                                <li>Restart MySQL service.
+                                    <pre>
+                                        <code>
+                                            sudo systemctl restart mysql
+                                        </code>
+                                    </pre>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><strong>Error</strong>:</li> 
+                            <pre id="comm-err-con-err-2">
+                                <code>
+                                    ERROR 1045 (28000): Access denied for user 'username'@'localhost' (using password: YES)
+                                </code>
+                            </pre>
+                        <li><strong>Solution</strong>:
+                            <ul>
+                                <li>Verify the username and password.</li>
+                                <li>Ensure the user has sufficient privileges.</li>
+                                <li>Reset the password if necessary.
+                                    <pre>
+                                        <code>
+                                            ALTER USER 'username'@'localhost' IDENTIFIED BY 'newpassword';
+                                        </code>
+                                    </pre>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                
+                <h4><strong>Query Errors</strong></h4>
+                    <ul>
+                        <li><strong>Error</strong>:
+                            <pre>
+                                <code>
+                                    ERROR 1064 (42000): You have an error in your SQL syntax
+                                </code>
+                            </pre>
+                        </li>
+                        <li>
+                            <strong>Solution</strong>:
+                            <ul>
+                                <li>Check the syntax of the query.</li>
+                                <li>Ensure all keywords and table names are correct.</li>
+                                <li>Use MySQL documentation to verify syntax.</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Error</strong>:
+                                <pre>
+                                    <code>
+                                        ERROR 1146 (42S02): Table 'database.table' doesn't exist
+                                    </code>
+                                </pre>
+                        </li>
+                        <li><strong>Solution</strong>:
+                            <ul>
+                                <li>Verify the table name and database name.</li>
+                                <li>Check if the table was accidentally dropped.</li>
+                                <li>Restore the table from a backup if needed.</li>
+                            </ul>
+                        </li>
+                    </ul>
+        </div>
+
+        <div class="dt-corrup-handl" id="hdc">
+            <h3><strong>Handling Data Corruption</strong></h3>
+                <p>Data corruption can result from hardware failures, software bugs, or improper shutdowns. Handling data corruption involves diagnosing the issue and recovering data if necessary.</p>
+    
+                <h4><strong>Identifying Corruption</strong></h4>
+                    <ul>
+                        <li><strong>Using <code>CHECK TABLE</code></strong>:</li>
+                        <ul>
+                            <p>Run <code>CHECK TABLE</code> to identify table corruption.</p>
+                                <pre>
+                                    <code>
+                                        CHECK TABLE table_name;
+                                    </code>
+                                </pre>
+                        </ul>
+                        <li><strong>Using <code>mysqlcheck</code></strong>:</li>
+                        <ul>
+                            <p>Run <code>mysqlcheck</code> to check and repair tables.</p>
+                                <pre>
+                                    <code>
+                                        shmysqlcheck -u root -p --all-databases
+                                    </code>
+                                </pre>
+                        </ul>
+                    </ul>
+    
+                <h4><strong>Repairing Corrupted Tables</strong></h4>
+                    <ul>
+                        <li><strong>Using <code>REPAIR TABLE</code></strong>:</li>
+                            <p>Attempt to repair a corrupted table using <code>REPAIR TABLE</code>.
+                                <pre>
+                                    <code>
+                                        REPAIR TABLE table_name;
+                                    </code>
+                                </pre>
+                            </p>
+                        <li><strong>Restoring from Backup</strong>:</li>
+                        <ul>
+                            <li>If repair fails, restore the table from a backup.</li>
+                        </ul>
+                    </ul>
+    
+                <h4><strong>Preventive Measures</strong></h4>
+                    <ul>
+                        <li><strong>Regular Backups</strong>:</li>
+                        <ul>
+                            <li>Schedule regular backups to mitigate the risk of data loss.</li>
+                        </ul>
+    
+                        <li><strong>Hardware and Software Maintenance</strong>:</li>
+                        <ul>
+                            <li>Ensure hardware is reliable and software is up-to-date.</li>
+                        </ul>
+                    </ul>
+        </div>
+
+        <div class="debug-sl-q" id="dsq">
+            <h3><strong>Debugging Slow Queries</strong></h3>
+                <p>Slow queries can impact database performance. Debugging involves identifying and optimizing these queries.</p>
+    
+                <h4><strong>Identifying Slow Queries</strong></h4>
+                    <ul>
+                        <li><strong>Using <code>slow_query_log</code></strong>:</li>
+                        <p>Enable the slow query log to capture queries that exceed a specified execution time.
+                            <ul>
+                                <pre>
+                                    <code>
+                                        SET GLOBAL slow_query_log = 'ON';
+                                        SET GLOBAL long_query_time = 2;
+                                    </code>
+                                </pre>
+                            </ul>
+                        </p>
+    
+                        <li><strong>Using <code>performance_schema</code></strong>:</li>
+                        <ul>
+                            <p>Query the <code>performance_schema</code> to find slow queries.</p>
+                        </ul>
+                        <pre>
+                            <code>
+                                SELECT * FROM performance_schema.events_statements_summary_by_digest
+                                WHERE AVG_TIMER_WAIT &gt; 1000000000;
+                            </code>
+                        </pre>
+                    </ul>
+    
+                <h4><strong>Optimizing Slow Queries</strong></h4>
+                    <ul>
+                        <li><strong>Analyzing with <code>EXPLAIN</code></strong>:</li>
+                        <p>Use <code>EXPLAIN</code> to analyze query execution plans and identify inefficiencies.
+                            <pre>
+                                <code>
+                                    EXPLAIN SELECT * FROM employees WHERE department = 'Sales';
+                                </code>
+                            </pre>
+                        </p>
+    
+                        <li><strong>Index Optimization</strong>:</li>
+                        <p>Add or modify indexes based on the query patterns.
+                            <pre>
+                                <code>
+                                    CREATE INDEX idx_department ON employees (department);
+                                </code>
+                            </pre>
+                        </p>
+    
+                        <li><strong>Query Refactoring</strong>:</li>
+                        <p>Rewrite complex queries for better performance.</p>
+                        <p><strong>Example</strong>:
+                            <pre id="debug-sl-q-qr-fac">
+                                <code>
+                                    -- Instead of this:
+                                    SELECT * FROM orders WHERE customer_id IN (SELECT id FROM customers WHERE active = 1);
+                                    
+                                    -- Use a JOIN:
+                                    SELECT orders.* FROM orders
+                                    JOIN customers ON orders.customer_id = customers.id
+                                    WHERE customers.active = 1;
+                                </code>
+                            </pre>
+                        </p>
+                    </ul>
+        </div>
+
+        <div class="repr-opt-tb" id="raot">
+            <h3><strong>Repairing and Optimizing Tables</strong></h3>
+                <p>Maintaining and optimizing tables ensures that they perform efficiently and use resources effectively.</p>
+    
+                <h4><strong>Repairing Tables</strong></h4>
+                    <ul>
+                        <li><strong>Using <code>mysqlcheck</code></strong>:</li>
+                        <p>Run <code>mysqlcheck</code> to check and repair tables.
+                            <pre>
+                                <code>
+                                    mysqlcheck -u root -p --auto-repair mydb
+                                </code>
+                            </pre>
+                        </p>
+    
+                        <li><strong>Using <code>REPAIR TABLE</code></strong>:</li>
+                        <p>Attempt table repairs if needed.</p>
+                        <pre>
+                            <code>
+                                REPAIR TABLE table_name;
+                            </code>
+                        </pre>
+                        </li>
+                    </ul>
+    
+                <h4><strong>Optimizing Tables</strong></h4>
+                    <ul>
+                        <li><strong>Using <code>OPTIMIZE TABLE</code></strong>:</li>
+                        <p>Run <code>OPTIMIZE TABLE</code> to defragment tables and reclaim unused space.
+                            <pre>
+                                <code>
+                                    OPTIMIZE TABLE table_name;
+                                </code>
+                            </pre>
+                        </p>
+    
+                        <li><strong>Using <code>ANALYZE TABLE</code></strong>:</li>
+                        <ul>
+                            <p>Run <code>ANALYZE TABLE</code> to update table statistics and improve query optimization.</p>
+                        </ul>
+                        <pre>
+                            <code>
+                                ANALYZE TABLE table_name;
+                            </code>
+                        </pre>
+                    </ul>
+
+                <h4><strong>Reviewing Table Structure</strong></h4>
+                    <ul>
+                        <li><strong>Using <code>SHOW TABLE STATUS</code></strong>:</li>
+                        <ul>
+                            <p>Review table status to check for issues.</p>
+                        </ul>
+                        <pre>
+                            <code>
+                                SHOW TABLE STATUS LIKE 'table_name';
+                            </code>
+                        </pre>
+
+                        <li><strong>Using <code>INFORMATION_SCHEMA</code></strong>:</li>
+                        <ul>
+                            <p>Query <code>INFORMATION_SCHEMA</code> to get detailed table information.</p>
+                        </ul>
+                        <pre>
+                            <code>
+                                SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'table_name';
+                            </code>
+                        </pre>
+                    </ul>
+        </div>
+    </section>
+
+    <footer>
+        <h6>Pramu Programming Concept</h6>
+    </footer>
+</body>
+</html>

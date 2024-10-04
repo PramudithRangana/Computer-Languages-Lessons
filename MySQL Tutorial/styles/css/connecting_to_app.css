@@ -1,0 +1,36 @@
+.content .init-desc,
+.intro-sql-connct,
+.connct-web,
+.exct-q-app-code{
+    background: var(--div-bg);
+    border-radius: 10px;
+    margin: 10px 10px;
+    padding: 20px 40px;
+    box-shadow: 0 1px 10px #000;
+}
+
+.content .intro-sql-connct a
+{
+    text-decoration: none;
+    color: rgb(3, 168, 3);
+}
+
+#intro-py-conct {
+    width: 380px;
+}
+
+.jv-conct pre{
+    width: 1300px;
+}
+
+#exct-jv{
+    width: 1000px;
+}
+
+#exct-q-iud-q-jv{
+    width: 1010px;
+}
+
+/* .content .crt-temp pre{
+    white-space: pre-wrap;
+} */

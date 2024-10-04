@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connecting MySQL to Applications</title>
+    <link rel="stylesheet" href="../styles/css/common-style.css">
+    <link rel="stylesheet" href="../styles/css/connecting_to_app.css">`
+    <link rel="stylesheet" href="../styles/highlights/syntax_css/sintaxhighlight.css">
+    <script src="../styles/highlights/syntax_js/sintaxhighlight.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+<body>
+
+    <header>
+        <img src="../src_images/db_Connect.png" class="sql-logo" alt="SQL Logo">
+        <h2><strong>Connecting MySQL to Applications</strong></h2>
+    </header>
+
+    <section class="content">
+
+        <p class="init-desc">Connecting MySQL to applications is essential for enabling your applications to interact with the database. This section covers the basics of MySQL connectors for various programming languages, connecting MySQL to web applications, and executing queries from application code.</p>
+
+        <div class="intro-sql-connct" id="imsc">
+            <h3><strong>Introduction to MySQL Connectors</strong></h3>
+                <p>MySQL connectors provide a way for different programming languages to communicate with MySQL databases. Each language typically has its own MySQL connector.</p>
+    
+                <h4><strong>Python Connector:</strong></h4>
+                    <pre id="intro-py-conct">
+                        <code>
+                            mysql-connector-python
+                        </code>
+                    </pre>
+                    <ul>
+                        <li>
+                            <strong>Installation :</strong>
+                                <pre>
+                                    <code>
+                                        pip install mysql-connector-python
+                                    </code>
+                                </pre>
+                        </li>
+                            
+                        <strong>Example Connection :</strong>
+                            <pre>
+                                <code>
+                                    import mysql.connector
+                                    conn = mysql.connector.connect(
+                                    &ThickSpace; host="localhost",
+                                    &ThickSpace;  user="root",
+                                    &ThickSpace;  password="password",
+                                    &ThickSpace;  database="mydb"
+                                    )
+                                    cursor = conn.cursor()
+                                    cursor.execute("SELECT * FROM employees")
+    
+                                    for row in cursor.fetchall():
+                                    &ThickSpace; print(row)
+
+                                    cursor.close()
+                                    conn.close()
+                                </code>
+                            </pre>
+                    </ul>
+    
+                <h4><strong>PHP Connector: <code>mysqli</code></strong></h4>
+                    <ul>
+                        <li><strong>Installation :</strong></li>
+                            <ul>
+                                <li>Usually comes bundled with PHP. Ensure <code>mysqli</code> extension is enabled in <code>php.ini</code>.</li>
+                            </ul>
+                        <strong>Example Connection :</strong>
+                            <pre>
+                                <code>
+                                    
+                                    &lt;?php
+                                    $conn = new mysqli("localhost", "root", "password", "mydb");
+                                    
+                                    if ($conn->connect_error) {
+                                    }
+                                    
+                                    $result = $conn->query("SELECT * FROM employees");
+                                    
+                                    while ($row = $result->fetch_assoc()) {
+                                        &ThickSpace; echo "id: " . $row["id"] . " - Name: " . $row["name"] . "&lt;br&gt;";
+                                    }
+                                    
+                                    $conn->close();
+                                    ?&gt;
+                                </code>
+                            </pre>
+                        </ul>
+                        
+                        <h4><strong>Java Connector: <code>mysql-connector-java</code></strong></h4>
+                        <ul>
+                            <li><strong>Installation :</strong></li>
+                            <ul>
+                                <li>Add the connector JAR file to your project's build path. Download from the <a href="https://dev.mysql.com/downloads/connector/j/" target="_blank">MySQL website</a>.</li>
+                            </ul>
+                            
+                            <strong>Example Connection :</strong>
+                            <div class="jv-conct">
+                                <pre>
+                                    <code>
+                                        import java.sql.Connection;
+                                        import java.sql.DriverManager;
+                                        import java.sql.ResultSet;
+                                        import java.sql.Statement;
+                                        
+                                        public class MySQLExample {
+                                            &ThickSpace; public static void main(String[] args) {
+                                                &ThickSpace;&ThickSpace; try {
+                                                    &ThickSpace;&ThickSpace;&ThickSpace; Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "password");
+                                                    &ThickSpace;&ThickSpace;&ThickSpace; Statement stmt = conn.createStatement();
+                                                    &ThickSpace;&ThickSpace;&ThickSpace; ResultSet rs = stmt.executeQuery("SELECT * FROM employees");
+                                                    &ThickSpace;&ThickSpace;&ThickSpace; while (rs.next()) {
+                                                        &ThickSpace;&ThickSpace;&ThickSpace;&ThickSpace; System.out.println("ID: " + rs.getInt("id") + ", Name: " + rs.getString("name"));
+                                                        &ThickSpace;&ThickSpace;&ThickSpace; }
+                                                        
+                                                        &ThickSpace;&ThickSpace;&ThickSpace; conn.close();
+                                                        &ThickSpace;&ThickSpace; } catch (Exception e) {
+                                            &ThickSpace; die("Connection failed: " . $conn->connect_error);
+                                        &ThickSpace;&ThickSpace;&ThickSpace; e.printStackTrace();
+                                        &ThickSpace;&ThickSpace; }
+                                        &ThickSpace;}
+                                    }
+                                    </code>
+                                </pre>
+                            </div>
+                    </ul>
+        </div>
+
+
+        <div class="connct-web" id="cmstwa">
+            <h3><strong>Connecting MySQL to Web Applications</strong></h3>
+                <p>Connecting MySQL to web applications involves integrating the MySQL connector into the application's backend to handle database operations.</p>
+                <h4><strong>Example with PHP and MySQL :</strong></h4>
+                    <ul>
+                        <li><strong>Create a Simple Web Page :</strong>
+                            <pre>
+                                <code>
+                                    &lt;?php
+                                    $conn = new mysqli("localhost", "root", "password", "mydb");
+
+                                    if ($conn-> connect_error) {
+                                    &ThickSpace; die("Connection failed: " . $conn->connect_error);
+                                    }
+
+                                    $sql = "SELECT * FROM employees";
+                                    $result = $conn->query($sql);
+    
+                                    if ($result-> num_rows > 0) {
+                                    &ThickSpace; echo "&lt;table&gt;&lt;tr&gt;&lt;th&gt;ID&lt;/th&gt;&lt;th&gt;Name&lt;/th&gt;&lt;/tr&gt;";
+
+                                    &ThickSpace; while($row = $result->fetch_assoc()) {
+                                    &ThickSpace;&ThickSpace; echo "&lt;tr&gt;&lt;td&gt;" . $row["id"] . "&lt;/td&gt;&lt;td&gt;" . $row["name"] . "&lt;/td&gt;&lt;/tr&gt;";
+                                    &ThickSpace; }
+                                    &ThickSpace; echo "&lt;/table&gt;";
+                                    } else {
+                                    &ThickSpace; echo "0 results";
+                                    }
+
+                                    $conn->close();
+                                    ?>
+                                </code>
+                            </pre>
+                        </li>
+                    </ul>
+
+                <h4><strong>Example with Python (Flask) and MySQL :</strong></h4>
+                    <ul>
+                        <li>
+                            <strong>Install Flask and MySQL Connector :</strong>
+                                <pre>
+                                    <code>
+                                        pip install Flask mysql-connector-python
+                                    </code>
+                                </pre>
+                        </li>
+                        <li>
+                            <strong>Create a Flask Application :</strong>
+                                <pre>
+                                    <code>
+                                        from flask import Flask, render_template
+                                        import mysql.connector
+                                    </code>
+                                </pre>
+                        </li>
+                            
+                        <pre>
+                            <code>
+                                app = Flask(__name__)
+                                
+                                @app.route('/')
+                                
+                                def index():
+                            &ThickSpace; conn = mysql.connector.connect(
+                            &ThickSpace; &ThickSpace;  host="localhost",
+                            &ThickSpace; &ThickSpace;  user="root",
+                            &ThickSpace; &ThickSpace; password="password",
+                            &ThickSpace; &ThickSpace;  database="mydb"
+                            &ThickSpace; )
+                            &ThickSpace; cursor = conn.cursor()
+                            &ThickSpace; cursor.execute("SELECT * FROM employees")
+                            &ThickSpace; employees = cursor.fetchall()
+                            &ThickSpace; cursor.close()
+                            &ThickSpace; conn.close()
+                            &ThickSpace; return render_template('index.html', employees=employees)
+                            
+                                if name=='main':
+                            &ThickSpace; app.run(debug=True)
+                                </code>
+                        </pre>
+                            
+                        <li><strong>Create a Template (<code>templates/index.html</code>) :</strong>
+                        <div class="crt-temp">
+                            <pre>
+                                <code>html
+
+                                    &lt;!DOCTYPE html&gt;
+                                    &lt;html&gt;
+                                    &lt;head&gt;
+                                    &ThickSpace;  &lt;title&gt;Employee List&lt;/title&gt;
+                                    &lt;/head&gt;
+                            &ThickSpace; &lt;body&gt;
+                            &ThickSpace;&ThickSpace; &lt;h1&gt;Employee List&lt;/h1&gt;
+                            &ThickSpace;&ThickSpace; &lt;table border="1"&gt;
+                            &ThickSpace;&ThickSpace;&ThickSpace;  &lt;tr&gt;
+                            &ThickSpace;&ThickSpace;&ThickSpace;&ThickSpace; &lt;th&gt;ID&lt;/th&gt;
+                            &ThickSpace;&ThickSpace;&ThickSpace;&ThickSpace; &lt;th&gt;Name&lt;/th&gt;
+                            &ThickSpace;&ThickSpace;&ThickSpace; &lt;/tr&gt;
+                            &ThickSpace;&ThickSpace;&ThickSpace; {% for emp in employees %}
+                            &ThickSpace;&ThickSpace;&ThickSpace; &lt;tr&gt;
+                            &ThickSpace;&ThickSpace;&ThickSpace;&ThickSpace; &lt;td&gt;{{ emp[0] }}&lt;/td&gt;
+                            &ThickSpace;&ThickSpace;&ThickSpace;&ThickSpace; &lt;td&gt;{{ emp[1] }}&lt;/td&gt;
+                            &ThickSpace;&ThickSpace;&ThickSpace; &lt;/tr&gt;
+                            &ThickSpace;&ThickSpace;&ThickSpace; {% endfor %}
+                            &ThickSpace;&ThickSpace; &lt;/table&gt;
+                            &ThickSpace; &lt;/body&gt;
+                                    &lt;/html&gt;
+                                </code>
+                            </pre>
+                        </div>
+                        </li>
+                    </ul>
+        </div>
+
+        <div class="exct-q-app-code" id="eqac">
+            <h3><strong>Executing Queries from Application Code</strong></h3>
+                <p>Executing queries from your application code involves writing code to perform various CRUD (Create, Read, Update, Delete) operations.</p>
+            
+                <h4><strong>Executing SELECT Queries :</strong></h4>
+                    <ul>
+                        <li>
+                            <strong>Python :</strong>
+                                <pre>
+                                    <code>
+                                        cursor.execute("SELECT * FROM employees")
+                                        rows = cursor.fetchall()
+
+                                        for row in rows:
+                                        &ThickSpace; print(row)
+                                    </code>
+                                </pre>
+                        </li>
+                        <li>
+                            <strong>PHP :</strong>
+                                <pre>
+                                    <code>
+                                        $result = $conn-&gt;query("SELECT * FROM employees");
+
+                                        while ($row = $result-&gt;fetch_assoc()) {
+                                        &ThickSpace; echo "ID: " . $row["id"] . " - Name: " . $row["name"] . "&lt;br&gt;";
+                                        }
+                                    </code>
+                                </pre>
+                        </li>
+                        <li>
+                            <strong>Java :</strong>
+                                <pre id="exct-jv">
+                                    <code>
+                                        ResultSet rs = stmt.executeQuery("SELECT * FROM employees");
+
+                                        while (rs.next()) {
+                                        &ThickSpace; System.out.println("ID: " + rs.getInt("id") + ", Name: " + rs.getString("name"));
+                                        }
+                                    </code>
+                                </pre>
+                        </li>
+                    </ul>
+            
+                <h4><strong>Executing INSERT, UPDATE, and DELETE Queries :</strong></h4>
+                    <ul>
+                        <li>
+                            <strong>Python :</strong>
+                                <pre>
+                                    <code>
+                                        cursor.execute("INSERT INTO employees (name) VALUES ('John Doe')")
+                                        conn.commit()
+                                    </code>
+                                </pre>
+                        </li>
+                        <li>
+                            <strong>PHP :</strong>
+                                <pre>
+                                    <code>
+                                        $conn-&gt;query("INSERT INTO employees (name) VALUES ('John Doe')");
+                                    </code>
+                                </pre>
+                        </li>
+                        <li>
+                            <strong>Java :</strong>
+                                <pre id="exct-q-iud-q-jv">
+                                    <code>
+                                        int rowsAffected = stmt.executeUpdate("INSERT INTO employees (name) VALUES ('John Doe')");
+                                    </code>
+                                </pre>
+                        </li>
+                    </ul>
+            
+                <h4><strong>Handling Errors :</strong></h4>
+                    <ul>
+                        <li>
+                            <strong>Python :</strong>
+                                <pre>
+                                    <code>
+                                        try:
+                                        &ThickSpace; cursor.execute("SELECT * FROM non_existent_table")
+                                        except mysql.connector.Error as err:
+                                        &ThickSpace; print(f"Error: {err}")
+                                    </code>
+                                </pre>
+                        </li>
+                        <li>
+                            <strong>PHP :</strong>
+                                <pre>
+                                    <code>
+                                        if ($conn-&gt;query("SELECT * FROM non_existent_table") === FALSE) {
+                                        &ThickSpace; echo "Error: " . $conn-&gt;error;
+                                        }
+                                    </code>
+                                </pre>
+                        </li>
+                        <li>
+                            <strong>Java :</strong>
+                                <pre>
+                                    <code>
+                                        try {
+                                        &ThickSpace;  ResultSet rs = stmt.executeQuery("SELECT * FROM non_existent_table");
+                                        } catch (SQLException e) {
+                                        &ThickSpace;  e.printStackTrace();
+                                        }
+                                    </code>
+                                </pre>
+                        </li>
+                    </ul>
+        </div>
+    </section>
+
+    <footer>
+        <h6>Pramu Programming Concept</h6>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stored Procedures and Triggers</title>
+    <link rel="stylesheet" href="../styles/css/common-style.css">
+    <link rel="stylesheet" href="../styles/css/sp_&_trigger.css">
+    <link rel="stylesheet" href="../styles/highlights/syntax_css/sintaxhighlight.css">
+    <script src="../styles/highlights/syntax_js/sintaxhighlight.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+<body>
+
+    <header>
+        <img src="../src_images/db_Connect.png" class="sql-logo" alt="SQL Logo">
+        <h2><strong>Stored Procedures and Triggers</strong></h2>
+    </header>
+
+    <section class="content">
+
+        <p class="init-desc">Stored procedures and triggers are powerful features in MySQL that allow you to automate tasks and enforce business logic within your database. In this section, we'll cover the basics of stored procedures, how to create and execute them, work with parameters, and introduce triggers.</p>
+
+        <div class="sp-intro" id="itsp">
+            <h3><strong>Introduction to Stored Procedures</strong></h3>
+                    <p>A stored procedure is a set of SQL statements that can be stored in the database and executed as a single unit. Stored procedures are used to encapsulate and reuse logic, making your database operations more efficient and maintainable.</p>
+                    <ul>
+                        <li><strong>Benefits of Stored Procedures :</strong></li>
+                        <ul>
+                            <li><strong>Code Reusability :</strong> Write once, use multiple times.</li>
+                            <li><strong>Performance :</strong> Execution plans are cached, improving performance.</li>
+                            <li><strong>Security :</strong> You can grant users access to stored procedures without giving them access to the underlying tables.</li>
+                            <li><strong>Maintainability :</strong> Centralized logic makes updates easier.</li>
+                        </ul>
+                    </ul>
+        </div>
+
+        <div class="execut-sp" id="caesp">
+            <h3><strong>Creating and Executing Stored Procedures</strong></h3>
+    
+                <h4><strong>Creating a Stored Procedure :</strong></h4>
+                    <p>To create a stored procedure, you use the <code>CREATE PROCEDURE</code> statement. Here's the basic syntax:</p>
+                    <ul>
+                        <pre>
+                            <code>
+                                DELIMITER //
+                                CREATE PROCEDURE procedure_name (parameters)
+                                BEGIN
+                                &ThickSpace; -- SQL statements
+                                END //
+                                DELIMITER ;
+                            </code>
+                        </pre>
+                    </ul>
+
+                    <ul>
+                        <li>
+                            <strong>DELIMITER :</strong> By default, MySQL uses <code>;</code> to end a statement. The <code>DELIMITER</code> command changes the delimiter temporarily so you can define the procedure with multiple statements.</p>
+                        </li>
+
+                        <strong>Example :</strong>
+                        <pre>
+                            <code>
+                                DELIMITER //
+                                CREATE PROCEDURE GetEmployeeCount()
+                                BEGIN
+                                &ThickSpace; SELECT COUNT(*) AS employee_count FROM employees;
+                                END //
+                                DELIMITER ;
+                            </code>
+                        </pre>
+                        <ul>
+                            <p>This procedure, </code>GetEmployeeCount<code>, returns the number of employees in the</code>employees` table.</p>
+                        </ul>
+                    </ul>
+    
+                <h4><strong>Executing a Stored Procedure :</strong></h4>
+                    <p>You can execute a stored procedure using the <code>CALL</code> statement.</p>
+                    <ul>
+                        <li>
+                        <strong>Syntax :</strong>
+                            <pre>
+                                <code>
+                                    CALL procedure_name(parameters);
+                                </code>
+                            </pre>
+                        </li>
+
+                        <strong>Example :</strong>
+                            <pre>
+                                <code>
+                                    CALL GetEmployeeCount();
+                                </code>
+                            </pre>
+                        <ul>
+                            <li>This calls the <code>GetEmployeeCount</code> procedure and returns the number of employees.</li>
+                        </ul>
+                    </ul>
+        </div>
+
+        <div class="param-sp" id="wpp">
+            <h3><strong>Working with Parameters in Procedures</strong></h3>
+                <p>Stored procedures can accept parameters to make them more flexible. Parameters can be input (<code>IN</code>), output (<code>OUT</code>), or both (<code>INOUT</code>).</p>
+    
+                <h4><strong>IN Parameter :</strong></h4>
+                    <ul>
+                        <li><strong>Description :</strong> Passes a value to the procedure.</li>
+                        <strong>Example :</strong>
+                        <pre>
+                            <code>
+                                DELIMITER //
+                            
+                                CREATE PROCEDURE GetEmployeeByID(IN emp_id INT)
+                                BEGIN
+                                &ThickSpace; SELECT * FROM employees WHERE id = emp_id;
+                                END //
+                                DELIMITER ;
+                            </code>
+                        </pre>
+                        <ul>
+                            <p>This procedure, GetEmployeeByID, accepts an employee ID as input and returns the corresponding employee's details.</p>
+                        </ul>
+                    </ul>
+    
+                <h4><strong>OUT Parameter :</strong></h4>
+                    <ul>
+                        <li><strong>Description :</strong> Returns a value from the procedure.</li>
+                        <strong>Example :</strong>
+                        <pre>
+                            <code>
+                                DELIMITER //
+                                
+                                CREATE PROCEDURE GetEmployeeCount(OUT emp_count INT)
+                                BEGIN
+                                &ThickSpace; SELECT COUNT(*) INTO emp_count FROM employees;
+                                END //
+                                DELIMITER ;
+
+                                CALL GetEmployeeCount(@count);
+                                SELECT @count AS total_employees;
+                            </code>
+                        </pre>
+                    </ul>
+                    <ul>
+                        <p>This procedure, <code>GetEmployeeCount</code>, returns the number of employees in the <code>emp_count</code> output parameter.</p>
+                    </ul>
+    
+                <h4><strong>INOUT Parameter :</strong></h4>
+                    <ul>
+                        <li><strong>Description :</strong> Accepts and returns a value.</li>
+                        <strong>Example :</strong>
+                        <pre id="acc-rtn-vl">
+                            <code>
+                                DELIMITER //
+                                CREATE PROCEDURE IncreaseSalary(INOUT emp_salary DECIMAL(10,2), IN increment DECIMAL(10,2))
+                                BEGIN
+                                &ThickSpace; SET emp_salary = emp_salary + increment;
+                                END //
+                                DELIMITER ;
+                            </code>
+                        </pre>
+
+                        <pre>
+                            <code>
+                                SET @salary = 50000;  
+                                CALL IncreaseSalary(@salary, 5000); 
+                                SELECT @salary AS new_salary;
+                            </code>
+                        </pre>
+                    </ul>
+                    <ul>
+                        <p>This procedure, <code>IncreaseSalary</code>, increases an employee's salary by a specified amount.</p>
+                    </ul>
+        </div>
+
+        <div class="trigger-intro" id="itt">
+            <h3><strong>Introduction to Triggers</strong></h3>
+                <p>A trigger is a set of SQL statements that automatically executes in response to certain events on a table, such as <code>INSERT</code>, <code>UPDATE</code>, or <code>DELETE</code>. Triggers are used to enforce business rules, maintain data integrity, and automate tasks.</p>
+                    <ul>
+                        <li><strong>Types of Triggers :</strong></li>
+                        <ul>
+                            <li><strong>BEFORE Triggers :</strong> Execute before the triggering event.</li>
+                            <li><strong>AFTER Triggers :</strong> Execute after the triggering event.</li>
+                        </ul>
+                    </ul>
+        </div>
+
+        <div class="mng-trigr" id="camt">
+            <h3><strong>Creating and Managing Triggers</strong></h3>
+                <h4><strong>Creating a Trigger :</strong></h4>
+                    
+                    <p>You use the <code>CREATE TRIGGER</code> statement to create a trigger. Here's the basic syntax:</p>
+                    <p>
+                        <pre>
+                            <code>
+                                CREATE TRIGGER trigger_name
+                                BEFORE | AFTER INSERT | UPDATE | DELETE
+                                ON table_name
+                                FOR EACH ROW
+                                BEGIN
+                                &ThickSpace; -- SQL statements
+                                END;
+                            </code>
+                        </pre>
+                    </p>
+                    <ul><strong>Example :</strong></ul>
+                        <pre>
+                            <code>
+                                CREATE TRIGGER before_employee_insert
+                                BEFORE INSERT ON employees
+                                FOR EACH ROW
+                                BEGIN
+                                &ThickSpace; SET NEW.created_at = NOW();
+                                END;
+                            </code>
+                        </pre>
+                        <ul>
+                            <p>This trigger, <code>before_employee_insert</code>, automatically sets the <code>created_at</code> column to the current date and time before a new employee record is inserted.</p>
+                        </ul>
+    
+                <h4><strong>Managing Triggers :</strong></h4>
+                    <ul>
+                        <li><strong>Viewing Triggers :</strong></li>
+                        <ul>
+                            <li>You can view existing triggers using the <code>SHOW TRIGGERS</code> statement:
+                            <pre>
+                                <code>
+                                    SHOW TRIGGERS;
+                                </code>
+                            </pre>
+                            </li>
+                        </ul>
+                        <li><strong>Dropping a Trigger :</strong></li>
+                            <ul>
+                                <li>Use the <code>DROP TRIGGER</code> statement to remove a trigger:</li>
+                                <pre>
+                                    <code>
+                                        DROP TRIGGER IF EXISTS trigger_name;
+                                    </code>
+                                </pre>
+                            </ul>
+                        <strong>Example :</strong>
+                        <pre>
+                            <code>
+                                DROP TRIGGER IF EXISTS before_employee_insert;
+                            </code>
+                        </pre>
+                        <ul>
+                            <li>This removes the <code>before_employee_insert</code> trigger.</li>
+                        </ul>
+                    </ul>
+        </div>
+
+        <div class="concl">
+            <h3><strong>Conclusion</strong></h3>
+                <p>Stored procedures and triggers are powerful tools that allow you to encapsulate and automate database logic. By understanding how to create and use these features, you can enhance the functionality, performance, and maintainability of your MySQL databases.</p>
+        </div>
+    </section>
+
+    <footer>
+        <h6>Pramu Programming Concept</h6>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,57 @@
+.content .instll,
+.config-sevr,
+.strt-stp-svr,
+.accs-cli {
+    background: var(--div-bg);
+    border-radius: 10px;
+    margin: 10px 10px;
+    padding: 20px 40px;
+    box-shadow: 0 1px 10px #000;
+}
+
+.content .instll-mac,
+.instll-lnx {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid silver;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 20px;
+}
+
+.content .config-sevr .config-sevr-file{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 15px;
+    border: #fcfc0ebd solid 2px;
+    width: 97%;
+    padding: 25px 20px;
+    font-size: 12pt;
+    letter-spacing: 0.08em;
+}
+
+.content .config-sevr .config-sevr-file ul {
+    padding-left: 70px;
+}
+
+.content .instll-mac a, .instll-wn a{
+    color: rgb(16, 199, 16);
+    text-decoration: none;
+}
+
+.content pre {
+    width: 500px;
+}
+
+#contnt-instll-mac-addpath {
+    width: 800px;
+}
+
+#instll-mysql-lnx {
+    width: 600px;
+}
+
+#confg-srv-char {
+    width: 600px;
+}
