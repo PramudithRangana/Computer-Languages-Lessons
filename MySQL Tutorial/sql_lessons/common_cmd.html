@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commonly Used Commands</title>
+    <link rel="stylesheet" href="../styles/css/cu-cmd.css">
+    <link rel="stylesheet" href="../styles/highlights/syntax_css/sintaxhighlight.css">
+    <script src="../styles/highlights/syntax_js/sintaxhighlight.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+<body>
+    <header>
+        <img src="../src_images/db_Connect.png" class="sql-logo" alt="SQL Logo">
+        <h2><strong>Basic MySQL Operations</strong></h2>
+    </header>
+
+    <section class="container">
+        <div class="content">
+
+            <h4>1. Connect to MySQL Server</h4>
+            <p>To start the MySQL command-line client and connect to the server:</p>
+
+            <pre>
+                <code>
+                    mysql -u username -p
+                </code>
+            </pre>
+            <p>After running this command, you will be prompted to enter your password. Replace <code>username</code> with your MySQL user.</p>
+        
+            <h4>2. Show Databases</h4>
+            <p>To list all databases on the server:</p>
+
+            <pre>
+                <code>
+                    SHOW DATABASES;
+                </code>
+            </pre>
+
+            <h4>3. Show Tables</h4>
+            <p>To list all tables in the currently selected database:</p>
+
+            <pre>
+                <code>
+                    SHOW TABLES;
+                </code>
+            </pre>
+
+            <pre>
+                <code>
+                    SHOW CREATE TABLE table_name;
+                </code>
+            </pre>
+
+            <h4>4. Create a Database</h4>
+            <p>To create a new database, use the <code>CREATE DATABASE</code> statement:</p>
+
+            <pre>
+                <code>
+                    CREATE DATABASE my_database;
+                </code>
+            </pre>
+
+            <h4>5. Activate the Database</h4>
+            <p>To select the database to use, use the <code>USE</code> statement:</p>
+
+            <pre>
+                <code>
+                    USE my_database;
+                </code>
+            </pre>
+
+            <h4>6. Create a Table</h4>
+            <p>To create a new table, use the <code>CREATE TABLE</code> statement:</p>
+        
+            <pre>
+                <code>
+                    CREATE TABLE my_table (
+                        id INT AUTO_INCREMENT PRIMARY KEY,
+                        name VARCHAR(100),
+                        age INT
+                        );
+                </code>
+            </pre>
+
+            <h4>7. Rename a Table</h4>
+            <p>To rename an existing table to new name, use the <code>RENAME TABLE</code> statement:</p>
+        
+            <pre>
+                <code>
+                    RENAME TABLE my_table TO new_my_table;
+                </code>
+            </pre>
+        
+            <h4>8. Show Table Information Schema</h4>
+            <p>To show Information schema of a table:</p>
+        
+            <pre>
+                <code>
+                    SELECT * FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE TABLE_NAME = 'my_table';
+                </code>
+            </pre>
+
+            <h4>9. Describe the Table</h4>
+            <p>To see the structure of the table, use the <code>DESCRIBE</code> statement:</p>
+        
+            <pre>
+                <code>
+                    DESCRIBE my_table;
+                </code>
+            </pre>
+        
+            <h4>10. Add a New Column to the Table</h4>
+            <p>To add a new column, use the <code>ALTER TABLE</code> statement:</p>
+        
+            <pre>
+                <code>
+                    ALTER TABLE my_table ADD COLUMN email VARCHAR(255);
+                </code>
+            </pre>
+            
+            <h4>11. Rename Column of the Table</h4>
+            <p>To rename column, use the <code>RENAME COLUMN</code> statement:</p>
+        
+            <pre>
+                <code>
+                    ALTER TABLE my_table RENAME COLUMN old_col TO new _col;
+                </code>
+            </pre>
+
+            <h4>12. Change the position of a Column of the Table</h4>
+            <p>To change the position of a column:</p>
+        
+            <pre>
+                <code>
+                    ALTER TABLE my_table MODIFY my_col VARCHAR(100) AFTER another_col;
+                </code>
+            </pre>
+
+            <pre>
+                <code>
+                    ALTER TABLE my_table MODIFY my_col VARCHAR(100) FIRST;
+                </code>
+            </pre>
+        
+            <h4>13. Show Table Structure</h4>
+            <p>To see the structure of a table, including columns, types, and other attributes:</p>
+        
+            <pre>
+                <code>
+                    SHOW COLUMNS FROM table_name;
+                </code>
+            </pre>
+        
+            <h4>14. Delete a Column from the Table</h4>
+            <p>To remove a column, use:</p>
+        
+            <pre>
+                <code>
+                    ALTER TABLE my_table DROP COLUMN email;
+                </code>
+            </pre>
+        
+            <h4>15. Null - Not Null</h4>
+            <p>To set a column to allow NULL values or not:</p>
+        
+            <pre>
+                <code>
+                    ALTER TABLE my_table MODIFY COLUMN age INT NOT NULL;
+                </code>
+            </pre>
+
+            <h4>16. Find Null - Not Null</h4>
+            <p>To find NULL values and not NULL values:</p>
+        
+            <pre>
+                <code>
+                    SELECT * FROM my_table WHERE my_col IS NULL;
+                </code>
+            </pre>
+        
+            <pre>
+                <code>
+                    SELECT * FROM my_table WHERE my_col = 'NULL';
+                </code>
+            </pre>
+        
+            <pre>
+                <code>
+                    SELECT * FROM my_table WHERE my_col IS NOT NULL;
+                </code>
+            </pre>
+        
+            <h4>17. Make a Column Unique</h4>
+            <p>To ensure a column has unique values:</p>
+        
+            <pre>
+                <code>
+                    ALTER TABLE my_table ADD UNIQUE (email);
+                </code>
+            </pre>
+        
+            <pre>
+                <code>
+                    ALTER TABLE my_table ADD CONSTRAINT UNIQUE (column_1);
+                </code>
+            </pre>
+
+            <pre>
+                <code>
+                    ALTER TABLE my_table ADD CONSTRAINT uc_tbl UNIQUE(column_1, column_3);
+                </code>
+            </pre>
+
+            <h4>18. Delete Unique Constraint</h4>
+        
+            <pre>
+                <code>
+                    ALTER TABLE my_table DROP INDEX uc_tbl;
+                </code>
+            </pre>
+
+            <h4>19. Create Table with Primary Key</h4>
+            
+            <pre>
+                <code>
+                    CREATE TABLE my_table (
+                        id INT AUTO_INCREMENT,
+                        name VARCHAR(100),
+                        age INT,
+                        CONSTRAINT pk_tbl PRIMARY KEY(id)
+                        );
+                </code>
+            </pre>
+
+            <h4>20. Add Primary Key to the the existing Table</h4>
+            <p>To add a primary key:</p>
+
+            <h6>Syntax :</h6>
+            <pre>
+                <code>
+                    ALTER TABLE `db name`.`table name`
+                    CHANGE COLUMN `column_1` `column_1` VARCHAR(5) NOT NULL ,
+                    ADD PRIMARY KEY (`column_1`);
+                </code>
+            </pre>
+            
+            <h6>Examples :</h6>
+            
+            <pre>
+                <code>
+                    ALTER TABLE `Table Name`
+                    CHANGE COLUMN `Field Name` `Primitive Data Type` NOT NULL ,
+                    ADD PRIMARY KEY (`Field Name`);
+                </code>
+            </pre>
+            
+            <pre>
+                <code>
+                    ALTER TABLE my_table ADD PRIMARY KEY (id);
+                </code>
+            </pre>
+
+            <pre>
+                <code>
+                    ALTER TABLE my_table ADD CONSTRAINT pk_user PRIMARY KEY (id, name);
+                </code>
+            </pre>
+        
+            <h4>21. Delete Primary Key from the Table</h4>
+            <p>To remove the primary key:</p>
+
+            <pre>
+                <code>
+                    ALTER TABLE my_table DROP PRIMARY KEY;
+                </code>
+            </pre>
+        
+            <h4>22. Create a Table with Foreign Key</h4>
+            
+            <pre>
+                <code>
+                    CREATE TABLE my_table (
+                        id INT AUTO_INCREMENT,
+                        name VARCHAR(100),
+                        age INT,
+                        PRIMARY KEY(id),
+                        CONSTRAINT fk_tbl_1_tbl_2 FOREIGN KEY(id) REFERENCES my_table_2(id)
+                        );
+                </code>
+            </pre>
+
+            <h4>23. Add Foreign Key to the existing Table</h4>
+            <p>To add a foreign key:</p>
+            
+            <h6>Syntax :</h6>
+            <pre>
+                <code>
+                    ALTER TABLE `db name`.`table name` ADD FOREIGN KEY (`Field Name`)
+                    REFERENCES `Refered Table Name`(`Field Name of the Refered Table`);
+                </code>
+            </pre>
+            
+            <h6>Examples :</h6>
+            
+            <pre>
+                <code>
+                    ALTER TABLE my_table ADD FOREIGN KEY (user_id) REFERENCES users(id);
+                </code>
+            </pre>
+
+            <pre id="afket">
+                <code>
+                    ALTER TABLE my_table ADD CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id);
+                </code>
+            </pre>
+
+            <h5>Disable Foreign Key from the Table</h5>
+            <p>To set uncheck the foreign key:</p>
+        
+            <pre>
+                <code>
+                    SET fk_check = 0;
+                </code>
+            </pre>
+
+            <h5>Enable Foreign Key from the Table</h5>
+            <p>To set check the foreign key:</p>
+        
+            <pre>
+                <code>
+                    SET fk_check = 1;
+                </code>
+            </pre>
+
+            <p>This is the default position of the foreign key.</p>
+        
+            <h4>24. Delete Foreign Key from the Table</h4>
+            <p>To remove a foreign key:</p>
+        
+            <pre>
+                <code>
+                    ALTER TABLE my_table DROP FOREIGN KEY fk_user;
+                </code>
+            </pre>
+
+            <h4>25. Create a Table with Composite Primary Key</h4>
+
+            <pre>
+                <code>
+                    CREATE TABLE my_table (
+                        id INT AUTO_INCREMENT,
+                        name VARCHAR(100),
+                        age INT,
+                        CONSTRAINT pk_tbl PRIMARY KEY(id, name)
+                        );
+                </code>
+            </pre>
+
+            <h4>26. Add Composite Primary Key to the Table</h4>
+            <p>To add a composite primary key:</p>
+        
+            <pre>
+                <code>
+                    ALTER TABLE my_table ADD PRIMARY KEY (column1, column2);
+                </code>
+            </pre>
+        
+            <h4>27. Delete Composite Primary Key from the Table</h4>
+            <p>To remove a composite primary key:</p>
+        
+            <pre>
+                <code>
+                    ALTER TABLE my_table DROP PRIMARY KEY;
+                </code>
+            </pre>
+
+            <h4>28. <strong>Check Constraint</strong></h4>
+            <p>Check validation of the values</p>
+
+            <pre>
+                <code>
+                    CREATE TABLE my_table (
+                        id INT AUTO_INCREMENT,
+                        name VARCHAR(100),
+                        age INT,
+                        PRIMARY KEY(id),
+                        CHECK(age < 18)
+                        );
+                </code>
+            </pre>
+
+            <pre>
+                <code>
+                    ALTER TABLE my_table ADD CONSTRAINT chk_mrk CHECK(marks >= 10);
+                </code>
+            </pre>
+
+            <h5>Remove the Constraint</h5>
+
+            <pre>
+                <code>
+                    ALTER TABLE my_table DROP CONSTRAINT chk_mrk;
+                </code>
+            </pre>
+        
+            <h4>29. <strong>Show Indexes</strong></h4>
+            <p>To list indexes on a table:</p>
+        
+            <pre>
+                <code>
+                    SHOW INDEX FROM table_name;
+                </code>
+            </pre>
+        
+            <h4>30. ON DELETE CASCADE</h4>
+            <p>To set up cascading deletes:</p>
+        
+            <pre id="odc">
+                <code>
+                    ALTER TABLE my_table ADD CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE;
+                </code>
+            </pre>
+        
+            <h4>31. ON DELETE SET NULL</h4>
+            <p>To set up setting NULL on delete:</p>
+        
+            <pre id="odsn">
+                <code>
+                    ALTER TABLE my_table ADD CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL;
+                </code>
+            </pre>
+        
+            <h4>32. Default Values</h4>
+            <p>To set a default value for a column:</p>
+
+            <h6>Syntax :</h6>
+            <pre>
+                <code>
+                    ALTER TABLE `db name`.`table name` MODIFY `Field Name` INT DEFAULT('Unknown');
+                </code>
+            </pre>
+            
+            <h6>Examples :</h6>
+            <pre>
+                <code>
+                    ALTER TABLE my_table MODIFY COLUMN status VARCHAR(10) DEFAULT 'active';
+                </code>
+            </pre>
+            
+            <pre>
+                <code>
+                    ALTER TABLE my_table ALTER col SET DEFAULT Now();
+                </code>
+            </pre>
+
+            <h5>Remove Default Value</h5>
+
+            <h6>Syntax :</h6>
+
+            <pre>
+                <code>
+                    ALTER TABLE `db name`.`table name` ALTER `Field Name` DROP DEFAULT;
+                </code>
+            </pre>
+
+            <h4>33. Auto Increment</h4>
+            <p>To set a column to auto-increment:</p>
+            
+            <h6>Syntax :</h6>
+
+            <pre>
+                <code>
+                    ALTER TABLE `db name`.`table name` MODIFY `Field Name` INT NOT NULL AUTO_INCREMENT;
+                </code>
+            </pre>
+
+            <h6>Examples :</h6>
+
+            <pre>
+                <code>
+                    ALTER TABLE my_table MODIFY COLUMN existing_column INT AUTO_INCREMENT;
+                </code>
+            </pre>
+
+            <pre>
+                <code>
+                    ALTER TABLE `my_table` CHANGE `rollno` `rollno` INT NOT NULL AUTO_INCREMENT;
+                </code>
+            </pre>
+
+            <pre id="ai">
+                <code>
+                    ALTER TABLE `my_table` CHANGE COLUMN `rollno` `rollno` INT UNSIGNED NOT NULL AUTO_INCREMENT;
+                </code>
+            </pre>
+
+            <p>-- error: need primary key</p>
+            <pre>
+                <code>
+                    ALTER TABLE `my_table` MODIFY rollno INT NOT NULL AUTO_INCREMENT PRIMARY KEY;
+                </code>
+            </pre>
+
+            <h4>34. Insert Data into the Table</h4>
+            <p>To insert data:</p>
+
+            <pre>
+                <code>
+                    INSERT INTO my_table (name, age) VALUES ('John Doe', 30);
+                </code>
+            </pre>
+        
+            <pre>
+                <code>
+                    INSERT INTO my_table VALUES (CURRENT_DATE(), CURRENT_TIME(), NOW());
+                </code>
+            </pre>
+
+            <h4>35. Read Data from the Table</h4>
+            <p>To retrieve data from a table:</p>
+
+            <pre>
+                <code>
+                    SELECT * FROM my_table;
+                </code>
+            </pre>
+        
+            <h4>36. Update Data in the Table</h4>
+            <p>To update existing data:</p>
+        
+            <pre>
+                <code>
+                    UPDATE my_table SET age = 31 WHERE name = 'John Doe';
+                </code>
+            </pre>
+        
+            <h4>37. Delete Data from the Table</h4>
+            <p>To delete data:</p>
+        
+            <pre>
+                <code>
+                    DELETE FROM my_table WHERE name = 'John Doe';
+                </code>
+            </pre>
+
+            <h4>38. Auto Commit Disable</h4>
+            <p>To disable to commit:</p>
+
+            <pre>
+                <code>
+                    SET AUTOCOMMIT = OFF;
+                </code>
+            </pre>
+
+            <h4>39. Auto Commit Enable</h4>
+            <p>To enable (default position) to auto-increment:</p>
+        
+            <pre>
+                <code>
+                    SET AUTOCOMMIT = ON;
+                </code>
+            </pre>
+
+            <h4>40. Ascending - Descending</h4>
+            <p>To change the list order:</p>
+        
+            <pre>
+                <code>
+                    select * from my_table order by some_column Asc
+                </code>
+            </pre>
+        
+            <pre>
+                <code>
+                    select * from my_table order by some_column desc
+                </code>
+            </pre>
+
+            <h4>41. Read limited Data from the Table</h4>
+            <p>To retrieve limited data from a table, use the <code>LIMIT</code> statement:</p>
+        
+            <pre>
+                <code>
+                    SELECT column1, column2, ...
+                    FROM table_name
+                    WHERE condition
+                    ORDER BY column1
+                    LIMIT number;
+                </code>
+            </pre>
+
+            <p>e.g : Find First five records</p>
+            <pre>
+                <code>
+                    select * from my_table limit 5;
+                </code>
+            </pre>
+
+            <p>e.g : First One After 3 records  [fourth highest]</p>
+            <pre>
+                <code>
+                    select * from my_table order by column_1 desc limit 3, 1;
+                </code>
+            </pre>
+
+            <h4>42. Rollup</h4>
+            <p>Produces another row and shows the GRAND TOTAL (super-aggregate value):</p>
+        
+            <pre>
+                <code>
+                    SELECT SUM(col) FROM my_tbl GROUP BY some_column WITH ROLLUP;
+                </code>
+            </pre>
+        
+            <h4>43. IN Keyword</h4>
+            <p>To filter results using the <code>IN</code> keyword:</p>
+        
+            <pre>
+                <code>
+                    SELECT * FROM my_table WHERE age IN (25, 30, 35);
+                </code>
+            </pre>
+        
+            <h4>44. DISTINCT</h4>
+            <p>To select distinct values:</p>
+        
+            <pre>
+                <code>
+                    SELECT DISTINCT age FROM my_table;
+                </code>
+            </pre>
+        
+            <h4>45. GROUP BY</h4>
+            <p>To group results:</p>
+        
+            <pre>
+                <code>
+                    SELECT age, COUNT(*) FROM my_table GROUP BY age;
+                </code>
+            </pre>
+        
+            <h4>46. ORDER BY</h4>
+            <p>To sort results:</p>
+        
+            <pre>
+                <code>
+                    SELECT * FROM my_table ORDER BY age DESC;
+                </code>
+            </pre>
+        
+            <h4>47. Functions</h4>
+        
+            <h5>COUNT</h5>
+            <p>To count rows:</p>
+        
+            <pre>
+                <code>
+                    SELECT COUNT(*) FROM my_table;
+                </code>
+            </pre>
+        
+            <h5>AVG</h5>
+            <p>To calculate average:</p>
+        
+            <pre>
+                <code>
+                    SELECT AVG(age) FROM my_table;
+                </code>
+            </pre>
+            
+            <h5>SUM</h5>
+            <p>To calculate sum:</p>
+        
+            <pre>
+                <code>
+                    SELECT SUM(age) FROM my_table;
+                </code>
+            </pre>
+        
+            <h5>MAX</h5>
+            <p>To find maximum value:</p>
+        
+            <pre>
+                <code>
+                    SELECT MAX(age) FROM my_table;
+                </code>
+            </pre>
+        
+            <h5>MIN</h5>
+            <p>To find minimum value:</p>
+        
+            <pre>
+                <code>
+                    SELECT MIN(age) FROM my_table;
+                </code>
+            </pre>
+
+            <h4>48. Windows Function</h4>
+
+            <h5>ROW_NUMBER()</h5>
+            <p>To find row num of values:</p>
+        
+            <pre>
+                <code>
+                    SELECT ROW_NUMBER() OVER (ORDER BY some_column) as Row_Number, column_1, column_2
+                    FROM my_table ORDER BY some_column;
+                </code>
+            </pre>
+
+            <pre id="wfrn">
+                <code>
+                    SELECT column_1, column_2 ROW_NUMBER() OVER (PARTITION BY column_1, column_2 ORDER BY column_1) as Row_Number
+                    FROM my_table;
+                </code>
+            </pre>
+
+            <h5>RANK()</h5>
+            <p>To find ranks of some set of values:</p>
+            
+            <pre>
+                <code>
+                    SELECT column_1,
+                    RANK() OVER (ORDER BY column_1) as Column_Ranking
+                    FROM my_table;
+                </code>
+            </pre>
+
+            <pre id="wfr">
+                <code>
+                    SELECT * FROM (SELECT *, RANK() OVER (ORDER BY column_1 DESC) AS 'RANKING' FROM my_tbl) AS a 
+                    WHERE RANKING = 4;
+                </code>
+            </pre>
+
+            <h5>DENSE RANK()</h5>
+            <p>To find dense ranks of some set of values:</p>
+
+            <pre id="wfdr">
+                <code>
+                    SELECT * FROM (SELECT *, DENSE_RANK() OVER (ORDER BY column_1 DESC) AS 'DENSE_RANKING' FROM my_tbl) AS a
+                </code>
+            </pre>
+
+            <h5>FIRST VALUE()</h5>
+            <p>To find first value of some set of values:</p>
+            
+            <pre>
+                <code>
+                    SELECT column_1, column_2, column_3, FIRST_VALUE(column_1)
+                    OVER (ORDER BY column_2 DESC) as First_Value
+                    FROM my_table;
+                </code>
+            </pre>
+            
+            <p>To find highest value of some set of values by grouping with some value:</p>
+            <pre>
+                <code>
+                    SELECT column_1, column_2 FIRST_VALUE() 
+                    OVER (PARTITION BY column_1 ORDER BY column_2) as Highest_Value
+                    FROM my_table;
+                </code>
+            </pre>
+
+            <h4>49. Wild Card - LIKE</h4>
+            <p>To search for a pattern:</p>
+
+            <pre>
+                <code>
+                    SELECT * FROM my_table WHERE name LIKE 'J%';
+                </code>
+            </pre>
+
+            <pre>
+                <code>
+                    SELECT * FROM my_table WHERE date LIKE '____-08%';
+                </code>
+            </pre>
+
+            <h4>50. UNION</h4>
+            <p>To combine results from multiple queries:</p>
+
+            <pre>
+                <code>
+                    SELECT name FROM table1
+                    UNION
+                    SELECT name FROM table2;
+                </code>
+            </pre>
+        
+            <h4>51. JOIN</h4>
+            <p>To combine rows from multiple tables:</p>
+        
+            <pre>
+                <code>
+                    SELECT my_table.name, other_table.description
+                    FROM my_table
+                    JOIN other_table ON my_table.id = other_table.my_table_id;
+                </code>
+            </pre>
+
+            <h4>52. Nested Queries</h4>
+            <p>To use a query inside another query:</p>
+
+            <pre>
+                <code>
+                    SELECT name FROM my_table
+                    WHERE age IN (SELECT age FROM another_table WHERE condition);
+                </code>
+            </pre>
+
+            <h4>53. Table View</h4>
+            <p>To create view a customise table:</p>
+
+            <pre>
+                <code>
+                    CREATE VIEW vw_tble as SELECT column_1, column_3, column_5, column_4 
+                    FROM my_table;
+                </code>
+            </pre>
+
+            <pre>
+                <code>
+                    CREATE VIEW vw_tble 
+                    as 
+                    SELECT column_1, column_3, column_5, column_4 
+                    FROM my_table_1 as mt_1 INNER JOIN my_table_2 as mt_2
+                    on mt_1.some_column = mt_2.some_column;
+                </code>
+            </pre>
+
+            <pre>
+                <code>
+                    SELECT * FROM vw_tble; 
+                </code>
+            </pre>
+
+            <h4>54. Rename view</h4>
+            <p>To rename the view, use the <code>RENAME TABLE</code> statement:</p>
+
+            <pre>
+                <code>
+                    RENAME TABLE my_table to my_new_table;
+                </code>
+            </pre>
+
+            <h4>55. Display all view</h4>
+            <p>To display the view, use the <code>SHOW FULL TABLE</code> statement:</p>
+        
+            <pre>
+                <code>
+                    SHOW FULL TABLES WHERE TABLE_TYPE = 'VIEW';
+                </code>
+            </pre>
+
+            <h4>56. Delete view</h4>
+            <p>To delete the view, use the <code>DROP VIEW</code> statement:</p>
+        
+            <pre>
+                <code>
+                    DROP VIEW view_name;
+                </code>
+            </pre>
+        
+            <h4>57. Stored Procedures</h4>
+            <h5>Create a Stored Procedure</h5>
+        
+            <pre>
+                <code>
+                    DELIMITER //
+                    CREATE PROCEDURE GetUser(IN userId INT)
+                    BEGIN
+                        SELECT * FROM my_table WHERE id = userId;
+                    END //
+                    DELIMITER ;
+                </code>
+            </pre>
+        
+            <h5>Call a Stored Procedure</h5>
+        
+            <pre>
+                <code>
+                CALL GetUser(1);
+                </code>
+            </pre>
+        
+            <h4>58. Trigger</h4>
+        
+            <h5>Create a Trigger</h5>
+        
+            <pre>
+                <code>
+                    DELIMITER //
+                    CREATE TRIGGER before_insert_my_table
+                    BEFORE INSERT ON my_table
+                    FOR EACH ROW
+                    BEGIN
+                        SET NEW.created_at = NOW();
+                    END //
+                    DELIMITER ;
+                </code>
+            </pre>
+        
+            <h5>Delete a Trigger</h5>
+        
+            <pre>
+                <code>
+                    DROP TRIGGER before_insert_my_table;
+                </code>
+            </pre>
+        
+            <h4>59. Execute SQL from a File</h4>
+            <p>To execute SQL commands from a file:</p>
+        
+            <pre>
+                <code>
+                    mysql -u username -p database_name &lt; file.sql
+                </code>
+            </pre>
+        
+            <h4>60. Export Data</h4>
+            <p>To export data to a file:</p>
+        
+            <pre>
+                <code>
+                    mysqldump -u username -p database_name &gt; backup.sql
+                </code>
+            </pre>
+        
+            <h4>61. Import Data</h4>
+            <p>To import data from a file:</p>
+        
+            <pre>
+                <code>
+                    mysql -u username -p database_name &lt; backup.sql
+                </code>
+            </pre>
+        
+            <h4>62. Delete Table from the Database</h4>
+            <p>To delete a table:</p>
+        
+            <pre>
+                <code>
+                    DROP TABLE my_table;
+                </code>
+            </pre>
+
+            <h4>63. Delete the Database</h4>
+            <p>To delete a database:</p>
+        
+            <pre>
+                <code>
+                    DROP DATABASE my_database;
+                </code>
+            </pre>
+
+            <h4>64. Clean the MySQL Client</h4>
+            <p>To clean the MySQL command-line client (Console):</p>
+        
+            <pre>
+                <code>
+                    SYSTEM CLS;
+                </code>
+            </pre>
+
+            <h4>65. Quit the MySQL Client</h4>
+            <p>To exit the MySQL command-line client:</p>
+        
+            <pre>
+                <code>
+                    QUIT;
+                </code>
+            </pre>
+
+        </div>
+    </section>
+
+    <footer>
+        <h6>Pramu Programming Concept</h6>
+    </footer>
+
+</body>
+</html>

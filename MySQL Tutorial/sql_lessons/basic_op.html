@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic MySQL Operations</title>
+    <link rel="stylesheet" href="../styles/css/common-style.css">
+    <link rel="stylesheet" href="../styles/css/basic_op.css">
+    <link rel="stylesheet" href="../styles/highlights/syntax_css/sintaxhighlight.css">
+    <script src="../styles/highlights/syntax_js/sintaxhighlight.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+<body>
+
+    <header>
+        <img src="../src_images/db_Connect.png" class="sql-logo" alt="SQL Logo">
+        <h2><strong>Basic MySQL Operations</strong></h2>
+    </header>
+
+    <section class="content">
+
+        <div class="cnnt-sver" id="ctmss">
+
+            <h3><strong>Connecting to MySQL Server</strong></h3>
+                <p>Before performing any operations, you need to connect to the MySQL server. You can do this through the MySQL Command Line Interface (CLI) or a graphical tool like MySQL Workbench.</p>
+
+                <h4><strong>Using MySQL CLI</strong>:</h4>
+                    <ol>
+                        <li><strong>Open the CLI</strong>:</li>
+                        <ul>
+                            <li>On Windows: Open the Command Prompt.</li>
+                            <li>On macOS/Linux: Open Terminal.</li>
+                        </ul>
+
+                        <li><strong>Connect to the Server</strong>:</li>
+                        <ul>
+                            <li>Run the following command:
+                                <pre>
+                                    <code>
+                                        mysql -u username -p
+                                    </code>
+                                </pre>
+                            </li>
+                            <li>Replace <code>username</code> with your MySQL username (e.g., <code>root</code>).</li>
+                            <li>Enter your password when prompted.</li>
+                        </ul>
+                    </ol>
+
+                <h4><strong>Using MySQL Workbench</strong>:</h4>
+                <ol>
+                    <li><strong>Open MySQL Workbench</strong>:</li>
+                        <ul>
+                            <li>Launch MySQL Workbench from your applications.</li>
+                        </ul>
+
+                    <li><strong>Create a New Connection</strong>:</li>
+                        <ul>
+                            <li>Click on the "+" icon to create a new connection.</li>
+                            <li>Enter your connection name, hostname (usually <code>localhost</code>), port (default is <code>3306</code>), and username (e.g., <code>root</code>).</li>
+                            <li>Click "Test Connection" to ensure the connection works, then click "OK."</li>
+                        </ul>
+
+                    <li><strong>Connect to the Server</strong>:</li>
+                        <ul>
+                            <li>Double-click the connection name to connect to the server.</li>
+                        </ul>
+                </ol>
+        </div>
+
+
+        <div class="mng-db" id="camd">
+            <h3><strong>Creating and Managing Databases</strong></h3>
+                <p>MySQL allows you to create and manage databases, which are used to store and organize your data.</p>
+
+                <h4><strong>Creating a Database</strong>:</h4>
+                    <ol>
+                        <li><strong>Using MySQL CLI</strong>:</li>
+                            <ul>
+                                <li>Run the following command:
+                                    <pre>
+                                        <code>
+                                            CREATE DATABASE database_name;
+                                        </code>
+                                    </pre>
+                                </li>
+                                <li>Replace <code>database_name</code> with the desired name of your database.</li>
+                            </ul>
+
+                        <li><strong>Using MySQL Workbench</strong>:</li>
+                            <ul>
+                                <li>In the "Schemas" tab, right-click and select "Create Schema."</li>
+                                <li>Enter the name of the database and click "Apply."</li>
+                            </ul>
+                    </ol>
+
+                <h4><strong>Listing Databases</strong>:</h4>
+                    <ul>
+                        <li>
+                            <strong>Using MySQL CLI</strong>:
+                                <pre>
+                                    <code>
+                                        SHOW DATABASES;
+                                    </code>
+                                </pre>
+                        </li>
+
+                        <li><strong>Using MySQL Workbench</strong>:</li>
+                            <ul>
+                                <li>Databases will be listed under the "Schemas" tab.</li>
+                            </ul>
+                    </ul>
+
+                <h4><strong>Selecting a Database</strong>:</h4>
+                    <ul>
+                        <li>
+                            <strong>Using MySQL CLI</strong>:
+                                <pre>
+                                    <code>
+                                        USE database_name;
+                                    </code>
+                                </pre>
+                        </li>
+
+                        <li><strong>Using MySQL Workbench</strong>:</li>
+                            <ul>
+                                <li>Double-click the database name under "Schemas" to select it.</li>
+                            </ul>
+                    </ul>
+
+                <h4><strong>Dropping a Database</strong>:</h4>
+                    <ul>
+                        <li>
+                            <strong>Using MySQL CLI</strong>:
+                                <pre>
+                                    <code>
+                                        DROP DATABASE database_name;
+                                    </code>
+                                </pre>
+                        </li>
+
+                        <li><strong>Using MySQL Workbench</strong>:</li>
+                            <ul>
+                                <li>Right-click on the database name under "Schemas" and select "Drop Schema."</li>
+                            </ul>
+                    </ul>
+        </div>
+
+        <div class="mng-tb" id="camt">
+            <h3><strong>Creating and Managing Tables</strong></h3>
+                <p>Tables are used to store data in a structured format. Each table consists of rows and columns.</p>
+    
+                <h4><strong>Creating a Table</strong>:</h4>
+                    <ol>
+                        <li><strong>Using MySQL CLI</strong>:
+                            <ul>
+                                <pre>
+                                    <code>
+                                        CREATE TABLE table_name (
+                                        &ThickSpace; id INT AUTO_INCREMENT PRIMARY KEY,
+                                        &ThickSpace; column1_name data_type,
+                                        &ThickSpace; column2_name data_type,
+                                        &ThickSpace; ...
+                                        &ThickSpace; );
+                                    </code>
+                                </pre>	
+                                <li>Replace <code>table_name</code>, <code>column1_name</code>, <code>column2_name</code>, etc., with your desired table and column names, and <code>data_type</code> with the appropriate MySQL data type (e.g., <code>INT</code>, <code>VARCHAR(255)</code>, <code>DATE</code>).</li>
+                            </ul>
+                        </li>
+
+                        <li><strong>Using MySQL Workbench</strong>:</li>
+                            <ul>
+                                <li>Right-click on the database name under "Schemas" and select "Create Table."</li>
+                                <li>Enter the table name and define the columns by specifying their names, data types, and constraints (e.g., <code>NOT NULL</code>, <code>PRIMARY KEY</code>).</li>
+                                <li>Click "Apply" to create the table.</li>
+                            </ul>
+                    </ol>
+    
+                <h4><strong>Listing Tables</strong>:</h4>
+                    <ul>
+                        <li>
+                            <strong>Using MySQL CLI</strong>:
+                                <pre>
+                                    <code>
+                                        SHOW TABLES;
+                                    </code>
+                                </pre>
+                        </li>
+    
+                        <li><strong>Using MySQL Workbench</strong>:</li>
+                        <ul>
+                            <li>Tables will be listed under the selected database in the "Schemas" tab.</li>
+                        </ul>
+                    </ul>
+    
+                <h4><strong>Describing a Table</strong>:</h4>
+                    <ul>
+                        <li><strong>Using MySQL CLI</strong>:
+                            <pre>
+                                <code>
+                                    DESCRIBE table_name;
+                                </code>
+                            </pre>
+                        </li>
+                        <ul>
+                            <li>This command shows the structure of the table, including column names, data types, and constraints.</li>
+                        </ul>
+                    </ul>
+    
+                <h4><strong>Dropping a Table</strong>:</h4>
+                    <ul>
+                        <li>
+                            <strong>Using MySQL CLI</strong>:
+                                <pre>
+                                    <code>
+                                        DROP TABLE table_name;
+                                    </code>
+                                </pre>
+                        </li>
+    
+                        <li><strong>Using MySQL Workbench</strong>:</li>
+                            <ul>
+                                <li>Right-click on the table name under "Schemas" and select "Drop Table."</li>
+                            </ul>
+                    </ul>
+        </div>
+
+        <div class="insrt-dt" id="idit">
+            <h3><strong>Inserting Data into Tables</strong></h3>
+                <p>After creating a table, you can insert data into it.</p>
+    
+                <h4><strong>Inserting a Single Row</strong>:</h4>
+                    <ol>
+                        <li><strong>Using MySQL CLI</strong>:
+                            <pre>
+                                <code>
+                                    INSERT INTO table_name (column1_name, column2_name, ...)
+                                    VALUES (value1, value2, ...);
+                                </code>
+                            </pre>
+                        </li>
+                        <ul>
+                            <li>Replace <code>table_name</code>, <code>column1_name</code>, etc., with the table and column names, and <code>value1</code>, <code>value2</code>, etc., with the actual data.</li>
+                        </ul>
+    
+                        <li><strong>Using MySQL Workbench</strong>:</li>
+                            <ul>
+                                <li>Right-click on the table name under "Schemas" and select "Select Rows - Limit 1000."</li>
+                                <li>In the result grid, manually enter the values into the columns and click "Apply."</li>
+                            </ul>
+                    </ol>
+    
+                <h4><strong>Inserting Multiple Rows</strong>:</h4>
+                    <ul>
+                        <li>
+                            <strong>Using MySQL CLI</strong>:
+                                <pre>
+                                    <code>
+                                        INSERT INTO table_name (column1_name, column2_name, ...)
+                                        VALUES (value1, value2, ...),
+                                        &ThickSpace; (value3, value4, ...),
+                                        &ThickSpace; ...;
+                                    </code>
+                                </pre>
+                        </li>
+    
+                        <li><strong>Using MySQL Workbench</strong>:</li>
+                            <ul>
+                                <li>Use the same method as above to add multiple rows in the result grid.</li>
+                            </ul>
+                    </ul>
+        </div>
+
+        <div class="slct-q" id="qdws">
+            <h3><strong>Querying Data with SELECT</strong></h3>
+                <p>The <code>SELECT</code> statement is used to retrieve data from one or more tables.</p>
+    
+                <h4><strong>Basic SELECT Query</strong>:</h4>
+                    <ul>
+                        <li><strong>Using MySQL CLI</strong>:
+                            <pre>
+                                <code>
+                                    SELECT column1_name, column2_name, ...
+                                    FROM table_name;
+                                </code></li>
+                            </pre>
+                            <ul>
+                                <li>This retrieves the specified columns from the table.</li>
+                            </ul>
+    
+                        <li><strong>Using MySQL Workbench</strong>:</li>
+                            <ul>
+                                <li>Use the SQL editor to run the same query, and the results will be displayed below the editor.</li>
+                            </ul>
+                    </ul>
+    
+                <h4><strong>Selecting All Columns</strong>:</h4>
+                    <ul>
+                        <li><strong>Using MySQL CLI</strong>:
+                            <pre>
+                                <code>
+                                    SELECT * FROM table_name;
+                                </code>
+                            </pre>
+                        </li>
+                            <ul>
+                                <li>The <code>*</code> wildcard selects all columns from the table.</li>
+                            </ul>
+                    </ul>
+    
+                <h4><strong>Filtering Data with WHERE Clause</strong>:</h4>
+                    <ul>
+                        <li><strong>Using MySQL CLI</strong>:
+                            <pre>
+                                <code>
+                                    SELECT column1_name, column2_name, ...
+                                    FROM table_name
+                                    WHERE condition;
+                                </code>
+                            </pre>
+                        </li>
+                        <ul>
+                            <li>Replace <code>condition</code> with the criteria for filtering (e.g., <code>column1_name = 'value'</code>).</li>
+                        </ul>
+                    </ul>
+                    
+                <h4><strong>Sorting Data with ORDER BY</strong>:</h4>
+                    <ul>
+                        <li><strong>Using MySQL CLI</strong>:
+                            <pre>
+                                <code>
+                                    SELECT column1_name, column2_name, ...
+                                    FROM table_name
+                                    ORDER BY column1_name ASC|DESC;
+                                </code>
+                            </pre>
+                        </li>
+                    </ul>
+    
+                <h4><strong>Limiting the Number of Results</strong>:</h4>
+                    <ul>
+                        <li><strong>Using MySQL CLI</strong>:
+                            <pre>
+                                <code>
+                                    SELECT column1_name, column2_name, ...
+                                    FROM table_name
+                                    LIMIT number;
+                                </code>
+                            </pre>
+                        </li>
+                        <ul>
+                            <li>Replace <code>number</code> with the maximum number of rows to return.</li>
+                        </ul>
+                    </ul>
+        </div>
+
+        <div class="updt-dlt-q" id="uadd">
+            <h3><strong>Updating and Deleting Data</strong></h3>
+                <p>You can modify or remove existing data using <code>UPDATE</code> and <code>DELETE</code> statements.</p>
+
+                <h4><strong>Updating Data</strong>:</h4>
+                    <ul>
+                        <li><strong>Using MySQL CLI</strong>:
+                            <pre>
+                                <code>
+                                    UPDATE table_name
+                                    SET column1_name = new_value, column2_name = new_value, ...
+                                    WHERE condition;
+                                </code>
+                            </pre>
+                        </li>
+                        <ul>
+                            <li>Ensure you include a <code>WHERE</code> clause to specify which rows to update, or else all rows will be updated.</li>
+                        </ul>
+
+                        <li><strong>Using MySQL Workbench</strong>:</li>
+                            <ul>
+                                <li>Use the result grid to update values directly and then click "Apply."</li>
+                            </ul>
+                    </ul>
+
+                <h4><strong>Deleting Data</strong>:</h4>
+                    <ul>
+                        <li><strong>Using MySQL CLI</strong>:
+                            <pre>
+                                <code>
+                                    DELETE FROM table_name
+                                    WHERE condition;
+                                </code>
+                            </pre>
+                        </li>
+                        <ul>
+                            <li>
+                                Again, use a <code>WHERE</code> clause to target specific rows for deletion.
+                            </li>
+                        </ul>
+
+                        <li>
+                            <strong>Using MySQL Workbench</strong>:
+                        </li>
+                        <ul>
+                            <li>Right-click on the rows in the result grid and select "Delete Row(s)." Click "Apply" to execute.</li>
+                        </ul>
+                    </ul>
+        </div>
+
+        <div class="comn-cmd">
+            <p>To interact with MySQL from the command line client, you'll use a variety of commands.</p>
+            <a href="../sql_lessons/common_cmd.html" target="_blank">Here are the most commonly used commands and their purposes</a>
+        </div>
+    </section>
+
+    <footer>
+        <h6>Pramu Programming Concept</h6>
+    </footer>
+</body>
+</html>

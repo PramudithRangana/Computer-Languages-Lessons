@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transactions and Concurrency Control</title>
+    <link rel="stylesheet" href="../styles/css/common-style.css">
+    <link rel="stylesheet" href="../styles/css/trans_&_concurrency.css">
+    <link rel="stylesheet" href="../styles/highlights/syntax_css/sintaxhighlight.css">
+    <script src="../styles/highlights/syntax_js/sintaxhighlight.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+<body>
+    
+    <header>
+        <img src="../src_images/db_Connect.png" class="sql-logo" alt="SQL Logo">
+        <h2><strong>Transactions and Concurrency Control</strong></h2>
+    </header>
+
+    <section class="content">
+
+        <p class="init-desc">Transactions and concurrency control are critical for maintaining data integrity and consistency in a multi-user database environment. This section covers the fundamentals of transactions, ACID properties, implementing transactions in MySQL, handling errors and rollbacks, and understanding concurrency control and locking mechanisms.</p>
+
+        <div class="transc" id="wat">
+            <h3><strong>What are Transactions ?</strong></h3>
+                <p>A transaction is a sequence of one or more SQL operations executed as a single unit of work. Transactions ensure that either all operations in the transaction are completed successfully or none are applied, preserving database integrity.</p>
+    
+                <h4><strong>Key Characteristics</strong>:</h4>
+                    <ul>
+                        <li><strong>Atomicity</strong>: A transaction is an atomic unit of work. All operations within the transaction are completed successfully, or none are applied.</li>
+                        <li><strong>Consistency</strong>: A transaction brings the database from one valid state to another, maintaining data integrity.</li>
+                        <li><strong>Isolation</strong>: Transactions operate independently of each other. The changes made by one transaction are not visible to others until committed.</li>
+                        <li><strong>Durability</strong>: Once a transaction is committed, its changes are permanent, even in the case of a system failure.</li>
+                    </ul>
+        </div>
+
+        <div class="acid-prop" id="acidp">
+            <h3><strong>ACID Properties</strong></h3>
+                    <p>The ACID properties are essential principles that ensure reliable transaction processing:</p>
+                    <ul>
+                        <li><strong>Atomicity</strong>: Ensures that all parts of a transaction are executed. If one part fails, the entire transaction is rolled back.</li>
+                        <li><strong>Example :</strong> Transferring money from one account to another involves debiting one account and crediting another. Both operations must succeed, or neither should apply.</li>
+                        <li><strong>Consistency</strong>: Ensures that a transaction brings the database from one consistent state to another. The database rules (constraints) must be maintained before and after the transaction.</li>
+                        <li><strong>Example :</strong> After transferring money, the total balance across all accounts should remain the same.</li>
+                        <li><strong>Isolation</strong>: Ensures that concurrent transactions do not interfere with each other. Changes made by one transaction are not visible to others until committed.</li>
+                        <li><strong>Example :</strong> Two transactions updating the same account balance should not conflict with each other.</li>
+                        <li><strong>Durability</strong>: Ensures that once a transaction is committed, its changes are permanent and survive system failures.</li>
+                        <li><strong>Example :</strong> Even if the database crashes immediately after committing a transaction, the changes will be preserved.</li>
+                    </ul>
+        </div>
+
+        <div class="implem-transc" id="itims">
+            <h3><strong>Implementing Transactions in MySQL</strong></h3>
+                <p>Transactions in MySQL are managed using the following commands:</p>
+    
+                <h4><strong>Starting a Transaction</strong>:</h4>
+                    <ul>
+                        <li><strong>Syntax :</strong>
+                            <pre>
+                                <code>
+                                    START TRANSACTION;
+                                </code>
+                            </pre>
+                        </li>
+                        <p>Alternatively, you can use:
+                            <pre>
+                                <code>
+                                    BEGIN;
+                                </code>
+                            </pre>
+                        </p>
+    
+                        <strong>Example :</strong>
+                        <pre>
+                            <code>
+                                START TRANSACTION;
+                            </code>
+                        </pre>
+                    </ul>
+    
+                <h4><strong>Committing a Transaction</strong>:</h4>
+                    <ul>
+                        <li><strong>Syntax :</strong>
+                            <pre>
+                                <code>
+                                    COMMIT;
+                                </code>
+                            </pre>
+                        </li>
+                            
+                        <strong>Example :</strong>
+                        <pre>
+                            <code>
+                                COMMIT;
+                            </code>
+                        </pre>
+
+                        <p>This saves all changes made during the transaction to the database.</p>
+                    </ul>
+    
+                <h4><strong>Rolling Back a Transaction</strong>:</h4>
+                    <ul>
+                        <li>
+                            <strong>Syntax :</strong>
+                            <pre>
+                                <code>
+                                    ROLLBACK;
+                                </code>
+                            </pre>
+                        </li>
+                        <strong>Example :</strong>
+                        <pre>
+                            <code>
+                                ROLLBACK;
+                            </code>
+                        </pre>
+                        <p>This undoes all changes made during the transaction if an error occurs or if you choose to cancel.</p>
+                    </ul>
+    
+                <h4><strong>Example Transaction</strong>:</h4>
+                    <pre>
+                        <code>
+                            START TRANSACTION;
+                            UPDATE accounts SET balance = balance - 100 WHERE account_id = 1;
+                            UPDATE accounts SET balance = balance + 100 WHERE account_id = 2;
+                            -- Assuming both updates are successful:
+                            COMMIT;
+                            
+                            -- If there's an error, rollback:
+                            ROLLBACK;
+                        </code>
+                    </pre>
+        </div>
+
+        <div class="transc-err-handl" id="htear">
+
+            <h3><strong>Handling Transaction Errors and Rollbacks</strong></h3>
+                <p>Handling errors and rollbacks is crucial for maintaining data integrity:</p>
+                <ul>
+                    <li>
+                        <strong>Error Handling</strong>: Use proper error handling in your application logic to detect transaction failures and handle them appropriately.
+                    </li>
+                    <li>
+                        <strong>Automatic Rollback</strong>: In MySQL, if an error occurs during a transaction, the system automatically rolls back to the last committed state if using InnoDB storage engine with 
+                        <pre>
+                            <code>
+                                SET AUTOCOMMIT = 0
+                            </code>
+                        </pre>
+                    </li>
+                    <li>
+                        <strong>Manual Rollback</strong>: Ensure that your application explicitly performs a rollback if an error is detected during a transaction.
+                    </li>
+                </ul>
+        </div>
+
+        <div class="conc-ctrl" id="ccalm">
+            <h3><strong>Concurrency Control and Locking Mechanisms</strong></h3>
+                <p>Concurrency control ensures that multiple transactions can operate simultaneously without causing data inconsistencies. MySQL uses various locking mechanisms to manage concurrent access.</p>
+    
+                <h4><strong>Types of Locks</strong>:</h4>
+                    <ul>
+                        <li><strong>Table-Level Locks</strong>: Locks an entire table, preventing other transactions from modifying it.</li>
+                        <strong>Example :</strong>
+                        <pre>
+                            <code>
+                                LOCK TABLES accounts WRITE;
+                                -- Perform operations
+                                UNLOCK TABLES;
+                            </code>
+                        </pre>
+
+                        <li><strong>Row-Level Locks</strong>: Locks specific rows, allowing other transactions to access different rows in the same table.</li>
+                        <li><strong>Example :</strong> Managed automatically by InnoDB during transactions.</li>
+                    </ul>
+    
+                <h4><strong>Isolation Levels</strong>:</h4>
+                    <p>Isolation levels control the visibility of changes made by a transaction to other concurrent transactions. MySQL supports four isolation levels:</p>
+                    <ol>
+                        <li><strong>READ UNCOMMITTED</strong>: Allows dirty reads. Transactions can see uncommitted changes made by others.</li>
+                        <li><strong>READ COMMITTED</strong>: Prevents dirty reads. Transactions see only committed changes.</li>
+                        <li><strong>REPEATABLE READ</strong>: Ensures consistent reads. Transactions see the same data throughout the transaction.</li>
+                        <li><strong>SERIALIZABLE</strong>: Ensures complete isolation. Transactions are executed sequentially, as if one at a time.</li>
+                        <li><strong>Setting Isolation Level</strong>:
+                            <pre>
+                                <code>
+                                    SET SESSION TRANSACTION ISOLATION LEVEL REPEATABLE READ;
+                                </code>
+                            </pre>
+                        </li>
+                    </ol>
+    
+                <h4><strong>Deadlocks</strong>:</h4>
+                    <p>A deadlock occurs when two or more transactions are waiting for each other to release locks, resulting in a standstill.</p>
+                    <ul>
+                        <li><strong>Detecting Deadlocks</strong>: MySQL's InnoDB storage engine automatically detects and resolves deadlocks by rolling back one of the transactions.</li>
+                        <strong>Example :</strong>
+                            <pre>
+                                <code>
+                                    -- Transaction 1
+                                    START TRANSACTION;
+                                    UPDATE accounts SET balance = balance - 100 WHERE account_id = 1;
+                                </code>
+                            </pre>
+
+                            <pre>
+                                <code>
+                                    -- Transaction 2
+                                    START TRANSACTION;
+                                    UPDATE accounts SET balance = balance - 100 WHERE account_id = 2;
+                                    -- Both transactions attempt to update each other's rows, causing a deadlock.
+                                </code>
+                            </pre>
+
+                        <li><strong>Handling Deadlocks</strong>: Ensure that your application handles deadlock errors by retrying the transaction or implementing appropriate retry logic.</li>
+                    </ul>
+        </div>
+    </section>
+
+    <footer>
+        <h6>Pramu Programming Concept</h6>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,39 @@
+
+.content .init-desc,
+.where-clause,
+.sort-group,
+.join-func,
+.sub-q,
+.cte,
+.aggrgd{
+    background: var(--div-bg);
+    border-radius: 10px;
+    margin: 10px 10px;
+    padding: 20px 40px;
+    box-shadow: 0 1px 10px #000;
+}
+
+.content .aggrgd p{
+    padding-left: 60px;
+}
+
+.cte h5{
+    padding-left: 40px;
+    color: chocolate;
+}
+
+.cte h6 {
+    padding-left: 40px;
+}
+
+.mlt-cte {
+    border-radius: 20%;
+    width: 500px;
+    margin: 1px auto;
+}
+
+.dif-cte-temp {
+    border-radius: 5px;
+    width: 1400px;
+    margin: 20px 100px;
+}

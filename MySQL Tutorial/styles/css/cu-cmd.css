@@ -1,0 +1,158 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --header_bg_clr: #530b0b;
+    --header_fg_clr: #d9dfdf;
+
+    --body-bg: #282C34;
+
+    --content-bg: #530b0b;
+    --content-fg: beige;
+
+    --div-bg: #2C3766;
+
+    --h4-tags:#ebd831;;
+    --h5-tags:#54a9ee;;
+    --h6-tags:#c0c0c0;;
+
+    --pargph: rgb(197, 151, 211);
+    
+    --footer_bg_clr: #530b0b;
+    --footer_fg_clr: silver;
+}
+
+body {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--body-bg);
+}
+
+header {
+    position: fixed;
+    z-index: 1111;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    height: 80px;
+    width: 100%;
+    
+    font-size: 20pt;
+    text-shadow: 0 5px 10px #000;
+    -webkit-text-stroke: 1px black;
+    
+    background: var(--header_bg_clr);
+    color: var(--header_fg_clr);
+}
+
+header .sql-logo {
+    position: absolute;
+    margin-left: 50px;
+}
+
+header h2 {
+    margin: auto;
+}
+
+h3 {
+    letter-spacing: .1em;
+    margin: 30px 20px 10px 20px;
+}
+
+h4 {
+    margin-left: 40px;
+    color: var(--h4-tags);
+
+    padding-left: 10px;
+    letter-spacing: .1em;
+}
+
+h5 {
+    margin: 30px 60px;
+    color: var(--h5-tags);
+
+    padding-left: 10px;
+    letter-spacing: .1em;
+}
+
+h6 {
+    margin: 30px 60px;
+    color: var(--h6-tags);
+
+    padding-left: 10px;
+    letter-spacing: .1em;
+}
+
+.container{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    top: 100px;
+
+    margin: 10px 40px;
+    padding: 40px;
+    width: 95%;
+
+    line-height: 1.6em;
+    border-radius: 10px;
+    box-shadow: 0 1px 10px #000;
+    font-size: 14pt;
+    background:  var(--content-bg);
+    color: var(--content-fg);
+}
+
+.content {
+    background: #993f3f;
+    border-radius: 10px;
+    margin: 0 10px;
+    padding: 40px;
+    box-shadow: 0 1px 10px #000;
+}
+
+.content pre {
+    width: 60%;
+    margin: 0 auto;
+    overflow-x: auto;
+    font-size: 12pt;
+}
+
+.content p {
+    letter-spacing: 0.08em;
+    padding: 10px 80px;
+    color: var(--pargph);
+}
+
+
+#afket {
+    width: 1000px;
+}
+
+#odc, #odsn, #ai {
+    width: 1150px;
+}
+
+#wfrn, #wfr, #wfdr {
+    width: 1160px;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 50px;
+    width: 100%;
+
+    margin-top: 120px;
+
+    background: var(--footer_bg_clr);
+    color: var(--footer_fg_clr);
+
+    text-shadow: 0 5px 10px #000;
+}

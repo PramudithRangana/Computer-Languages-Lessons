@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Types in MySQL</title>
+    <link rel="stylesheet" href="../styles/css/common-style.css">
+    <link rel="stylesheet" href="../styles/css/data_types.css">
+    <link rel="stylesheet" href="../styles/highlights/syntax_css/sintaxhighlight.css">
+    <script src="../styles/highlights/syntax_js/sintaxhighlight.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+<body>
+
+    <header>
+        <img src="../src_images/db_Connect.png" class="sql-logo" alt="SQL Logo">
+        <h2><strong>Data Types in MySQL</strong></h2>
+    </header>
+
+    <section class="content">
+
+        <p class="init-desc">Understanding data types in MySQL is crucial for defining how your data will be stored, managed, and retrieved. MySQL offers a variety of data types for different kinds of data, categorized into numeric, string, date and time, and other specialized types like ENUM and SET.</p>
+
+        <div class="numrc-dt" id="ndt">
+            <h3><strong>Numeric Data Types</strong></h3>
+                <p>MySQL provides several numeric data types to store various kinds of numbers, ranging from integers to floating-point numbers and decimal values.</p>
+
+                <h4><strong>Integer Types</strong></h4>
+                    <ul>
+                        <li><strong>TINYINT</strong>:</li>
+                            <ul>
+                                <li>Range: -128 to 127 (Signed), 0 to 255 (Unsigned)</li>
+                                <li>Storage: 1 byte</li>
+                                <li>
+                                    Example:
+                                        <pre>
+                                            <code>
+                                                age TINYINT UNSIGNED;
+                                            </code>
+                                        </pre>
+                                </li>
+                            </ul>
+
+                        <li><strong>SMALLINT</strong>:</li>
+                            <ul>
+                                <li>Range: -32,768 to 32,767 (Signed), 0 to 65,535 (Unsigned)</li>
+                                <li>Storage: 2 bytes</li>
+                                <li>
+                                    Example:
+                                        <pre>
+                                            <code>
+                                                year SMALLINT UNSIGNED;
+                                            </code>
+                                        </pre>
+                                </li>
+                            </ul>
+                        
+                        <li><strong>MEDIUMINT</strong>:</li>
+                            <ul>
+                                <li>Range: -8,388,608 to 8,388,607 (Signed), 0 to 16,777,215 (Unsigned)</li>
+                                <li>Storage: 3 bytes</li>
+                                <li>
+                                    Example:
+                                        <pre>
+                                            <code>
+                                                population MEDIUMINT UNSIGNED;
+                                            </code>
+                                        </pre>
+                                </li>
+                            </ul>
+    
+                        <li><strong>INT (or INTEGER)</strong>:</li>
+                            <ul>
+                                <li>Range: -2,147,483,648 to 2,147,483,647 (Signed), 0 to 4,294,967,295 (Unsigned)</li>
+                                <li>Storage: 4 bytes</li>
+                                <li>
+                                    Example:
+                                        <pre>
+                                            <code>
+                                                id INT NOT NULL AUTO_INCREMENT PRIMARY KEY;
+                                            </code>
+                                        </pre>
+                                </li>
+                            </ul>
+    
+                        <li><strong>BIGINT</strong>:</li>
+                            <ul>
+                                <li>Range: -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807 (Signed), 0 to 18,446,744,073,709,551,615 (Unsigned)</li>
+                                <li>Storage: 8 bytes</li>
+                                Example:
+                                    <pre>
+                                        <code>
+                                            revenue BIGINT;
+                                        </code>
+                                    </pre>
+                            </ul>
+                    </ul>
+    
+                <h4><strong>Floating-Point Types</strong></h4>
+                    <ul>
+                        <li><strong>FLOAT</strong>:</li>
+                            <ul>
+                                <li>Approximate numeric data type for floating-point numbers.</li>
+                                <li>Storage: 4 bytes</li>
+                                Example:
+                                    <pre>
+                                        <code>
+                                            temperature FLOAT(5, 2);
+                                        </code>
+                                    </pre>
+                                <li><p>Here, <code>5</code> is the total number of digits, and <code>2</code> is the number of digits after the decimal point.</p></li>
+                            </ul>
+    
+                        <li><strong>DOUBLE</strong>:</li>
+                            <ul>
+                                <li>More precision than <code>FLOAT</code>.</li>
+                                <li>Storage: 8 bytes</li>
+                                Example:
+                                    <pre>
+                                        <code>
+                                            price DOUBLE(10, 2);
+                                        </code>
+                                    </pre>
+                            </ul>
+                    </ul>
+    
+                <h4><strong>Fixed-Point Types</strong></h4>
+                    <ul>
+                        <li><strong>DECIMAL (or NUMERIC)</strong>:</li>
+                            <ul>
+                                <li>Used for storing exact numeric values, especially when dealing with financial data.</li>
+                                <li>Storage: Varies based on the precision</li>
+                                Example:
+                                    <pre>
+                                        <code>
+                                            salary DECIMAL(10, 2);
+                                        </code>
+                                    </pre>
+                            </ul>
+                    </ul>
+        </div>
+
+        <div class="str-dt" id="sdt">
+            <h3><strong>String Data Types</strong></h3>
+                <p>MySQL provides a variety of string data types to store text data of different lengths and purposes.</p>
+    
+                <h4><strong>Character Types</strong></h4>
+                        <ul>
+                            <li><strong>CHAR</strong>:</li>
+                                <ul>
+                                    <li>Fixed-length string.</li>
+                                    <li>Storage: 1 byte per character</li>
+                                    Example:
+                                        <pre>
+                                            <code>
+                                                country_code CHAR(2);
+                                            </code>
+                                        </pre>
+                                </ul>
+    
+                            <li><strong>VARCHAR</strong>:</li>
+                                <ul>
+                                    <li>Variable-length string.</li>
+                                    <li>Storage: 1 byte per character + 1 or 2 bytes for length</li>
+                                    Example:
+                                        <pre>
+                                            <code>
+                                                name VARCHAR(255);
+                                            </code>
+                                        </pre>
+                                </ul>
+                        </ul>
+    
+                <h4><strong>Text Types</strong></h4>
+                    <ul>
+                        <li><strong>TINYTEXT</strong>:</li>
+                            <ul>
+                                <li>Maximum length: 255 characters</li>
+                                <li>Storage: 1 byte + actual size</li>
+                                Example:
+                                    <pre>
+                                        <code>
+                                            short_description TINYTEXT;
+                                        </code>
+                                    </pre>
+                            </ul>
+    
+                        <li><strong>TEXT</strong>:</li>
+                            <ul>
+                                <li>Maximum length: 65,535 characters</li>
+                                <li>Storage: 2 bytes + actual size</li>
+                                Example:
+                                    <pre>
+                                        <code>
+                                            content TEXT;
+                                        </code>
+                                    </pre>
+                            </ul>
+    
+                        <li><strong>MEDIUMTEXT</strong>:</li>
+                            <ul>
+                                <li>Maximum length: 16,777,215 characters</li>
+                                <li>Storage: 3 bytes + actual size</li>
+                                Example:
+                                    <pre>
+                                        <code>
+                                            article MEDIUMTEXT;
+                                        </code>
+                                    </pre>
+                            </ul>
+    
+                        <li><strong>LONGTEXT</strong>:</li>
+                            <ul>
+                                <li>Maximum length: 4,294,967,295 characters</li>
+                                <li>Storage: 4 bytes + actual size</li>
+                                    <pre>
+                                        <code>
+                                            full_content LONGTEXT;
+                                        </code>
+                                    </pre>
+                            </ul>
+                    </ul>
+    
+                <h4><strong>Binary Types</strong></h4>
+                    <ul>
+                        <li><strong>BINARY</strong>:</li>
+                            <ul>
+                                <li>Fixed-length binary data.</li>
+                                Example:
+                                    <pre>
+                                        <code>
+                                            bin_data BINARY(16);
+                                        </code>
+                                    </pre>
+                            </ul>
+    
+                        <li><strong>VARBINARY</strong>:</li>
+                            <ul>
+                                <li>Variable-length binary data.</li>
+                                Example:
+                                    <pre>
+                                        <code>
+                                            file_data VARBINARY(255);
+                                        </code>
+                                    </pre>
+                            </ul>
+    
+                        <li><strong>BLOB</strong> (Binary Large Object):</p></li>
+                            <ul>
+                                <li>Used for storing large binary data like images or files.</li>
+                                <li>Comes in <code>TINYBLOB</code>, <code>BLOB</code>, <code>MEDIUMBLOB</code>, and <code>LONGBLOB</code> variants, similar to text types.</li>
+                                Example:
+                                    <pre>
+                                        <code>
+                                            image LONGBLOB;
+                                        </code>
+                                    </pre>
+                            </ul>
+                    </ul>
+        </div>
+
+        <div class="dt-tm-t" id="datdt">
+            <h3><strong>Date and Time Data Types</strong></h3>
+                <p>Date and time data types in MySQL are used to store temporal data, including dates, times, and combinations of both.</p>
+                <ul>
+                    <li><strong>DATE</strong>:</li>
+                        <ul>
+                            <li>Format: <code>'YYYY-MM-DD'</code></li>
+                            Example:
+                                <pre>
+                                    <code>
+                                        birth_date DATE;
+                                    </code>
+                                </pre>
+                            </p>
+                        </ul>
+    
+                    <li><strong>TIME</strong>:</li>
+                        <ul>
+                            <li>Format: <code>'HH:MM:SS'</code></li>
+                            Example:
+                                <pre>
+                                    <code>
+                                        start_time TIME;
+                                    </code>
+                                </pre>
+                            </p>
+                        </ul>
+    
+                    <li><strong>DATETIME</strong>:</li>
+                        <ul>
+                            <li>Combines date and time. Format: <code>'YYYY-MM-DD HH:MM:SS'</code></li>
+                            Example:
+                                <pre>
+                                    <code>
+                                        created_at DATETIME;
+                                    </code>
+                                </pre>
+                            </p>
+                        </ul>
+                    
+                    <li><strong>TIMESTAMP</strong>:</li>
+                        <ul>
+                            <li>Similar to <code>DATETIME</code>, but also includes time zone conversion.</li>
+                            Example:
+                                <pre>
+                                    <code>
+                                        last_updated TIMESTAMP;
+                                    </code>
+                                </pre>
+                            </p>
+                        </ul>
+                    <li><strong>YEAR</strong>:</li>
+                        <ul>
+                            <li>Format: <code>'YYYY'</code></li>
+                            Example:
+                                <pre>
+                                    <code>
+                                        year_of_graduation YEAR;
+                                    </code>
+                                </pre>
+                            </p>
+                        </ul>
+                </ul>
+        </div>
+
+        <div class="othr-dt" id="odt">
+            <h3><strong>Other Data Types</strong></h3>
+                <p>MySQL also supports specialized data types like <code>ENUM</code> and <code>SET</code>, which are useful for specific use cases.</p>
+                <h4><strong>ENUM</strong>:</h4>
+                    <ul>
+                        <li>Used to define a column with a predefined set of values.</li>
+                        Example:
+                            <pre>
+                                <code>
+                                    status ENUM('active', 'inactive', 'pending');
+                                </code>
+                            </pre>
+                        </p>
+                    </ul>
+    
+                <h4><strong>SET</strong>:</h4>
+                    <ul>
+                        <li>Similar to <code>ENUM</code>, but allows multiple values from the predefined set.</li>
+                        Example:
+                            <pre>
+                                <code>
+                                    tags SET('technology', 'science', 'health', 'education');
+                                </code>
+                            </pre>
+                        </p>
+                    </ul>
+    
+                <h4><strong>JSON</strong>:</h4>
+                    <ul>
+                        <li>Used to store JSON-formatted data.</li>
+                        Example:
+                            <pre>
+                                <code>
+                                    metadata JSON;
+                                </code>
+                            </pre>
+                        </p>
+                    </ul>
+    
+                <h4><strong>Spatial Data Types</strong>:</h4>
+                    <ul>
+                        <li>Used for storing geometric data, such as points, lines, and polygons.</li>
+                        Example:
+                            <pre>
+                                <code>
+                                    location POINT;
+                                </code>
+                            </pre>
+                        </p>
+                    </ul>
+        </div>
+    </section>
+
+    <footer>
+        <h6>Pramu Programming Concept</h6>
+    </footer>
+</body>
+</html>

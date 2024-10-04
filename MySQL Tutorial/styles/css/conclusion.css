@@ -1,0 +1,17 @@
+.content .init-desc,
+.sum-key-cncpt,
+.addtnl-lrn,
+.commnt-supt{
+    background: var(--div-bg);
+    border-radius: 10px;
+    margin: 10px 10px;
+    padding: 20px 40px;
+    box-shadow: 0 1px 10px #000;
+}
+
+.content
+.addtnl-lrn a,
+.commnt-supt a{
+    color: rgb(2, 194, 2);
+    text-decoration: none;
+}
