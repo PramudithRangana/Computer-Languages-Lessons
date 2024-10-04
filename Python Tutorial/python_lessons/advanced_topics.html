@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Topics</title>
+    <link rel="stylesheet" href="../css/py-style/adv-topic.css">
+    <link rel="stylesheet" href="../css/sintaxhighlight.css">
+    <script src="../js/sintaxhighlight.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+<body>
+    <header>
+        <img src="../src_images/Python-logo-notext.png" class="py-logo" alt="Python Logo">
+        <h1>Advanced Topics (optional)</h1>
+    </header>
+
+    <section class="content">
+        <h3>Regular Expressions:</h3>
+        <div class="regx">
+        
+            <p>
+                Regular expressions, often referred to as regex or regexp, are a powerful tool for pattern matching and text processing. <br>
+                They provide a way to define search patterns and perform operations such as searching, matching, replacing, and extracting text from strings. <br>
+                Python's `re` module is the standard library module for working with regular expressions.
+            </p>
+        
+            <p>Here's a simple example of using regular expressions to search for patterns in a text:</p>
+        
+            <pre>
+                <code>
+                    import re
+        
+                    text = "Hello, my email is john@example.com and my friend's email is jane@example.com."
+                    pattern = r'\w+@\w+\.\w+'
+        
+                    emails = re.findall(pattern, text)
+                    print(emails)  # Output: ['john@example.com', 'jane@example.com']
+                </code>
+            </pre>
+        
+            <p>
+                Regular expressions can be used for tasks like validation, text parsing, data extraction, and more, making them a powerful tool for working with 
+                textual data.
+            </p>
+        </div>
+
+        <h3>Multithreading and Multiprocessing:</h3>
+        <div class="multi-trd">
+        
+            <p>
+                Multithreading and multiprocessing are techniques for concurrent programming, allowing you to perform multiple tasks simultaneously. 
+                In Python, you can use the `threading` module for multithreading and the `multiprocessing` module for multiprocessing.
+            </p>
+        
+            <p><span>Multithreading: </span>
+                Multithreading allows you to run multiple threads within a single process. <br>
+                Threads share the same memory space and can be used for tasks that involve I/O-bound operations, such as network requests or file reading.
+            </p>
+        
+            <pre>
+                <code>
+                    import threading
+        
+                    def print_numbers():
+                        for i in range(1, 6):
+                            print("Number:", i)
+        
+                    def print_letters():
+                        for letter in 'abcde':
+                            print("Letter:", letter)
+        
+                    # Create and start two threads
+                    thread1 = threading.Thread(target=print_numbers)
+                    thread2 = threading.Thread(target=print_letters)
+                    thread1.start()
+                    thread2.start()
+                </code>
+            </pre>
+        
+            <p><span>Multiprocessing: </span>
+                Multiprocessing involves running multiple processes, each with its own memory space, allowing them to work on CPU-bound tasks in
+                parallel. The `multiprocessing` module is particularly useful for tasks that require significant computation.
+            </p>
+        
+            <pre>
+                <code>
+                    import multiprocessing
+        
+                    def square(number):
+                        return number * number
+        
+                    if __name__ == "__main__":
+                        numbers = [1, 2, 3, 4, 5]
+                        with multiprocessing.Pool() as pool:
+                            squared = pool.map(square, numbers)
+                        print(squared)
+                </code>
+            </pre>
+        </div>
+
+        <h3>Database Connectivity (SQLite and SQLAlchemy):</h3>
+        <div class="dbcon">
+        
+        
+            <h4>SQLite:</h4>
+        
+            <p>
+                SQLite is a lightweight and embedded relational database management system that doesn't require a separate server process and 
+                is often used for small-scale applications. Python's `sqlite3` module provides a simple way to interact with SQLite databases.
+            </p>
+        
+            <pre>
+                <code>
+                    import sqlite3
+        
+                    # Connect to a SQLite database (or create one if it doesn't exist)
+                    conn = sqlite3.connect("my_database.db")
+        
+                    # Create a cursor object to interact with the database
+                    cursor = conn.cursor()
+        
+                    # Execute SQL queries
+                    cursor.execute("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, name TEXT, email TEXT)")
+                    cursor.execute("INSERT INTO users (name, email) VALUES (?, ?)", ("Alice", "alice@example.com"))
+        
+                    # Commit changes and close the database connection
+                    conn.commit()
+                    conn.close()
+                </code>
+            </pre>
+       
+            <h4>SQLAlchemy:</h4>
+        
+            <p>
+                SQLAlchemy is a popular Python library that provides a higher-level, object-oriented interface to relational databases. 
+                It supports multiple database management systems, offering more flexibility and powerful tools for working with databases.
+            </p>
+        
+            <pre>
+                <code>
+                    from sqlalchemy import create_engine, Column, Integer, String
+                    from sqlalchemy.orm import sessionmaker
+                    from sqlalchemy.ext.declarative import declarative_base
+        
+                    # Create an SQLite database using SQLAlchemy
+                    engine = create_engine("sqlite:///my_database.db")
+        
+                    # Define a model (table) using SQLAlchemy's ORM
+                    Base = declarative_base()
+        
+                    class User(Base):
+                        __tablename__ = "users"
+                        id = Column(Integer, primary_key=True)
+                        name = Column(String)
+                        email = Column(String)
+        
+                    # Create tables in the database
+                    Base.metadata.create_all(engine)
+        
+                    # Create a session to interact with the database
+                    Session = sessionmaker(bind=engine)
+                    session = Session()
+        
+                    # Insert data into the database
+                    new_user = User(name="Bob", email="bob@example.com")
+                    session.add(new_user)
+                    session.commit()
+                </code>
+            </pre>
+        
+            <p>
+                SQLAlchemy simplifies database operations and provides object-relational mapping, making it a popular choice for working with databases in Python.
+            </p>
+        </div>
+
+        <p id="lst-desc">
+            Regular expressions, multithreading, multiprocessing, and database connectivity are essential topics for building robust and scalable applications. <br>
+            Depending on your specific needs and project requirements, you can choose the most suitable tools and techniques for your development tasks.
+        </p>
+    </section>
+
+    <footer>
+        <h5>Pramu Programming Concept</h5>
+    </footer>
+</body>
+</html>
